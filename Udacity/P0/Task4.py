@@ -32,4 +32,5 @@ phone_numbers = set(in_calls + out_text + in_text)
 telemarketers = [call for call in set(out_calls) if call not in phone_numbers]
 
 print("These numbers could be telemarketers: ")
-print(telemarketers)
+for telemarketer in sorted(telemarketers):
+    print(telemarketer)

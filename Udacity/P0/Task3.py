@@ -45,30 +45,26 @@ to other fixed lines in Bangalore."
 The percentage should have 2 decimal digits
 """
 
-out_calls, in_calls, _, _ = list(zip(*calls))
-out_text, in_text, _ = list(zip(*texts))
-
-inb_area_codes = []
-outb_calls = []
-inb_area_codes_bang = []
+outb_calls = set()
+all_cnt = 0
+to_bang_cnt = 0
 for call in calls:
     if call[0].startswith('(080)'):
-        outb_calls.append(call) 
+        all_cnt += 1
+        if '(' in call[1]:
+            outb_calls.add(call[1][:call[1].find(')')+1])
+        elif call[1][0] in ('7','8','9'):
+            outb_calls.add(call[1][:4])
+        elif call[1].startswith('140'):
+            outb_calls.add('140')
+        if call[1].startswith('(080)'):
+            to_bang_cnt += 1
 
-    _inb_area_code = call[1].replace('(','')[:3]
-    inb_area_codes.append(_inb_area_code)
-    if _inb_area_code == '080':
-        inb_area_codes_bang.append(_inb_area_code)
-        
-# Dedupe and sort for output
-deduped_inb_area_codes = list(set(inb_area_codes))
-deduped_inb_area_codes.sort()
-
-# print answer
+    
 print("The numbers called by people in Bangalore have codes:")
-print(deduped_inb_area_codes)
-  
-pct_bangalore = len(inb_area_codes_bang)/len(inb_area_codes)
-print(f"{pct_bangalore:.2f} percent of calls from fixed lines in Bangalore are calls to other fixed lines in Bangalore.")
+for code in sorted(outb_calls):
+    print(code)
 
-
+percentage = to_bang_cnt/all_cnt
+print(f"{percentage:.2%} percent of calls from fixed lines in Bangalore are calls to other fixed lines in Bangalore.")
+    

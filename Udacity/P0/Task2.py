@@ -28,7 +28,7 @@ phone_numbers = defaultdict(lambda: 0)
 # Calculate total call time for each phone number
 for call in calls:
     phone_numbers[call[0]] += int(call[3])
-    phone_numbers[call[0]] += int(call[3])
+    phone_numbers[call[1]] += int(call[3])
 
 # Find phone number with the largest call time
 max_val = 0

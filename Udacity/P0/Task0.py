@@ -22,7 +22,7 @@ Print messages:
 
 # Destructured assignment
 inb_text, outb_text, text_time = texts[0]
-inb_call, outb_call, call_time, call_duration = calls[0]
+inb_call, outb_call, call_time, call_duration = calls[-1]
 
 print(f"First record of texts, {inb_text} texts {outb_text} at time {text_time}")
 print(f"Last record of calls, {inb_call} calls {outb_call} at time {call_time}, lasting {call_duration} seconds")
