@@ -1,0 +1,51 @@
+[
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Data Structures & Algorithms",
+    "section": "",
+    "text": "Order By\n       Default\n         \n          Title\n        \n     \n  \n    \n      \n      \n    \n\n\n\n\n\nTitle\n\n\nDescription\n\n\nCategories\n\n\n\n\n\n\nPalindrome Number\n\n\nFind indices of two numbers that add up to a target number\n\n\nmath\n\n\n\n\nTwo Sum\n\n\nFind indices of two numbers that add up to a target number\n\n\narray, Hash Table\n\n\n\n\n\nNo matching items"
+  },
+  {
+    "objectID": "posts/Palindrome Number/index.html",
+    "href": "posts/Palindrome Number/index.html",
+    "title": "Palindrome Number",
+    "section": "",
+    "text": "Problem Source: Leetcode"
+  },
+  {
+    "objectID": "posts/Palindrome Number/index.html#problem-description",
+    "href": "posts/Palindrome Number/index.html#problem-description",
+    "title": "Palindrome Number",
+    "section": "Problem Description",
+    "text": "Problem Description\nGiven an integer x, return true if x is a palindrome, and false otherwise. You cannot convert to string.\n\ntests\n\ndef test(fn):\n    value = 121\n    expected = True\n    actual = fn(value)\n    assert actual == expected \n\n    value = -121\n    expected = False\n    actual = fn(value)\n    assert actual == expected \n\n    value = 10\n    expected = False\n    actual = fn(value)\n    assert actual == expected \n\n    value = 12321\n    expected = True\n    actual = fn(value)\n    assert actual == expected \n\n    value = 123214231\n    expected = False\n    actual = fn(value)\n    assert actual == expected"
+  },
+  {
+    "objectID": "posts/Palindrome Number/index.html#solutions",
+    "href": "posts/Palindrome Number/index.html#solutions",
+    "title": "Palindrome Number",
+    "section": "Solutions",
+    "text": "Solutions\n\nString Index\nThe first thought is that we could cast to a string then loop halfway through the string to verify the first and laft halves are the same.\n\ndef isPalindrome(x: int) -&gt; bool:\n    x = str(x)\n    for i in range(len(x)//2):\n        first, last = x[i], x[-(i+1)]\n        if first != last: return False\n    return True\n\ntest(isPalindrome)\n\n\n\nMath\nCould you solve it without converting the integer to a string?\n\ndef isPalindrome(x: int) -&gt; bool:\n    if x &lt; 0: # A negative sign means not a palindrome\n        return False \n    if (x != 0) and (x % 10 == 0): # Int has no leading zeros, so if it ends with 0 it's not a palindrome\n        return False  \n\n    numberHalf = 0\n    while x &gt; numberHalf: # Stop once halfway\n        # Add the rightmost number from x to number half\n        numberHalf = int(numberHalf * 10 + x % 10)\n        # Drop the rightmost number on X\n        x//= 10\n\n    # If odd length drop the right most as that is the center number\n    return x == numberHalf or x == numberHalf//10 \n\ntest(isPalindrome)"
+  },
+  {
+    "objectID": "posts/Two Sum/index.html",
+    "href": "posts/Two Sum/index.html",
+    "title": "Two Sum",
+    "section": "",
+    "text": "Problem Source: Leetcode"
+  },
+  {
+    "objectID": "posts/Two Sum/index.html#problem-description",
+    "href": "posts/Two Sum/index.html#problem-description",
+    "title": "Two Sum",
+    "section": "Problem Description",
+    "text": "Problem Description\nGiven an array of integers nums and an integer target, return indices of the two numbers such that they add up to target.\nYou may assume that each input would have exactly one solution, and you may not use the same element twice.\nYou can return the answer in any order.\n\ntests\n\ndef test(fn):\n    target = 9\n    nums = [2,7,11,15]\n    expected = [0,1]\n    actual = fn(nums, target)\n    assert sorted(actual) == expected \n\n    target = 6\n    nums = [3,2,4]\n    expected = [1,2]\n    actual = fn(nums, target)\n    assert sorted(actual) == expected \n\n    target = 6\n    nums = [3,3]\n    expected = [0,1]\n    actual = fn(nums, target)\n    assert sorted(actual) == expected"
+  },
+  {
+    "objectID": "posts/Two Sum/index.html#solutions",
+    "href": "posts/Two Sum/index.html#solutions",
+    "title": "Two Sum",
+    "section": "Solutions",
+    "text": "Solutions\n\nBrute Force O(n^2)\nThe way to brute force this problem would be to try every possible combination of 2 indices until one solves the problem. This would mean a loop in a loop, or complexity.\n\nfrom typing import List\ndef twoSum(nums: List[int], target: int) -&gt; List[int]:\n    for index1, num1 in enumerate(nums):\n        desired_num = target - num1\n        for index2, num2 in enumerate(nums):\n            if (num2 == desired_num) and (index1 != index2):\n                return [index1, index2]\n\ntest(twoSum)\n\n\n\nHash Map O(n)\nInstead of trying every possible combination we can calculate the other number we need, and do a lookup to see if we have seen that number we need. By doing this we only need 1 loop.\n\nfrom typing import List\ndef solution(nums: List[int], target: int) -&gt; List[int]:\n    hashmap = {}\n    for i,num in enumerate(nums):\n        need = target - num\n        if need in hashmap:\n            return [i,hashmap[need]]\n        hashmap[num] = i\n\ntest(twoSum)"
+  }
+]

@@ -1,0 +1,15 @@
+project:
+  type: website
+  output-dir: docs
+
+website:
+  title: "Myblog"
+  navbar:
+    right:
+      - icon: github
+        href: https://github.com/isaac-flath/DataStructuresAlgorithms
+format:
+  html:
+    theme: cosmo
+    css: styles.css
+
