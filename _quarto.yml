@@ -3,7 +3,7 @@ project:
   output-dir: docs
 
 website:
-  title: "Myblog"
+  title: "Data Structures & Algorithms"
   navbar:
     right:
       - icon: github
