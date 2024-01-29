@@ -60,7 +60,7 @@ def isPalindrome(x: int) -> bool:
 test(isPalindrome)
 ```
 
-### Math
+### Math `O(log10(n))`
 
 Could you solve it without converting the integer to a string?
 
