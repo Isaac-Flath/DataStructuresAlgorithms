@@ -48,6 +48,8 @@ def test(fn):
 ## Solutions
 
 ```{python}
+from typing import List
+
 def reverse(l, n):
     for i in range(n//2): 
         # insplace swaps means go thorugh 1/2 the list
