@@ -50,7 +50,7 @@ from typing import List
 
 def reverse(l, n):
     for i in range(n//2): 
-        # insplace swaps means go thorugh 1/2 the list
+        # inplace swaps means go through 1/2 the list portion we want to swap
         l[i], l[n-i-1] = l[n-i-1], l[i]
 
     
