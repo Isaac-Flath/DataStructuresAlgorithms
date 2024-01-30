@@ -1,15 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>https://Isaac-Flath.github.io/DataStructuresAlgorithms/posts/Pancake Sorting/index.html</loc>
+    <lastmod>2024-01-30T19:15:26.878Z</lastmod>
+  </url>
+  <url>
     <loc>https://Isaac-Flath.github.io/DataStructuresAlgorithms/posts/Two Sum/index.html</loc>
-    <lastmod>2024-01-29T17:01:53.454Z</lastmod>
+    <lastmod>2024-01-30T19:15:26.878Z</lastmod>
   </url>
   <url>
     <loc>https://Isaac-Flath.github.io/DataStructuresAlgorithms/index.html</loc>
-    <lastmod>2024-01-29T17:01:53.454Z</lastmod>
+    <lastmod>2024-01-30T19:15:26.878Z</lastmod>
   </url>
   <url>
     <loc>https://Isaac-Flath.github.io/DataStructuresAlgorithms/posts/Palindrome Number/index.html</loc>
-    <lastmod>2024-01-29T17:01:53.454Z</lastmod>
+    <lastmod>2024-01-30T19:15:26.878Z</lastmod>
   </url>
 </urlset>
