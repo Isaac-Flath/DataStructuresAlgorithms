@@ -34,13 +34,11 @@ def test(fn):
     value = [3,2,4,1]
     expected = [1,2,3,4]
     ans, actual = fn(value)
-    print(f"Input: {value} | Answer: {ans}")
     assert actual == expected 
 
     value = [1,2,3]
     expected = [1,2,3]
     ans, actual = fn(value)
-    print(f"Input: {value} |  Answer: {ans}")
     assert actual == expected 
 ```
 
