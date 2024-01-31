@@ -21,34 +21,6 @@
     "text": "Solution\n\nTime Complexity: O(n^2)\nSpace Complexity: O(n)\n\n\nfrom typing import List\n\ndef reverse(l, n):\n    for i in range(n//2): \n        # inplace swaps means go through 1/2 the list portion we want to swap\n        l[i], l[n-i-1] = l[n-i-1], l[i]\n\n    \ndef pancakeSort(arr: List[int]) -&gt; List[int]:\n    swap_points = []\n    for value_to_sort in range(len(arr),1,-1): # if n-1 elements are correct, then n elements are correct, so don't check the smallest value (1)\n        current_location = arr.index(value_to_sort)+1\n        if value_to_sort == current_location: \n            # If value already in correct position continue\n            continue\n        if current_location != 1: # If value is in front, this step isn't needed\n            # If not, flip to get desired value in front\n            reverse(arr, current_location)\n            swap_points.append(current_location)\n        # flip to get value in final position\n        reverse(arr,value_to_sort)\n        swap_points.append(value_to_sort)\n    return swap_points, arr\n\ntest(pancakeSort)"
   },
   {
-    "objectID": "posts/Palindrome Number/index.html",
-    "href": "posts/Palindrome Number/index.html",
-    "title": "Palindrome Number",
-    "section": "",
-    "text": "Problem Source: Leetcode"
-  },
-  {
-    "objectID": "posts/Palindrome Number/index.html#problem-description",
-    "href": "posts/Palindrome Number/index.html#problem-description",
-    "title": "Palindrome Number",
-    "section": "Problem Description",
-    "text": "Problem Description\nGiven an integer x, return true if x is a palindrome, and false otherwise. You cannot convert to string.\n\ntests\n\ndef test(fn):\n    value = 121\n    expected = True\n    actual = fn(value)\n    assert actual == expected \n\n    value = -121\n    expected = False\n    actual = fn(value)\n    assert actual == expected \n\n    value = 10\n    expected = False\n    actual = fn(value)\n    assert actual == expected \n\n    value = 12321\n    expected = True\n    actual = fn(value)\n    assert actual == expected \n\n    value = 123214231\n    expected = False\n    actual = fn(value)\n    assert actual == expected"
-  },
-  {
-    "objectID": "posts/Palindrome Number/index.html#solutions",
-    "href": "posts/Palindrome Number/index.html#solutions",
-    "title": "Palindrome Number",
-    "section": "Solutions",
-    "text": "Solutions\n\nString Index\nThe first thought is that we could cast to a string then loop halfway through the string to verify the first and laft halves are the same.\nTime complexity: O(n) Space Complexity: O(1)\n\ndef isPalindrome(x: int) -&gt; bool:\n    x = str(x)\n    for i in range(len(x)//2):\n        first, last = x[i], x[-(i+1)]\n        if first != last: return False\n    return True\n\ntest(isPalindrome)\n\n\n\nMath\nCould you solve it without converting the integer to a string?\n\nTime Complexity: O(log10(n))\nSpace Complexity: O(1)\n\n\ndef isPalindrome(x: int) -&gt; bool:\n    if x &lt; 0: # A negative sign means not a palindrome\n        return False \n    if (x != 0) and (x % 10 == 0): # Int has no leading zeros, so if it ends with 0 it's not a palindrome\n        return False  \n\n    numberHalf = 0\n    while x &gt; numberHalf: # Stop once halfway\n        # Add the rightmost number from x to number half\n        numberHalf = int(numberHalf * 10 + x % 10)\n        # Drop the rightmost number on X\n        x//= 10\n\n    # If odd length drop the right most as that is the center number\n    return x == numberHalf or x == numberHalf//10 \n\ntest(isPalindrome)"
-  },
-  {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "Data Structures & Algorithms",
-    "section": "",
-    "text": "Order By\n       Default\n         \n          Title\n        \n     \n  \n    \n      \n      \n    \n\n\n\n\n\nTitle\n\n\nDescription\n\n\nCategories\n\n\n\n\n\n\nPancake Sorting\n\n\nSort a list using pancake flips\n\n\nArray, Two Pointers, Greedy, Sorting\n\n\n\n\nPalindrome Number\n\n\nDetermine if an integer is a palindrome\n\n\nmath\n\n\n\n\nTwo Sum\n\n\nDetermine if an integer is a palindrome\n\n\narray, hash table\n\n\n\n\n\nNo matching items"
-  },
-  {
     "objectID": "posts/Two Sum/index.html",
     "href": "posts/Two Sum/index.html",
     "title": "Two Sum",
@@ -68,5 +40,54 @@
     "title": "Two Sum",
     "section": "Solutions",
     "text": "Solutions\n\nBrute Force\nThe way to brute force this problem would be to try every possible combination of 2 indices until one solves the problem. This would mean a loop in a loop, or complexity.\n\nTime Complexity: O(n^2)\nSpace Complexity: O(1)\n\n\nfrom typing import List\ndef twoSum(nums: List[int], target: int) -&gt; List[int]:\n    for index1, num1 in enumerate(nums):\n        desired_num = target - num1\n        for index2, num2 in enumerate(nums):\n            if (num2 == desired_num) and (index1 != index2):\n                return [index1, index2]\n\ntest(twoSum)\n\n\n\nHash Map\nInstead of trying every possible combination we can calculate the other number we need, and do a lookup to see if we have seen that number we need. By doing this we only need 1 loop.\n\nTime Complexity: O(n)\nSpace Complexity: O(n)\n\n\nfrom typing import List\ndef solution(nums: List[int], target: int) -&gt; List[int]:\n    hashmap = {}\n    for i,num in enumerate(nums):\n        need = target - num\n        if need in hashmap:\n            return [i,hashmap[need]]\n        hashmap[num] = i\n\ntest(twoSum)"
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Data Structures & Algorithms",
+    "section": "",
+    "text": "Order By\n       Default\n         \n          Title\n        \n     \n  \n    \n      \n      \n    \n\n\n\n\n\nTitle\n\n\nDescription\n\n\nCategories\n\n\n\n\n\n\nCount Symmetric Integers\n\n\nDetermine if an integer is a Symmetric\n\n\nmath, enumeration\n\n\n\n\nPancake Sorting\n\n\nSort a list using pancake flips\n\n\nArray, Two Pointers, Greedy, Sorting\n\n\n\n\nPalindrome Number\n\n\nDetermine if an integer is a palindrome\n\n\nmath\n\n\n\n\nTwo Sum\n\n\nDetermine if an integer is a palindrome\n\n\narray, hash table\n\n\n\n\n\nNo matching items"
+  },
+  {
+    "objectID": "posts/Count Symmetric Integers/index.html",
+    "href": "posts/Count Symmetric Integers/index.html",
+    "title": "Count Symmetric Integers",
+    "section": "",
+    "text": "Problem Source: Leetcode"
+  },
+  {
+    "objectID": "posts/Count Symmetric Integers/index.html#problem-description",
+    "href": "posts/Count Symmetric Integers/index.html#problem-description",
+    "title": "Count Symmetric Integers",
+    "section": "Problem Description",
+    "text": "Problem Description\nYou are given two positive integers low and high.\nAn integer x consisting of 2 * n digits is symmetric if the sum of the first n digits of x is equal to the sum of the last n digits of x. Numbers with an odd number of digits are never symmetric.\nReturn the number of symmetric integers in the range [low, high].\n\ntests\n\ndef test(fn):\n    low,high = 1,100\n    expected =  9\n    symmetric_count = fn(low,high) # 11, 22, 33, 44, 55, 66, 77, 88, and 99.\n    assert symmetric_count == expected \n\n    low, high = 1200, 1230\n    expected = 4\n    symmetric_count = fn(low,high) # 1203, 1212, 1221, and 1230\n    assert symmetric_count == expected \n\n    low, high = 0, 10000\n    expected = 624\n    symmetric_count = fn(low,high) # 1203, 1212, 1221, and 1230\n    assert symmetric_count == expected"
+  },
+  {
+    "objectID": "posts/Count Symmetric Integers/index.html#solution",
+    "href": "posts/Count Symmetric Integers/index.html#solution",
+    "title": "Count Symmetric Integers",
+    "section": "Solution",
+    "text": "Solution\n\nTime Complexity: O(n^2)\nSpace Complexity: O(1)\n\n\ndef sum(arr):\n    ttl = 0\n    for a in arr:\n        ttl += int(a)\n    return ttl\n\ndef split_int(x):\n    half = len(x)//2\n    left, right = x[:half], x[-half:]\n    return left, right\n\ndef isSymmetric(x, ):\n    x = str(x)\n    if len(x)%2 == 1: return False\n    half = len(x)//2\n    return sum(x[:half]) == sum(x[-half:])\n\ndef countSymmetricIntegers(low: int, high: int) -&gt; int:\n    symmetric_count = 0\n    for num in range(low, high+1):\n        symmetric_count += isSymmetric(num)\n    return symmetric_count\n    \ntest(countSymmetricIntegers)\n\n\nimport timeit\ntimeit.timeit(lambda: countSymmetricIntegers(0,10000),number=1000)\n\n4.956997042056173"
+  },
+  {
+    "objectID": "posts/Palindrome Number/index.html",
+    "href": "posts/Palindrome Number/index.html",
+    "title": "Palindrome Number",
+    "section": "",
+    "text": "Problem Source: Leetcode"
+  },
+  {
+    "objectID": "posts/Palindrome Number/index.html#problem-description",
+    "href": "posts/Palindrome Number/index.html#problem-description",
+    "title": "Palindrome Number",
+    "section": "Problem Description",
+    "text": "Problem Description\nGiven an integer x, return true if x is a palindrome, and false otherwise. You cannot convert to string.\n\ntests\n\ndef test(fn):\n    value = 121\n    expected = True\n    actual = fn(value)\n    assert actual == expected \n\n    value = -121\n    expected = False\n    actual = fn(value)\n    assert actual == expected \n\n    value = 10\n    expected = False\n    actual = fn(value)\n    assert actual == expected \n\n    value = 12321\n    expected = True\n    actual = fn(value)\n    assert actual == expected \n\n    value = 123214231\n    expected = False\n    actual = fn(value)\n    assert actual == expected"
+  },
+  {
+    "objectID": "posts/Palindrome Number/index.html#solutions",
+    "href": "posts/Palindrome Number/index.html#solutions",
+    "title": "Palindrome Number",
+    "section": "Solutions",
+    "text": "Solutions\n\nString Index\nThe first thought is that we could cast to a string then loop halfway through the string to verify the first and laft halves are the same.\nTime complexity: O(n) Space Complexity: O(1)\n\ndef isPalindrome(x: int) -&gt; bool:\n    x = str(x)\n    for i in range(len(x)//2):\n        first, last = x[i], x[-(i+1)]\n        if first != last: return False\n    return True\n\ntest(isPalindrome)\n\n\n\nMath\nCould you solve it without converting the integer to a string?\n\nTime Complexity: O(log10(n))\nSpace Complexity: O(1)\n\n\ndef isPalindrome(x: int) -&gt; bool:\n    if x &lt; 0: # A negative sign means not a palindrome\n        return False \n    if (x != 0) and (x % 10 == 0): # Int has no leading zeros, so if it ends with 0 it's not a palindrome\n        return False  \n\n    numberHalf = 0\n    while x &gt; numberHalf: # Stop once halfway\n        # Add the rightmost number from x to number half\n        numberHalf = int(numberHalf * 10 + x % 10)\n        # Drop the rightmost number on X\n        x//= 10\n\n    # If odd length drop the right most as that is the center number\n    return x == numberHalf or x == numberHalf//10 \n\ntest(isPalindrome)"
   }
 ]
