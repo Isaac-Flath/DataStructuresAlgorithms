@@ -43,7 +43,11 @@ def test(fn):
 ```
 
 
-## Solution `O(n^2 / 2)`
+## Solution 
+
++ Time Complexity: `O(n^2)`
++ Space Complexity: `O(n)`
+
 
 ```{python}
 from typing import List

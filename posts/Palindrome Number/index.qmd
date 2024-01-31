@@ -3,7 +3,7 @@ title: "Palindrome Number"
 author: "Isaac Flath"
 date: "2024-01-29"
 categories: [math]
-description: "Find indices of two numbers that add up to a target number"
+description: "Determine if an integer is a palindrome"
 ---
 
 >Problem Source:  Leetcode
@@ -49,6 +49,9 @@ def test(fn):
 
 The first thought is that we could cast to a string then loop halfway through the string to verify the first and laft halves are the same.
 
+Time complexity: `O(n)`
+Space Complexity: `O(1)`
+
 ```{python}
 def isPalindrome(x: int) -> bool:
     x = str(x)
@@ -60,9 +63,12 @@ def isPalindrome(x: int) -> bool:
 test(isPalindrome)
 ```
 
-### Math `O(log10(n))`
+### Math 
 
 Could you solve it without converting the integer to a string?
+
++ Time Complexity: `O(log10(n))`
++ Space Complexity: `O(1)`
 
 ```{python}
 def isPalindrome(x: int) -> bool:
