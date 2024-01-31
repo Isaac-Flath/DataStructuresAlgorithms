@@ -8,7 +8,7 @@
 
 <meta name="author" content="Isaac Flath">
 <meta name="dcterms.date" content="2024-01-28">
-<meta name="description" content="Find indices of two numbers that add up to a target number">
+<meta name="description" content="Determine if an integer is a palindrome">
 
 <title>Data Structures &amp; Algorithms - Two Sum</title>
 <style>
@@ -144,12 +144,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <h1 class="title">Two Sum</h1>
                   <div>
         <div class="description">
-          Find indices of two numbers that add up to a target number
+          Determine if an integer is a palindrome
         </div>
       </div>
                           <div class="quarto-categories">
                 <div class="quarto-category">array</div>
-                <div class="quarto-category">Hash Table</div>
+                <div class="quarto-category">hash table</div>
               </div>
                   </div>
   </div>
@@ -196,7 +196,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>You can return the answer in any order.</p>
 <section id="tests" class="level3">
 <h3 class="anchored" data-anchor-id="tests">tests</h3>
-<div id="eab10d7d" class="cell" data-execution_count="1">
+<div id="ca3cf901" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> test(fn):</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>    target <span class="op">=</span> <span class="dv">9</span></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>    nums <span class="op">=</span> [<span class="dv">2</span>,<span class="dv">7</span>,<span class="dv">11</span>,<span class="dv">15</span>]</span>
@@ -223,7 +223,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="brute-force-on2" class="level3">
 <h3 class="anchored" data-anchor-id="brute-force-on2">Brute Force <code>O(n^2)</code></h3>
 <p>The way to brute force this problem would be to try every possible combination of 2 indices until one solves the problem. This would mean a loop in a loop, or complexity.</p>
-<div id="ce629fe6" class="cell" data-execution_count="2">
+<div id="aa9c37f1" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> typing <span class="im">import</span> List</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> twoSum(nums: List[<span class="bu">int</span>], target: <span class="bu">int</span>) <span class="op">-&gt;</span> List[<span class="bu">int</span>]:</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> index1, num1 <span class="kw">in</span> <span class="bu">enumerate</span>(nums):</span>
@@ -238,7 +238,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="hash-map-on" class="level3">
 <h3 class="anchored" data-anchor-id="hash-map-on">Hash Map <code>O(n)</code></h3>
 <p>Instead of trying every possible combination we can calculate the other number we need, and do a lookup to see if we have seen that number we need. By doing this we only need 1 loop.</p>
-<div id="c5583652" class="cell" data-execution_count="3">
+<div id="1ba089fa" class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> typing <span class="im">import</span> List</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> solution(nums: List[<span class="bu">int</span>], target: <span class="bu">int</span>) <span class="op">-&gt;</span> List[<span class="bu">int</span>]:</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    hashmap <span class="op">=</span> {}</span>
