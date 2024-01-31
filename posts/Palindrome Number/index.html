@@ -8,7 +8,7 @@
 
 <meta name="author" content="Isaac Flath">
 <meta name="dcterms.date" content="2024-01-29">
-<meta name="description" content="Find indices of two numbers that add up to a target number">
+<meta name="description" content="Determine if an integer is a palindrome">
 
 <title>Data Structures &amp; Algorithms - Palindrome Number</title>
 <style>
@@ -144,7 +144,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <h1 class="title">Palindrome Number</h1>
                   <div>
         <div class="description">
-          Find indices of two numbers that add up to a target number
+          Determine if an integer is a palindrome
         </div>
       </div>
                           <div class="quarto-categories">
@@ -193,7 +193,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Given an integer <code>x</code>, return <code>true</code> if <code>x</code> is a palindrome, and <code>false</code> otherwise. You cannot convert to string.</p>
 <section id="tests" class="level3">
 <h3 class="anchored" data-anchor-id="tests">tests</h3>
-<div id="1389e17d" class="cell" data-execution_count="1">
+<div id="af85d439" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> test(fn):</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>    value <span class="op">=</span> <span class="dv">121</span></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>    expected <span class="op">=</span> <span class="va">True</span></span>
@@ -227,7 +227,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="string-index" class="level3">
 <h3 class="anchored" data-anchor-id="string-index">String Index</h3>
 <p>The first thought is that we could cast to a string then loop halfway through the string to verify the first and laft halves are the same.</p>
-<div id="2bb892e0" class="cell" data-execution_count="2">
+<p>Time complexity: <code>O(n)</code> Space Complexity: <code>O(1)</code></p>
+<div id="c340abdb" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> isPalindrome(x: <span class="bu">int</span>) <span class="op">-&gt;</span> <span class="bu">bool</span>:</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>    x <span class="op">=</span> <span class="bu">str</span>(x)</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="bu">len</span>(x)<span class="op">//</span><span class="dv">2</span>):</span>
@@ -238,10 +239,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>test(isPalindrome)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="math-olog10n" class="level3">
-<h3 class="anchored" data-anchor-id="math-olog10n">Math <code>O(log10(n))</code></h3>
+<section id="math" class="level3">
+<h3 class="anchored" data-anchor-id="math">Math</h3>
 <p>Could you solve it without converting the integer to a string?</p>
-<div id="c9d0eb41" class="cell" data-execution_count="3">
+<ul>
+<li>Time Complexity: <code>O(log10(n))</code></li>
+<li>Space Complexity: <code>O(1)</code></li>
+</ul>
+<div id="a2e9b0d5" class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> isPalindrome(x: <span class="bu">int</span>) <span class="op">-&gt;</span> <span class="bu">bool</span>:</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> x <span class="op">&lt;</span> <span class="dv">0</span>: <span class="co"># A negative sign means not a palindrome</span></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="va">False</span> </span>
