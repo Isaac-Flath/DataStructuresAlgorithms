@@ -32,7 +32,7 @@ def test(fn):
 
     low, high = 0, 10000
     expected = 624
-    symmetric_count = fn(low,high) # 1203, 1212, 1221, and 1230
+    symmetric_count = fn(low,high) 
     assert symmetric_count == expected 
 ```
 
