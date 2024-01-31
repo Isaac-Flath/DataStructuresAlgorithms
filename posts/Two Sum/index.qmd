@@ -3,7 +3,7 @@ title: "Two Sum"
 author: "Isaac Flath"
 date: "2024-01-28"
 categories: [array, hash table]
-description: "Determine if an integer is a palindrome"
+description: "Find indices of two numbers that add up to target"
 ---
 
 >Problem Source:  Leetcode

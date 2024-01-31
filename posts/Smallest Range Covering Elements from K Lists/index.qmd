@@ -1,0 +1,56 @@
+---
+title: "Smallest Range Covering Elements from K Lists"
+author: "Isaac Flath"
+date: "2024-02-01"
+categories: [array, hash table, greedy, sliding window, sorting, heap (priority queue)]
+description: "Find smallest that includes at least 1 number from each list"
+draft: true
+---
+
+>Problem Source:  Leetcode
+
+## Problem Description
+
+You have `k` lists of sorted integers in non-decreasing order. Find the smallest range that includes at least one number from each of the `k` lists.
+
+We define the range `[a, b]` is smaller than range `[c, d]` if `b - a < d - c` or `a < c` if `b - a == d - c`.
+
+
+
+### tests
+
+```{python}
+def test(fn):
+    nums = [[4,10,15,24,26],[0,9,12,20],[5,18,22,30]]
+    expected =  [20,24]
+    actual = fn(nums)
+    assert actual == expected 
+    # List 1: [4, 10, 15, 24,26], 24 is in range [20,24].
+    # List 2: [0, 9, 12, 20], 20 is in range [20,24].
+    # List 3: [5, 18, 22, 30], 22 is in range [20,24].
+
+    nums = nums = [[1,2,3],[1,2,3],[1,2,3]]
+    expected =  [1,1]
+    actual = fn(nums)
+    assert actual == expected 
+```
+
+
+## Solution
+
++ Time Complexity: 
++ Space Complexity: 
+
+```{python}
+from typing import List
+def smallestRange(nums: List[List[int]]) -> List[int]:
+    pass
+
+smallestRange([[4,10,15,24,26],[0,9,12,20],[5,18,22,30]])
+```
+
+```{python}
+# import timeit
+# timeit.timeit(lambda: countSymmetricIntegers(0,10000),number=1000)
+```
+

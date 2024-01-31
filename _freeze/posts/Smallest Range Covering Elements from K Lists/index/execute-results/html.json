@@ -1,0 +1,12 @@
+{
+  "hash": "b59ac049a4d0e4166d5bf126fe6ddd42",
+  "result": {
+    "engine": "jupyter",
+    "markdown": "---\ntitle: \"Smallest Range Covering Elements from K Lists\"\nauthor: \"Isaac Flath\"\ndate: \"2024-02-01\"\ncategories: [array, hash table, greedy, sliding window, sorting, heap (priority queue)]\ndescription: \"Find smallest that includes at least 1 number from each list\"\ndraft: true\n---\n\n>Problem Source:  Leetcode\n\n## Problem Description\n\nYou have `k` lists of sorted integers in non-decreasing order. Find the smallest range that includes at least one number from each of the `k` lists.\n\nWe define the range `[a, b]` is smaller than range `[c, d]` if `b - a < d - c` or `a < c` if `b - a == d - c`.\n\n\n\n### tests\n\n::: {#066d53bb .cell execution_count=1}\n``` {.python .cell-code}\ndef test(fn):\n    nums = [[4,10,15,24,26],[0,9,12,20],[5,18,22,30]]\n    expected =  [20,24]\n    actual = fn(nums)\n    assert actual == expected \n    # List 1: [4, 10, 15, 24,26], 24 is in range [20,24].\n    # List 2: [0, 9, 12, 20], 20 is in range [20,24].\n    # List 3: [5, 18, 22, 30], 22 is in range [20,24].\n\n    nums = nums = [[1,2,3],[1,2,3],[1,2,3]]\n    expected =  [1,1]\n    actual = fn(nums)\n    assert actual == expected \n```\n:::\n\n\n## Solution\n\n+ Time Complexity: \n+ Space Complexity: \n\n::: {#2179375c .cell execution_count=2}\n``` {.python .cell-code}\nfrom typing import List\ndef smallestRange(nums: List[List[int]]) -> List[int]:\n    pass\n\nsmallestRange([[4,10,15,24,26],[0,9,12,20],[5,18,22,30]])\n```\n:::\n\n\n::: {#9e7a9f08 .cell execution_count=3}\n``` {.python .cell-code}\n# import timeit\n# timeit.timeit(lambda: countSymmetricIntegers(0,10000),number=1000)\n```\n:::\n\n\n",
+    "supporting": [
+      "index_files"
+    ],
+    "filters": [],
+    "includes": {}
+  }
+}
