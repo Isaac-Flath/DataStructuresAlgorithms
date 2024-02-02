@@ -2,6 +2,8 @@
   {
     "listing": "/index.html",
     "items": [
+      "/posts/Contains Duplicate/index.html",
+      "/posts/Valid Anagram/index.html",
       "/posts/Count Symmetric Integers/index.html",
       "/posts/Pancake Sorting/index.html",
       "/posts/Palindrome Number/index.html",
