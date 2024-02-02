@@ -2,7 +2,7 @@
 title: "Pancake Sorting"
 author: "Isaac Flath"
 date: "2024-01-30"
-categories: [Array, Two Pointers, Greedy, Sorting]
+categories: [array, two pointers, greedy, sorting]
 description: "Sort a list using pancake flips"
 ---
 
