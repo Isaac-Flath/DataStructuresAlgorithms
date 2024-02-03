@@ -4,7 +4,7 @@
     "href": "index.html",
     "title": "Data Structures & Algorithms",
     "section": "",
-    "text": "Order By\n       Default\n         \n          Title\n        \n     \n  \n    \n      \n      \n    \n\n\n\n\n\nTitle\n\n\nDescription\n\n\nCategories\n\n\n\n\n\n\nValid Anagram\n\n\nDetermine if 2 strings are anagrams of each other\n\n\nhash table, strings, sorting\n\n\n\n\nContains Duplicate\n\n\nCheck if an array contains duplicated values\n\n\nhash table, array, sorting\n\n\n\n\nCount Symmetric Integers\n\n\nDetermine if an integer is a Symmetric\n\n\nmath, enumeration\n\n\n\n\nPancake Sorting\n\n\nSort a list using pancake flips\n\n\narray, two pointers, greedy, sorting\n\n\n\n\nPalindrome Number\n\n\nDetermine if an integer is a palindrome\n\n\nmath\n\n\n\n\nTwo Sum\n\n\nFind indices of two numbers that add up to target\n\n\narray, hash table\n\n\n\n\n\nNo matching items"
+    "text": "Order By\n       Default\n         \n          Title\n        \n     \n  \n    \n      \n      \n    \n\n\n\n\n\nTitle\n\n\nDescription\n\n\nCategories\n\n\n\n\n\n\nGroup Anagrams\n\n\nDescription\n\n\narray, hash table, string\n\n\n\n\nValid Anagram\n\n\nDetermine if 2 strings are anagrams of each other\n\n\nhash table, strings, sorting\n\n\n\n\nContains Duplicate\n\n\nCheck if an array contains duplicated values\n\n\nhash table, array, sorting\n\n\n\n\nCount Symmetric Integers\n\n\nDetermine if an integer is a Symmetric\n\n\nmath, enumeration\n\n\n\n\nPancake Sorting\n\n\nSort a list using pancake flips\n\n\narray, two pointers, greedy, sorting\n\n\n\n\nPalindrome Number\n\n\nDetermine if an integer is a palindrome\n\n\nmath\n\n\n\n\nTwo Sum\n\n\nFind indices of two numbers that add up to target\n\n\narray, hash table\n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "posts/Two Sum/index.html",
@@ -68,6 +68,27 @@
     "title": "Pancake Sorting",
     "section": "Solution",
     "text": "Solution\n\nTime Complexity: O(n^2)\nSpace Complexity: O(n)\n\n\nfrom typing import List\n\ndef reverse(l, n):\n    for i in range(n//2): \n        # inplace swaps means go through 1/2 the list portion we want to swap\n        l[i], l[n-i-1] = l[n-i-1], l[i]\n\n    \ndef pancakeSort(arr: List[int]) -&gt; List[int]:\n    swap_points = []\n    for value_to_sort in range(len(arr),1,-1): # if n-1 elements are correct, then n elements are correct, so don't check the smallest value (1)\n        current_location = arr.index(value_to_sort)+1\n        if value_to_sort == current_location: \n            # If value already in correct position continue\n            continue\n        if current_location != 1: # If value is in front, this step isn't needed\n            # If not, flip to get desired value in front\n            reverse(arr, current_location)\n            swap_points.append(current_location)\n        # flip to get value in final position\n        reverse(arr,value_to_sort)\n        swap_points.append(value_to_sort)\n    return swap_points, arr\n\ntest(pancakeSort)"
+  },
+  {
+    "objectID": "posts/Group Anagrams/index.html",
+    "href": "posts/Group Anagrams/index.html",
+    "title": "Group Anagrams",
+    "section": "",
+    "text": "Problem Source: Leetcode"
+  },
+  {
+    "objectID": "posts/Group Anagrams/index.html#problem-description",
+    "href": "posts/Group Anagrams/index.html#problem-description",
+    "title": "Group Anagrams",
+    "section": "Problem Description",
+    "text": "Problem Description\nGiven an array of strings strs, group the anagrams together. You can return the answer in any order.\nAn Anagram is a word or phrase formed by rearranging the letters of a different word or phrase, typically using all the original letters exactly once.\n\ntests\n\ndef test(fn):\n    strs = [\"eat\",\"tea\",\"tan\",\"ate\",\"nat\",\"bat\"]\n    expected =  [['eat', 'tea', 'ate'], ['tan', 'nat'], ['bat']]\n\n    actual = fn(strs)\n    assert sorted(actual) == sorted(expected)"
+  },
+  {
+    "objectID": "posts/Group Anagrams/index.html#solution",
+    "href": "posts/Group Anagrams/index.html#solution",
+    "title": "Group Anagrams",
+    "section": "Solution",
+    "text": "Solution\n\nTime Complexity: O(m * n)\nSpace Complexity: O(n)\n\nWhere m is the average length of the strings in strs, and n is the length of strs\n\nfrom typing import List\nfrom collections import defaultdict\n\ndef groupAnagrams(strs: List[str]) -&gt; List[List[str]]:\n    grouped_anagrams = defaultdict(list) \n\n    for s in strs:\n        # key[0] represents a, key[1] represents b, etc.\n        # key is an array of character counts\n        key = [0]*26 \n        for c in s:\n            # use unicode to calculate index location in key that corresponds to c and increment\n            key[ord(c) - ord('a')] += 1\n\n        # list can't be key, so convert key to tuple for usage with dict\n        grouped_anagrams[tuple(key)].append(s)\n\n    return grouped_anagrams.values()\n\ntest(groupAnagrams)"
   },
   {
     "objectID": "posts/Valid Anagram/index.html",
