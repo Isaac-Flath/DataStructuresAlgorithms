@@ -2,6 +2,7 @@
   {
     "listing": "/index.html",
     "items": [
+      "/posts/Group Anagrams/index.html",
       "/posts/Contains Duplicate/index.html",
       "/posts/Valid Anagram/index.html",
       "/posts/Count Symmetric Integers/index.html",
