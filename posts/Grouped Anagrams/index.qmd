@@ -1,5 +1,5 @@
 ---
-title: "Group Anagrams"
+title: "Grouped Anagrams"
 author: "Isaac Flath"
 date: "2024-02-03"
 categories: [array, hash table, string]

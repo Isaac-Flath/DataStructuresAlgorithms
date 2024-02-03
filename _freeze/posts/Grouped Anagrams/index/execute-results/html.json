@@ -1,0 +1,12 @@
+{
+  "hash": "9d17eec359796d3f4af9dd4cf489f980",
+  "result": {
+    "engine": "jupyter",
+    "markdown": "---\ntitle: \"Grouped Anagrams\"\nauthor: \"Isaac Flath\"\ndate: \"2024-02-03\"\ncategories: [array, hash table, string]\ndescription: \"Description\"\n---\n\n>Problem Source:  Leetcode\n\n## Problem Description\n\nGiven an array of strings `strs`, group the anagrams together. You can return the answer in any order.\n\nAn Anagram is a word or phrase formed by rearranging the letters of a different word or phrase, typically using all the original letters exactly once.\n\n### tests\n\n::: {#89f3803d .cell execution_count=1}\n``` {.python .cell-code}\ndef test(fn):\n    strs = [\"eat\",\"tea\",\"tan\",\"ate\",\"nat\",\"bat\"]\n    expected =  [['eat', 'tea', 'ate'], ['tan', 'nat'], ['bat']]\n\n    actual = fn(strs)\n    assert sorted(actual) == sorted(expected)\n\n```\n:::\n\n\n## Solution\n\n+ Time Complexity: `O(m * n)`\n+ Space Complexity: `O(n)`\n\nWhere `m` is the average length of the strings in `strs`, and `n` is the length of `strs`\n\n::: {#382b1722 .cell execution_count=2}\n``` {.python .cell-code}\nfrom typing import List\nfrom collections import defaultdict\n\ndef groupAnagrams(strs: List[str]) -> List[List[str]]:\n    grouped_anagrams = defaultdict(list) \n\n    for s in strs:\n        # key[0] represents a, key[1] represents b, etc.\n        # key is an array of character counts\n        key = [0]*26 \n        for c in s:\n            # use unicode to calculate index location in key that corresponds to c and increment\n            key[ord(c) - ord('a')] += 1\n\n        # list can't be key, so convert key to tuple for usage with dict\n        grouped_anagrams[tuple(key)].append(s)\n\n    return grouped_anagrams.values()\n\ntest(groupAnagrams)\n```\n:::\n\n\n",
+    "supporting": [
+      "index_files"
+    ],
+    "filters": [],
+    "includes": {}
+  }
+}
