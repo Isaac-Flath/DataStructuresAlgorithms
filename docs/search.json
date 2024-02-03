@@ -4,112 +4,28 @@
     "href": "index.html",
     "title": "Data Structures & Algorithms",
     "section": "",
-    "text": "Order By\n       Default\n         \n          Title\n        \n     \n  \n    \n      \n      \n    \n\n\n\n\n\nTitle\n\n\nDescription\n\n\nCategories\n\n\n\n\n\n\nGrouped Anagrams\n\n\nDescription\n\n\narray, hash table, string\n\n\n\n\nValid Anagram\n\n\nDetermine if 2 strings are anagrams of each other\n\n\nhash table, strings, sorting\n\n\n\n\nContains Duplicate\n\n\nCheck if an array contains duplicated values\n\n\nhash table, array, sorting\n\n\n\n\nCount Symmetric Integers\n\n\nDetermine if an integer is a Symmetric\n\n\nmath, enumeration\n\n\n\n\nPancake Sorting\n\n\nSort a list using pancake flips\n\n\narray, two pointers, greedy, sorting\n\n\n\n\nPalindrome Number\n\n\nDetermine if an integer is a palindrome\n\n\nmath\n\n\n\n\nTwo Sum\n\n\nFind indices of two numbers that add up to target\n\n\narray, hash table\n\n\n\n\n\nNo matching items"
+    "text": "Order By\n       Default\n         \n          Title\n        \n     \n  \n    \n      \n      \n    \n\n\n\n\n\nTitle\n\n\nDescription\n\n\nCategories\n\n\n\n\n\n\nTop K Frequent Elements\n\n\nGiven an array get the top k most frequeent elements\n\n\narray, hash table, bucket sort, counting\n\n\n\n\nGrouped Anagrams\n\n\nGroup a list of strings by anagrams\n\n\narray, hash table, string\n\n\n\n\nValid Anagram\n\n\nDetermine if 2 strings are anagrams of each other\n\n\nhash table, strings, sorting\n\n\n\n\nContains Duplicate\n\n\nCheck if an array contains duplicated values\n\n\nhash table, array, sorting\n\n\n\n\nCount Symmetric Integers\n\n\nDetermine if an integer is a Symmetric\n\n\nmath, enumeration\n\n\n\n\nPancake Sorting\n\n\nSort a list using pancake flips\n\n\narray, two pointers, greedy, sorting\n\n\n\n\nPalindrome Number\n\n\nDetermine if an integer is a palindrome\n\n\nmath\n\n\n\n\nTwo Sum\n\n\nFind indices of two numbers that add up to target\n\n\narray, hash table\n\n\n\n\n\nNo matching items"
   },
   {
-    "objectID": "posts/Two Sum/index.html",
-    "href": "posts/Two Sum/index.html",
-    "title": "Two Sum",
+    "objectID": "posts/Contains Duplicate/index.html",
+    "href": "posts/Contains Duplicate/index.html",
+    "title": "Contains Duplicate",
     "section": "",
     "text": "Problem Source: Leetcode"
   },
   {
-    "objectID": "posts/Two Sum/index.html#problem-description",
-    "href": "posts/Two Sum/index.html#problem-description",
-    "title": "Two Sum",
+    "objectID": "posts/Contains Duplicate/index.html#problem-description",
+    "href": "posts/Contains Duplicate/index.html#problem-description",
+    "title": "Contains Duplicate",
     "section": "Problem Description",
-    "text": "Problem Description\nGiven an array of integers nums and an integer target, return indices of the two numbers such that they add up to target.\nYou may assume that each input would have exactly one solution, and you may not use the same element twice.\nYou can return the answer in any order.\n\ntests\n\ndef test(fn):\n    target = 9\n    nums = [2,7,11,15]\n    expected = [0,1]\n    actual = fn(nums, target)\n    assert sorted(actual) == expected \n\n    target = 6\n    nums = [3,2,4]\n    expected = [1,2]\n    actual = fn(nums, target)\n    assert sorted(actual) == expected \n\n    target = 6\n    nums = [3,3]\n    expected = [0,1]\n    actual = fn(nums, target)\n    assert sorted(actual) == expected"
+    "text": "Problem Description\nGiven an integer array nums, return true if any value appears at least twice in the array, and return false if every element is distinct.\n\ntests\n\ndef test(fn):\n    nums = [1,2,3,1]\n    expected = True\n    actual = fn(nums)\n    assert actual == expected \n\n    nums = [1,2,3,4]\n    expected = False\n    actual = fn(nums)\n    assert actual == expected \n\n    nums = [1,1,1,3,3,4,3,2,4,2]\n    expected = True\n    actual = fn(nums)\n    assert actual == expected"
   },
   {
-    "objectID": "posts/Two Sum/index.html#solutions",
-    "href": "posts/Two Sum/index.html#solutions",
-    "title": "Two Sum",
-    "section": "Solutions",
-    "text": "Solutions\n\nBrute Force\nThe way to brute force this problem would be to try every possible combination of 2 indices until one solves the problem. This would mean a loop in a loop, or complexity.\n\nTime Complexity: O(n^2)\nSpace Complexity: O(1)\n\n\nfrom typing import List\ndef twoSum(nums: List[int], target: int) -&gt; List[int]:\n    for index1, num1 in enumerate(nums):\n        desired_num = target - num1\n        for index2, num2 in enumerate(nums):\n            if (num2 == desired_num) and (index1 != index2):\n                return [index1, index2]\n\ntest(twoSum)\n\n\n\nHash Map\nInstead of trying every possible combination we can calculate the other number we need, and do a lookup to see if we have seen that number we need. By doing this we only need 1 loop.\n\nTime Complexity: O(n)\nSpace Complexity: O(n)\n\n\nfrom typing import List\ndef solution(nums: List[int], target: int) -&gt; List[int]:\n    hashmap = {}\n    for i,num in enumerate(nums):\n        need = target - num\n        if need in hashmap:\n            return [i,hashmap[need]]\n        hashmap[num] = i\n\ntest(twoSum)"
-  },
-  {
-    "objectID": "posts/Count Symmetric Integers/index.html",
-    "href": "posts/Count Symmetric Integers/index.html",
-    "title": "Count Symmetric Integers",
-    "section": "",
-    "text": "Problem Source: Leetcode"
-  },
-  {
-    "objectID": "posts/Count Symmetric Integers/index.html#problem-description",
-    "href": "posts/Count Symmetric Integers/index.html#problem-description",
-    "title": "Count Symmetric Integers",
-    "section": "Problem Description",
-    "text": "Problem Description\nYou are given two positive integers low and high.\nAn integer x consisting of 2 * n digits is symmetric if the sum of the first n digits of x is equal to the sum of the last n digits of x. Numbers with an odd number of digits are never symmetric.\nReturn the number of symmetric integers in the range [low, high].\n\ntests\n\ndef test(fn):\n    low,high = 1,100\n    expected =  9\n    symmetric_count = fn(low,high) # 11, 22, 33, 44, 55, 66, 77, 88, and 99.\n    assert symmetric_count == expected \n\n    low, high = 1200, 1230\n    expected = 4\n    symmetric_count = fn(low,high) # 1203, 1212, 1221, and 1230\n    assert symmetric_count == expected \n\n    low, high = 0, 10000\n    expected = 624\n    symmetric_count = fn(low,high) \n    assert symmetric_count == expected"
-  },
-  {
-    "objectID": "posts/Count Symmetric Integers/index.html#solution",
-    "href": "posts/Count Symmetric Integers/index.html#solution",
-    "title": "Count Symmetric Integers",
+    "objectID": "posts/Contains Duplicate/index.html#solution",
+    "href": "posts/Contains Duplicate/index.html#solution",
+    "title": "Contains Duplicate",
     "section": "Solution",
-    "text": "Solution\n\nTime Complexity: O(n^2)\nSpace Complexity: O(1)\n\n\ndef sum(arr):\n    ttl = 0\n    for a in arr:\n        ttl += int(a)\n    return ttl\n\ndef split_int(x):\n    half = len(x)//2\n    left, right = x[:half], x[-half:]\n    return left, right\n\ndef isSymmetric(x, ):\n    x = str(x)\n    if len(x)%2 == 1: return False\n    half = len(x)//2\n    return sum(x[:half]) == sum(x[-half:])\n\ndef countSymmetricIntegers(low: int, high: int) -&gt; int:\n    symmetric_count = 0\n    for num in range(low, high+1):\n        symmetric_count += isSymmetric(num)\n    return symmetric_count\n    \ntest(countSymmetricIntegers)\n\n\nimport timeit\ntimeit.timeit(lambda: countSymmetricIntegers(0,10000),number=1000)\n\n4.897287416970357"
-  },
-  {
-    "objectID": "posts/Pancake Sorting/index.html",
-    "href": "posts/Pancake Sorting/index.html",
-    "title": "Pancake Sorting",
-    "section": "",
-    "text": "Problem Source: Leetcode"
-  },
-  {
-    "objectID": "posts/Pancake Sorting/index.html#problem-description",
-    "href": "posts/Pancake Sorting/index.html#problem-description",
-    "title": "Pancake Sorting",
-    "section": "Problem Description",
-    "text": "Problem Description\nGiven an array of integers arr, sort the array by performing a series of pancake flips.\nIn one pancake flip we do the following steps:\n\nChoose an integer k where 1 &lt;= k &lt;= arr.length.\nReverse the sub-array arr[0…k-1] (0-indexed).\n\nFor example, if arr = [3,2,1,4] and we performed a pancake flip choosing k = 3, we reverse the sub-array [3,2,1], so arr = [1,2,3,4] after the pancake flip at k = 3.\nReturn an array of the k-values corresponding to a sequence of pancake flips that sort arr. Any valid answer that sorts the array within 10 * arr.length flips will be judged as correct.\nConstraints:\n\n1 &lt;= arr.length &lt;= 100\n1 &lt;= arr[i] &lt;= arr.length\nAll integers in arr are unique (i.e. arr is a permutation of the integers from 1 to arr.length)\n\n\ntests\n\ndef test(fn):\n    value = [3,2,4,1]\n    expected = [1,2,3,4]\n    ans, actual = fn(value)\n    assert actual == expected \n\n    value = [1,2,3]\n    expected = [1,2,3]\n    ans, actual = fn(value)\n    assert actual == expected"
-  },
-  {
-    "objectID": "posts/Pancake Sorting/index.html#solution",
-    "href": "posts/Pancake Sorting/index.html#solution",
-    "title": "Pancake Sorting",
-    "section": "Solution",
-    "text": "Solution\n\nTime Complexity: O(n^2)\nSpace Complexity: O(n)\n\n\nfrom typing import List\n\ndef reverse(l, n):\n    for i in range(n//2): \n        # inplace swaps means go through 1/2 the list portion we want to swap\n        l[i], l[n-i-1] = l[n-i-1], l[i]\n\n    \ndef pancakeSort(arr: List[int]) -&gt; List[int]:\n    swap_points = []\n    for value_to_sort in range(len(arr),1,-1): # if n-1 elements are correct, then n elements are correct, so don't check the smallest value (1)\n        current_location = arr.index(value_to_sort)+1\n        if value_to_sort == current_location: \n            # If value already in correct position continue\n            continue\n        if current_location != 1: # If value is in front, this step isn't needed\n            # If not, flip to get desired value in front\n            reverse(arr, current_location)\n            swap_points.append(current_location)\n        # flip to get value in final position\n        reverse(arr,value_to_sort)\n        swap_points.append(value_to_sort)\n    return swap_points, arr\n\ntest(pancakeSort)"
-  },
-  {
-    "objectID": "posts/Group Anagrams/index.html",
-    "href": "posts/Group Anagrams/index.html",
-    "title": "Group Anagrams",
-    "section": "",
-    "text": "Problem Source: Leetcode"
-  },
-  {
-    "objectID": "posts/Group Anagrams/index.html#problem-description",
-    "href": "posts/Group Anagrams/index.html#problem-description",
-    "title": "Group Anagrams",
-    "section": "Problem Description",
-    "text": "Problem Description\nGiven an array of strings strs, group the anagrams together. You can return the answer in any order.\nAn Anagram is a word or phrase formed by rearranging the letters of a different word or phrase, typically using all the original letters exactly once.\n\ntests\n\ndef test(fn):\n    strs = [\"eat\",\"tea\",\"tan\",\"ate\",\"nat\",\"bat\"]\n    expected =  [['eat', 'tea', 'ate'], ['tan', 'nat'], ['bat']]\n\n    actual = fn(strs)\n    assert sorted(actual) == sorted(expected)"
-  },
-  {
-    "objectID": "posts/Group Anagrams/index.html#solution",
-    "href": "posts/Group Anagrams/index.html#solution",
-    "title": "Group Anagrams",
-    "section": "Solution",
-    "text": "Solution\n\nTime Complexity: O(m * n)\nSpace Complexity: O(n)\n\nWhere m is the average length of the strings in strs, and n is the length of strs\n\nfrom typing import List\nfrom collections import defaultdict\n\ndef groupAnagrams(strs: List[str]) -&gt; List[List[str]]:\n    grouped_anagrams = defaultdict(list) \n\n    for s in strs:\n        # key[0] represents a, key[1] represents b, etc.\n        # key is an array of character counts\n        key = [0]*26 \n        for c in s:\n            # use unicode to calculate index location in key that corresponds to c and increment\n            key[ord(c) - ord('a')] += 1\n\n        # list can't be key, so convert key to tuple for usage with dict\n        grouped_anagrams[tuple(key)].append(s)\n\n    return grouped_anagrams.values()\n\ntest(groupAnagrams)"
-  },
-  {
-    "objectID": "posts/Valid Anagram/index.html",
-    "href": "posts/Valid Anagram/index.html",
-    "title": "Valid Anagram",
-    "section": "",
-    "text": "Problem Source: Leetcode"
-  },
-  {
-    "objectID": "posts/Valid Anagram/index.html#problem-description",
-    "href": "posts/Valid Anagram/index.html#problem-description",
-    "title": "Valid Anagram",
-    "section": "Problem Description",
-    "text": "Problem Description\nGiven two strings s and t, return true if t is an anagram of s, and false otherwise.\nAn Anagram is a word or phrase formed by rearranging the letters of a different word or phrase, typically using all the original letters exactly once.\n\ntests\n\ndef test(fn):\n    s,t = \"anagram\",\"nagaram\"\n    expected = True\n    actual = fn(s,t)\n    assert actual == expected \n\n    s,t = \"rat\",\"car\"\n    expected = False\n    actual = fn(s,t)\n    assert actual == expected"
-  },
-  {
-    "objectID": "posts/Valid Anagram/index.html#solution",
-    "href": "posts/Valid Anagram/index.html#solution",
-    "title": "Valid Anagram",
-    "section": "Solution",
-    "text": "Solution\n\nHashmap\n\nTime Complexity: O(n)\nSpace Complexity: O(n)\n\n\ndef isAnagram(s: str, t: str) -&gt; bool:\n    if len(s) != len(t): return False\n\n    countS,countT = {}, {}\n    for i in range(len(s)):\n        countS[s[i]] = 1 + countS.get(s[i],0)\n        countT[t[i]] = 1 + countT.get(t[i],0)\n    \n    for c in countS:\n        if countS[c] != countT.get(c,0): return False\n\n    return True\n\ntest(isAnagram)\n\n\nfrom collections import Counter\ndef isAnagram(s: str, t: str) -&gt; bool:\n    return Counter(s) == Counter(t)\n\ntest(isAnagram)\n\n\n\nSorting\n\nTime Complexity: O(nlogn)\nSpace Complexity: O(1)\n\n\ndef isAnagram(s: str, t: str) -&gt; bool:\n    return sorted(list(s)) == sorted(list(t))\n\ntest(isAnagram)"
+    "text": "Solution\n\nHashmap\n\nTime Complexity: O(n)\nSpace Complexity: O(n)\n\n\nfrom typing import List\ndef containsDuplicate(nums: List[int]) -&gt; bool:\n    seen = set()\n    for num in nums:\n        if num in seen:\n            return True\n        else:\n            seen.add(num)\n    return False\n\ntest(containsDuplicate)    \n\n\n\nSorting\n\nTime Complexity: O(nlogn)\nSpace Complexity: O(1)\n\n\nfrom typing import List\ndef containsDuplicate(nums: List[int]) -&gt; bool:\n    nums.sort() \n    for i in range(len(nums)-1):\n        if nums[i] == nums[i+1]: \n            return True\n    else: \n        return False\n\ntest(containsDuplicate)"
   },
   {
     "objectID": "posts/Palindrome Number/index.html",
@@ -133,25 +49,109 @@
     "text": "Solutions\n\nString Index\nThe first thought is that we could cast to a string then loop halfway through the string to verify the first and laft halves are the same.\nTime complexity: O(n) Space Complexity: O(1)\n\ndef isPalindrome(x: int) -&gt; bool:\n    x = str(x)\n    for i in range(len(x)//2):\n        first, last = x[i], x[-(i+1)]\n        if first != last: return False\n    return True\n\ntest(isPalindrome)\n\n\n\nMath\nCould you solve it without converting the integer to a string?\n\nTime Complexity: O(log10(n))\nSpace Complexity: O(1)\n\n\ndef isPalindrome(x: int) -&gt; bool:\n    if x &lt; 0: # A negative sign means not a palindrome\n        return False \n    if (x != 0) and (x % 10 == 0): # Int has no leading zeros, so if it ends with 0 it's not a palindrome\n        return False  \n\n    numberHalf = 0\n    while x &gt; numberHalf: # Stop once halfway\n        # Add the rightmost number from x to number half\n        numberHalf = int(numberHalf * 10 + x % 10)\n        # Drop the rightmost number on X\n        x//= 10\n\n    # If odd length drop the right most as that is the center number\n    return x == numberHalf or x == numberHalf//10 \n\ntest(isPalindrome)"
   },
   {
-    "objectID": "posts/Contains Duplicate/index.html",
-    "href": "posts/Contains Duplicate/index.html",
-    "title": "Contains Duplicate",
+    "objectID": "posts/Valid Anagram/index.html",
+    "href": "posts/Valid Anagram/index.html",
+    "title": "Valid Anagram",
     "section": "",
     "text": "Problem Source: Leetcode"
   },
   {
-    "objectID": "posts/Contains Duplicate/index.html#problem-description",
-    "href": "posts/Contains Duplicate/index.html#problem-description",
-    "title": "Contains Duplicate",
+    "objectID": "posts/Valid Anagram/index.html#problem-description",
+    "href": "posts/Valid Anagram/index.html#problem-description",
+    "title": "Valid Anagram",
     "section": "Problem Description",
-    "text": "Problem Description\nGiven an integer array nums, return true if any value appears at least twice in the array, and return false if every element is distinct.\n\ntests\n\ndef test(fn):\n    nums = [1,2,3,1]\n    expected = True\n    actual = fn(nums)\n    assert actual == expected \n\n    nums = [1,2,3,4]\n    expected = False\n    actual = fn(nums)\n    assert actual == expected \n\n    nums = [1,1,1,3,3,4,3,2,4,2]\n    expected = True\n    actual = fn(nums)\n    assert actual == expected"
+    "text": "Problem Description\nGiven two strings s and t, return true if t is an anagram of s, and false otherwise.\nAn Anagram is a word or phrase formed by rearranging the letters of a different word or phrase, typically using all the original letters exactly once.\n\ntests\n\ndef test(fn):\n    s,t = \"anagram\",\"nagaram\"\n    expected = True\n    actual = fn(s,t)\n    assert actual == expected \n\n    s,t = \"rat\",\"car\"\n    expected = False\n    actual = fn(s,t)\n    assert actual == expected"
   },
   {
-    "objectID": "posts/Contains Duplicate/index.html#solution",
-    "href": "posts/Contains Duplicate/index.html#solution",
-    "title": "Contains Duplicate",
+    "objectID": "posts/Valid Anagram/index.html#solution",
+    "href": "posts/Valid Anagram/index.html#solution",
+    "title": "Valid Anagram",
     "section": "Solution",
-    "text": "Solution\n\nHashmap\n\nTime Complexity: O(n)\nSpace Complexity: O(n)\n\n\nfrom typing import List\ndef containsDuplicate(nums: List[int]) -&gt; bool:\n    seen = set()\n    for num in nums:\n        if num in seen:\n            return True\n        else:\n            seen.add(num)\n    return False\n\ntest(containsDuplicate)    \n\n\n\nSorting\n\nTime Complexity: O(nlogn)\nSpace Complexity: O(1)\n\n\nfrom typing import List\ndef containsDuplicate(nums: List[int]) -&gt; bool:\n    nums.sort() \n    for i in range(len(nums)-1):\n        if nums[i] == nums[i+1]: \n            return True\n    else: \n        return False\n\ntest(containsDuplicate)"
+    "text": "Solution\n\nHashmap\n\nTime Complexity: O(n)\nSpace Complexity: O(n)\n\n\ndef isAnagram(s: str, t: str) -&gt; bool:\n    if len(s) != len(t): return False\n\n    countS,countT = {}, {}\n    for i in range(len(s)):\n        countS[s[i]] = 1 + countS.get(s[i],0)\n        countT[t[i]] = 1 + countT.get(t[i],0)\n    \n    for c in countS:\n        if countS[c] != countT.get(c,0): return False\n\n    return True\n\ntest(isAnagram)\n\n\nfrom collections import Counter\ndef isAnagram(s: str, t: str) -&gt; bool:\n    return Counter(s) == Counter(t)\n\ntest(isAnagram)\n\n\n\nSorting\n\nTime Complexity: O(nlogn)\nSpace Complexity: O(1)\n\n\ndef isAnagram(s: str, t: str) -&gt; bool:\n    return sorted(list(s)) == sorted(list(t))\n\ntest(isAnagram)"
+  },
+  {
+    "objectID": "posts/Top K Frequent Elements/index.html",
+    "href": "posts/Top K Frequent Elements/index.html",
+    "title": "Top K Frequent Elements",
+    "section": "",
+    "text": "Problem Source: Leetcode"
+  },
+  {
+    "objectID": "posts/Top K Frequent Elements/index.html#problem-description",
+    "href": "posts/Top K Frequent Elements/index.html#problem-description",
+    "title": "Top K Frequent Elements",
+    "section": "Problem Description",
+    "text": "Problem Description\nGiven an integer array nums and an integer k, return the k most frequent elements. You may return the answer in any order.\n\ntests\n\ndef test(fn):\n    nums = [1,1,1,2,2,3] \n    k = 2    \n    expected =  [1,2]\n    actual = fn(nums,k)\n    assert actual == expected \n\n    nums = [1]\n    k = 1   \n    expected =  [1]\n    actual = fn(nums,k)\n    assert actual == expected"
+  },
+  {
+    "objectID": "posts/Top K Frequent Elements/index.html#solution",
+    "href": "posts/Top K Frequent Elements/index.html#solution",
+    "title": "Top K Frequent Elements",
+    "section": "Solution",
+    "text": "Solution\n\nTime Complexity: O(n)\nSpace Complexity: O(n)\n\n\nfrom typing import List\ndef topKFrequent(nums: List[int], k: int) -&gt; List[int]: \n    hashmap = {}\n    for num in nums:\n        # Get a hashmap of counts for each item in num\n        hashmap[num] = 1 + hashmap.get(num,0)\n\n    buckets = [[] for _ in range(len(nums)+1)]\n    for key,val in hashmap.items():\n        # Put nums in a list where index location == occurances\n        buckets[val].append(key)\n\n    output = []\n    for i in range(len(buckets) - 1, 0, -1):\n        # Loop through buckets backward and append to output\n        for num in buckets[i]:\n            output.append(num)\n            if len(output) == k:\n                # When you have k nums you are done\n                return output\n\ntest(topKFrequent)"
+  },
+  {
+    "objectID": "posts/Pancake Sorting/index.html",
+    "href": "posts/Pancake Sorting/index.html",
+    "title": "Pancake Sorting",
+    "section": "",
+    "text": "Problem Source: Leetcode"
+  },
+  {
+    "objectID": "posts/Pancake Sorting/index.html#problem-description",
+    "href": "posts/Pancake Sorting/index.html#problem-description",
+    "title": "Pancake Sorting",
+    "section": "Problem Description",
+    "text": "Problem Description\nGiven an array of integers arr, sort the array by performing a series of pancake flips.\nIn one pancake flip we do the following steps:\n\nChoose an integer k where 1 &lt;= k &lt;= arr.length.\nReverse the sub-array arr[0…k-1] (0-indexed).\n\nFor example, if arr = [3,2,1,4] and we performed a pancake flip choosing k = 3, we reverse the sub-array [3,2,1], so arr = [1,2,3,4] after the pancake flip at k = 3.\nReturn an array of the k-values corresponding to a sequence of pancake flips that sort arr. Any valid answer that sorts the array within 10 * arr.length flips will be judged as correct.\nConstraints:\n\n1 &lt;= arr.length &lt;= 100\n1 &lt;= arr[i] &lt;= arr.length\nAll integers in arr are unique (i.e. arr is a permutation of the integers from 1 to arr.length)\n\n\ntests\n\ndef test(fn):\n    value = [3,2,4,1]\n    expected = [1,2,3,4]\n    ans, actual = fn(value)\n    assert actual == expected \n\n    value = [1,2,3]\n    expected = [1,2,3]\n    ans, actual = fn(value)\n    assert actual == expected"
+  },
+  {
+    "objectID": "posts/Pancake Sorting/index.html#solution",
+    "href": "posts/Pancake Sorting/index.html#solution",
+    "title": "Pancake Sorting",
+    "section": "Solution",
+    "text": "Solution\n\nTime Complexity: O(n^2)\nSpace Complexity: O(n)\n\n\nfrom typing import List\n\ndef reverse(l, n):\n    for i in range(n//2): \n        # inplace swaps means go through 1/2 the list portion we want to swap\n        l[i], l[n-i-1] = l[n-i-1], l[i]\n\n    \ndef pancakeSort(arr: List[int]) -&gt; List[int]:\n    swap_points = []\n    for value_to_sort in range(len(arr),1,-1): # if n-1 elements are correct, then n elements are correct, so don't check the smallest value (1)\n        current_location = arr.index(value_to_sort)+1\n        if value_to_sort == current_location: \n            # If value already in correct position continue\n            continue\n        if current_location != 1: # If value is in front, this step isn't needed\n            # If not, flip to get desired value in front\n            reverse(arr, current_location)\n            swap_points.append(current_location)\n        # flip to get value in final position\n        reverse(arr,value_to_sort)\n        swap_points.append(value_to_sort)\n    return swap_points, arr\n\ntest(pancakeSort)"
+  },
+  {
+    "objectID": "posts/Count Symmetric Integers/index.html",
+    "href": "posts/Count Symmetric Integers/index.html",
+    "title": "Count Symmetric Integers",
+    "section": "",
+    "text": "Problem Source: Leetcode"
+  },
+  {
+    "objectID": "posts/Count Symmetric Integers/index.html#problem-description",
+    "href": "posts/Count Symmetric Integers/index.html#problem-description",
+    "title": "Count Symmetric Integers",
+    "section": "Problem Description",
+    "text": "Problem Description\nYou are given two positive integers low and high.\nAn integer x consisting of 2 * n digits is symmetric if the sum of the first n digits of x is equal to the sum of the last n digits of x. Numbers with an odd number of digits are never symmetric.\nReturn the number of symmetric integers in the range [low, high].\n\ntests\n\ndef test(fn):\n    low,high = 1,100\n    expected =  9\n    symmetric_count = fn(low,high) # 11, 22, 33, 44, 55, 66, 77, 88, and 99.\n    assert symmetric_count == expected \n\n    low, high = 1200, 1230\n    expected = 4\n    symmetric_count = fn(low,high) # 1203, 1212, 1221, and 1230\n    assert symmetric_count == expected \n\n    low, high = 0, 10000\n    expected = 624\n    symmetric_count = fn(low,high) \n    assert symmetric_count == expected"
+  },
+  {
+    "objectID": "posts/Count Symmetric Integers/index.html#solution",
+    "href": "posts/Count Symmetric Integers/index.html#solution",
+    "title": "Count Symmetric Integers",
+    "section": "Solution",
+    "text": "Solution\n\nTime Complexity: O(n^2)\nSpace Complexity: O(1)\n\n\ndef sum(arr):\n    ttl = 0\n    for a in arr:\n        ttl += int(a)\n    return ttl\n\ndef split_int(x):\n    half = len(x)//2\n    left, right = x[:half], x[-half:]\n    return left, right\n\ndef isSymmetric(x, ):\n    x = str(x)\n    if len(x)%2 == 1: return False\n    half = len(x)//2\n    return sum(x[:half]) == sum(x[-half:])\n\ndef countSymmetricIntegers(low: int, high: int) -&gt; int:\n    symmetric_count = 0\n    for num in range(low, high+1):\n        symmetric_count += isSymmetric(num)\n    return symmetric_count\n    \ntest(countSymmetricIntegers)\n\n\nimport timeit\ntimeit.timeit(lambda: countSymmetricIntegers(0,10000),number=1000)\n\n4.897287416970357"
+  },
+  {
+    "objectID": "posts/Two Sum/index.html",
+    "href": "posts/Two Sum/index.html",
+    "title": "Two Sum",
+    "section": "",
+    "text": "Problem Source: Leetcode"
+  },
+  {
+    "objectID": "posts/Two Sum/index.html#problem-description",
+    "href": "posts/Two Sum/index.html#problem-description",
+    "title": "Two Sum",
+    "section": "Problem Description",
+    "text": "Problem Description\nGiven an array of integers nums and an integer target, return indices of the two numbers such that they add up to target.\nYou may assume that each input would have exactly one solution, and you may not use the same element twice.\nYou can return the answer in any order.\n\ntests\n\ndef test(fn):\n    target = 9\n    nums = [2,7,11,15]\n    expected = [0,1]\n    actual = fn(nums, target)\n    assert sorted(actual) == expected \n\n    target = 6\n    nums = [3,2,4]\n    expected = [1,2]\n    actual = fn(nums, target)\n    assert sorted(actual) == expected \n\n    target = 6\n    nums = [3,3]\n    expected = [0,1]\n    actual = fn(nums, target)\n    assert sorted(actual) == expected"
+  },
+  {
+    "objectID": "posts/Two Sum/index.html#solutions",
+    "href": "posts/Two Sum/index.html#solutions",
+    "title": "Two Sum",
+    "section": "Solutions",
+    "text": "Solutions\n\nBrute Force\nThe way to brute force this problem would be to try every possible combination of 2 indices until one solves the problem. This would mean a loop in a loop, or complexity.\n\nTime Complexity: O(n^2)\nSpace Complexity: O(1)\n\n\nfrom typing import List\ndef twoSum(nums: List[int], target: int) -&gt; List[int]:\n    for index1, num1 in enumerate(nums):\n        desired_num = target - num1\n        for index2, num2 in enumerate(nums):\n            if (num2 == desired_num) and (index1 != index2):\n                return [index1, index2]\n\ntest(twoSum)\n\n\n\nHash Map\nInstead of trying every possible combination we can calculate the other number we need, and do a lookup to see if we have seen that number we need. By doing this we only need 1 loop.\n\nTime Complexity: O(n)\nSpace Complexity: O(n)\n\n\nfrom typing import List\ndef solution(nums: List[int], target: int) -&gt; List[int]:\n    hashmap = {}\n    for i,num in enumerate(nums):\n        need = target - num\n        if need in hashmap:\n            return [i,hashmap[need]]\n        hashmap[num] = i\n\ntest(twoSum)"
   },
   {
     "objectID": "posts/Grouped Anagrams/index.html",
