@@ -63,6 +63,34 @@
     "text": "Solutions\n\nBrute Force\nThe way to brute force this problem would be to try every possible combination of 2 indices until one solves the problem. This would mean a loop in a loop, or complexity.\n\nTime Complexity: O(n^2)\nSpace Complexity: O(1)\n\n\nfrom typing import List\ndef twoSum(nums: List[int], target: int) -&gt; List[int]:\n    for index1, num1 in enumerate(nums):\n        desired_num = target - num1\n        for index2, num2 in enumerate(nums):\n            if (num2 == desired_num) and (index1 != index2):\n                return [index1, index2]\n\ntest(twoSum)\n\n\n\nHash Map\nInstead of trying every possible combination we can calculate the other number we need, and do a lookup to see if we have seen that number we need. By doing this we only need 1 loop.\n\nTime Complexity: O(n)\nSpace Complexity: O(n)\n\n\nfrom typing import List\ndef solution(nums: List[int], target: int) -&gt; List[int]:\n    hashmap = {}\n    for i,num in enumerate(nums):\n        need = target - num\n        if need in hashmap:\n            return [i,hashmap[need]]\n        hashmap[num] = i\n\ntest(twoSum)"
   },
   {
+    "objectID": "posts/Grouped Anagrams/index.html",
+    "href": "posts/Grouped Anagrams/index.html",
+    "title": "Grouped Anagrams",
+    "section": "",
+    "text": "Problem Source: Leetcode"
+  },
+  {
+    "objectID": "posts/Grouped Anagrams/index.html#problem-description",
+    "href": "posts/Grouped Anagrams/index.html#problem-description",
+    "title": "Grouped Anagrams",
+    "section": "Problem Description",
+    "text": "Problem Description\nGiven an array of strings strs, group the anagrams together. You can return the answer in any order.\nAn Anagram is a word or phrase formed by rearranging the letters of a different word or phrase, typically using all the original letters exactly once.\n\ntests\n\ndef test(fn):\n    strs = [\"eat\",\"tea\",\"tan\",\"ate\",\"nat\",\"bat\"]\n    expected =  [['eat', 'tea', 'ate'], ['tan', 'nat'], ['bat']]\n\n    actual = fn(strs)\n    assert sorted(actual) == sorted(expected)"
+  },
+  {
+    "objectID": "posts/Grouped Anagrams/index.html#solution",
+    "href": "posts/Grouped Anagrams/index.html#solution",
+    "title": "Grouped Anagrams",
+    "section": "Solution",
+    "text": "Solution\n\nTime Complexity: O(m * n)\nSpace Complexity: O(n)\n\nWhere m is the average length of the strings in strs, and n is the length of strs\n\nfrom typing import List\nfrom collections import defaultdict\n\ndef groupAnagrams(strs: List[str]) -&gt; List[List[str]]:\n    grouped_anagrams = defaultdict(list) \n\n    for s in strs:\n        # key[0] represents a, key[1] represents b, etc.\n        # key is an array of character counts\n        key = [0]*26 \n        for c in s:\n            # use unicode to calculate index location in key that corresponds to c and increment\n            key[ord(c) - ord('a')] += 1\n\n        # list can't be key, so convert key to tuple for usage with dict\n        grouped_anagrams[tuple(key)].append(s)\n\n    return grouped_anagrams.values()\n\ntest(groupAnagrams)"
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Data Structures & Algorithms",
+    "section": "",
+    "text": "Order By\n       Default\n         \n          Title\n        \n     \n  \n    \n      \n      \n    \n\n\n\n\n\nTitle\n\n\nDescription\n\n\nCategories\n\n\n\n\n\n\nGrouped Anagrams\n\n\nDescription\n\n\narray, hash table, string\n\n\n\n\nContains Duplicate\n\n\nCheck if an array contains duplicated values\n\n\nhash table, array, sorting\n\n\n\n\nValid Anagram\n\n\nDetermine if 2 strings are anagrams of each other\n\n\nhash table, strings, sorting\n\n\n\n\nCount Symmetric Integers\n\n\nDetermine if an integer is a Symmetric\n\n\nmath, enumeration\n\n\n\n\nPancake Sorting\n\n\nSort a list using pancake flips\n\n\narray, two pointers, greedy, sorting\n\n\n\n\nPalindrome Number\n\n\nDetermine if an integer is a palindrome\n\n\nmath\n\n\n\n\nTwo Sum\n\n\nFind indices of two numbers that add up to target\n\n\narray, hash table\n\n\n\n\n\nNo matching items"
+  },
+  {
     "objectID": "posts/Count Symmetric Integers/index.html",
     "href": "posts/Count Symmetric Integers/index.html",
     "title": "Count Symmetric Integers",
@@ -82,34 +110,6 @@
     "title": "Count Symmetric Integers",
     "section": "Solution",
     "text": "Solution\n\nTime Complexity: O(n^2)\nSpace Complexity: O(1)\n\n\ndef sum(arr):\n    ttl = 0\n    for a in arr:\n        ttl += int(a)\n    return ttl\n\ndef split_int(x):\n    half = len(x)//2\n    left, right = x[:half], x[-half:]\n    return left, right\n\ndef isSymmetric(x, ):\n    x = str(x)\n    if len(x)%2 == 1: return False\n    half = len(x)//2\n    return sum(x[:half]) == sum(x[-half:])\n\ndef countSymmetricIntegers(low: int, high: int) -&gt; int:\n    symmetric_count = 0\n    for num in range(low, high+1):\n        symmetric_count += isSymmetric(num)\n    return symmetric_count\n    \ntest(countSymmetricIntegers)\n\n\nimport timeit\ntimeit.timeit(lambda: countSymmetricIntegers(0,10000),number=1000)\n\n4.897287416970357"
-  },
-  {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "Data Structures & Algorithms",
-    "section": "",
-    "text": "Order By\n       Default\n         \n          Title\n        \n     \n  \n    \n      \n      \n    \n\n\n\n\n\nTitle\n\n\nDescription\n\n\nCategories\n\n\n\n\n\n\nGroup Anagrams\n\n\nDescription\n\n\narray, hash table, string\n\n\n\n\nContains Duplicate\n\n\nCheck if an array contains duplicated values\n\n\nhash table, array, sorting\n\n\n\n\nValid Anagram\n\n\nDetermine if 2 strings are anagrams of each other\n\n\nhash table, strings, sorting\n\n\n\n\nCount Symmetric Integers\n\n\nDetermine if an integer is a Symmetric\n\n\nmath, enumeration\n\n\n\n\nPancake Sorting\n\n\nSort a list using pancake flips\n\n\narray, two pointers, greedy, sorting\n\n\n\n\nPalindrome Number\n\n\nDetermine if an integer is a palindrome\n\n\nmath\n\n\n\n\nTwo Sum\n\n\nFind indices of two numbers that add up to target\n\n\narray, hash table\n\n\n\n\n\nNo matching items"
-  },
-  {
-    "objectID": "posts/Group Anagrams/index.html",
-    "href": "posts/Group Anagrams/index.html",
-    "title": "Group Anagrams",
-    "section": "",
-    "text": "Problem Source: Leetcode"
-  },
-  {
-    "objectID": "posts/Group Anagrams/index.html#problem-description",
-    "href": "posts/Group Anagrams/index.html#problem-description",
-    "title": "Group Anagrams",
-    "section": "Problem Description",
-    "text": "Problem Description\nGiven an array of strings strs, group the anagrams together. You can return the answer in any order.\nAn Anagram is a word or phrase formed by rearranging the letters of a different word or phrase, typically using all the original letters exactly once.\n\ntests\n\ndef test(fn):\n    strs = [\"eat\",\"tea\",\"tan\",\"ate\",\"nat\",\"bat\"]\n    expected =  [['eat', 'tea', 'ate'], ['tan', 'nat'], ['bat']]\n\n    actual = fn(strs)\n    assert sorted(actual) == sorted(expected)"
-  },
-  {
-    "objectID": "posts/Group Anagrams/index.html#solution",
-    "href": "posts/Group Anagrams/index.html#solution",
-    "title": "Group Anagrams",
-    "section": "Solution",
-    "text": "Solution\n\nTime Complexity: O(m * n)\nSpace Complexity: O(n)\n\nWhere m is the average length of the strings in strs, and n is the length of strs\n\nfrom typing import List\nfrom collections import defaultdict\n\ndef groupAnagrams(strs: List[str]) -&gt; List[List[str]]:\n    grouped_anagrams = defaultdict(list) \n\n    for s in strs:\n        # key[0] represents a, key[1] represents b, etc.\n        # key is an array of character counts\n        key = [0]*26 \n        for c in s:\n            # use unicode to calculate index location in key that corresponds to c and increment\n            key[ord(c) - ord('a')] += 1\n\n        # list can't be key, so convert key to tuple for usage with dict\n        grouped_anagrams[tuple(key)].append(s)\n\n    return grouped_anagrams.values()\n\ntest(groupAnagrams)"
   },
   {
     "objectID": "posts/Contains Duplicate/index.html",
