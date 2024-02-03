@@ -8,7 +8,7 @@
 
 <meta name="author" content="Isaac Flath">
 <meta name="dcterms.date" content="2024-02-04">
-<meta name="description" content="Given an array get the top k most frequeent elements">
+<meta name="description" content="Given an array get the top k most frequent elements">
 
 <title>Data Structures &amp; Algorithms - Top K Frequent Elements</title>
 <style>
@@ -144,7 +144,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <h1 class="title">Top K Frequent Elements</h1>
                   <div>
         <div class="description">
-          Given an array get the top k most frequeent elements
+          Given an array get the top k most frequent elements
         </div>
       </div>
                           <div class="quarto-categories">
@@ -196,7 +196,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Given an integer array <code>nums</code> and an integer <code>k</code>, return the <code>k</code> most frequent elements. You may return the answer in any order.</p>
 <section id="tests" class="level3">
 <h3 class="anchored" data-anchor-id="tests">tests</h3>
-<div id="5911cd9e" class="cell" data-execution_count="1">
+<div id="a3bae64c" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> test(fn):</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>    nums <span class="op">=</span> [<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">2</span>,<span class="dv">3</span>] </span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>    k <span class="op">=</span> <span class="dv">2</span>    </span>
@@ -218,7 +218,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>Time Complexity: <code>O(n)</code></li>
 <li>Space Complexity: <code>O(n)</code></li>
 </ul>
-<div id="1944c3de" class="cell" data-execution_count="2">
+<div id="06dee73d" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> typing <span class="im">import</span> List</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> topKFrequent(nums: List[<span class="bu">int</span>], k: <span class="bu">int</span>) <span class="op">-&gt;</span> List[<span class="bu">int</span>]: </span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>    hashmap <span class="op">=</span> {}</span>
