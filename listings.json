@@ -2,6 +2,7 @@
   {
     "listing": "/index.html",
     "items": [
+      "/posts/Valid Sudoku/index.html",
       "/posts/Product of Array Except Self/index.html",
       "/posts/Top K Frequent Elements/index.html",
       "/posts/Grouped Anagrams/index.html",
