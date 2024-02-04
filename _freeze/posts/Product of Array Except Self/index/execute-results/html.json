@@ -1,0 +1,12 @@
+{
+  "hash": "2f17f962b41b1bb212f32c76453ad358",
+  "result": {
+    "engine": "jupyter",
+    "markdown": "---\ntitle: \"Product of Array Except Self\"\nauthor: \"Isaac Flath\"\ndate: \"2024-02-05\"\ncategories: [array, prefix sum]\ndescription: \"Given an array, return an array where answer[i] == the product of all the elements except input[i]\"\n---\n\n>Problem Source:  Leetcode\n\n## Problem Description\n\nGiven an integer array `nums`, return an array answer such that `answer[i]` is equal to the product of all the elements of nums except `nums[i]`.\n\nThe product of any prefix or suffix of nums is guaranteed to fit in a 32-bit integer.\n\nYou must write an algorithm that runs in `O(n)` time and without using the division operation.\n\nCan you solve the problem in `O(1)` extra space complexity? (The output array does not count as extra space for space complexity analysis.)\n\n### tests\n\n::: {#dbdce6d0 .cell execution_count=1}\n``` {.python .cell-code}\ndef test(fn):\n    nums = [1,2,3,4]\n    expected =  [24,12,8,6]\n    actual = fn(nums)\n    assert actual == expected\n\n    nums = [-1,1,0,-3,3] \n    expected = [0,0,9,0,0]\n    actual = fn(nums)\n    assert actual == expected\n```\n:::\n\n\n## Solution\n\n+ Time Complexity: `O(n)`\n+ Space Complexity: `O(1)`\n\n::: {#cf882bc1 .cell execution_count=2}\n``` {.python .cell-code}\nfrom typing import List\ndef productExceptSelf(nums: List[int]) -> List[int]:\n    prefix, postfix = 1,1\n    out = [1] * len(nums)\n    \n    for i in range(len(nums)):\n        out[i] = prefix\n        prefix *= nums[i]\n\n    for i in range(len(nums)-1,-1,-1):\n        out[i] *= postfix\n        postfix *= nums[i]\n    return out\n\ntest(productExceptSelf)\n\n```\n:::\n\n\n",
+    "supporting": [
+      "index_files"
+    ],
+    "filters": [],
+    "includes": {}
+  }
+}
