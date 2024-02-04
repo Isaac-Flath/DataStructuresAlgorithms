@@ -3,7 +3,7 @@ title: "Product of Array Except Self"
 author: "Isaac Flath"
 date: "2024-02-05"
 categories: [array, prefix sum]
-description: "Given an array, return an array where answer[i] == the product of all the elements except input[i]"
+description: "Given an array, return an array where answer[i] is the product of all the elements except input[i]"
 ---
 
 >Problem Source:  Leetcode
