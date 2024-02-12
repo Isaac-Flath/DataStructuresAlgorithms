@@ -2,6 +2,7 @@
   {
     "listing": "/index.html",
     "items": [
+      "/posts/Longest Consecutive Sequence.html",
       "/posts/Encode and Decode Strings.html",
       "/posts/Valid Sudoku/Valid Sudoku.html",
       "/posts/Product of Array Except Self.html",

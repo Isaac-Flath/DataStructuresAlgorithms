@@ -1,0 +1,12 @@
+{
+  "hash": "065bcf65ec1f1067e8d37a97f0c54ac3",
+  "result": {
+    "engine": "jupyter",
+    "markdown": "---\ntitle: \"Longest Consecutive Sequence\"\nauthor: \"Isaac Flath\"\ndate: \"2024-02-13\"\ncategories: [array, hash table]\ndescription: \"Find longest consecutive elements sequence\"\n---\n\n>Problem Source:  Leetcode\n\n## Problem Description\n\nGiven an unsorted array of integers `nums`, return the length of the longest consecutive elements sequence.\n\nYou must write an algorithm that runs in `O(n)` time.\n\n### tests\n\n::: {#27393a0b .cell execution_count=1}\n``` {.python .cell-code}\ndef test(fn):\n    val1, val2 = 1,100\n    expected =  9\n\n    actual = fn(low,high)\n    assert actual == expected \n```\n:::\n\n\n## Solution\n\n+ Time Complexity: `O(n)`\n+ Space Complexity: `O(n)`\n\n::: {#c8b2a12c .cell execution_count=2}\n``` {.python .cell-code}\nfrom typing import List\n\ndef longestConsecutive(nums: List[int]) -> int:\n    numset = set(nums)\n    max_seq_len = 0\n\n    for num in nums:\n\n        # if beginning of a sequence\n        if num-1 not in numset:\n            seq_start = num\n            seq_length = 1\n            \n            # Keep incrementing values until you're at end of sequence\n            while seq_start + 1 in numset:\n                seq_length += 1\n                seq_start += 1\n            \n            # Keep sequence length if it's the longest so far\n            max_seq_len = max(max_seq_len, seq_length)\n    return max_seq_len\n```\n:::\n\n\n",
+    "supporting": [
+      "Longest Consecutive Sequence_files"
+    ],
+    "filters": [],
+    "includes": {}
+  }
+}

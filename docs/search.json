@@ -4,7 +4,7 @@
     "href": "index.html",
     "title": "Data Structures & Algorithms",
     "section": "",
-    "text": "Order By\n       Default\n         \n          Title\n        \n     \n  \n    \n      \n      \n    \n\n\n\n\n\nTitle\n\n\nDescription\n\n\nCategories\n\n\n\n\n\n\nEncode and Decode Strings\n\n\nCreate a reversable encoding of a list of strings to a string\n\n\narray, string\n\n\n\n\nValid Sudoku\n\n\nDetermine if a 9 x 9 sudoku board is valid \n\n\narray, hash table, matrix\n\n\n\n\nProduct of Array Except Self\n\n\nGiven an array, return an array where answer[i] is the product of all the elements except input[i]\n\n\narray, prefix sum\n\n\n\n\nTop K Frequent Elements\n\n\nGiven an array get the top k most frequent elements\n\n\narray, hash table, bucket sort, counting\n\n\n\n\nGrouped Anagrams\n\n\nGroup a list of strings by anagrams\n\n\narray, hash table, string\n\n\n\n\nValid Anagram\n\n\nDetermine if 2 strings are anagrams of each other\n\n\nhash table, strings, sorting\n\n\n\n\nContains Duplicate\n\n\nCheck if an array contains duplicated values\n\n\nhash table, array, sorting\n\n\n\n\nCount Symmetric Integers\n\n\nDetermine if an integer is a Symmetric\n\n\nmath, enumeration\n\n\n\n\nPancake Sorting\n\n\nSort a list using pancake flips\n\n\narray, two pointers, greedy, sorting\n\n\n\n\nPalindrome Number\n\n\nDetermine if an integer is a palindrome\n\n\nmath\n\n\n\n\nTwo Sum\n\n\nFind indices of two numbers that add up to target\n\n\narray, hash table\n\n\n\n\n\nNo matching items"
+    "text": "Order By\n       Default\n         \n          Title\n        \n     \n  \n    \n      \n      \n    \n\n\n\n\n\nTitle\n\n\nDescription\n\n\nCategories\n\n\n\n\n\n\nLongest Consecutive Sequence\n\n\nFind longest consecutive elements sequence\n\n\narray, hash table\n\n\n\n\nEncode and Decode Strings\n\n\nCreate a reversable encoding of a list of strings to a string\n\n\narray, string\n\n\n\n\nValid Sudoku\n\n\nDetermine if a 9 x 9 sudoku board is valid \n\n\narray, hash table, matrix\n\n\n\n\nProduct of Array Except Self\n\n\nGiven an array, return an array where answer[i] is the product of all the elements except input[i]\n\n\narray, prefix sum\n\n\n\n\nTop K Frequent Elements\n\n\nGiven an array get the top k most frequent elements\n\n\narray, hash table, bucket sort, counting\n\n\n\n\nGrouped Anagrams\n\n\nGroup a list of strings by anagrams\n\n\narray, hash table, string\n\n\n\n\nValid Anagram\n\n\nDetermine if 2 strings are anagrams of each other\n\n\nhash table, string, sorting\n\n\n\n\nContains Duplicate\n\n\nCheck if an array contains duplicated values\n\n\nhash table, array, sorting\n\n\n\n\nCount Symmetric Integers\n\n\nDetermine if an integer is a Symmetric\n\n\nmath, enumeration\n\n\n\n\nPancake Sorting\n\n\nSort a list using pancake flips\n\n\narray, two pointers, greedy, sorting\n\n\n\n\nPalindrome Number\n\n\nDetermine if an integer is a palindrome\n\n\nmath\n\n\n\n\nTwo Sum\n\n\nFind indices of two numbers that add up to target\n\n\narray, hash table\n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "posts/Palindrome Number.html",
@@ -91,25 +91,25 @@
     "text": "Solution\n\nTime Complexity: O(m * n)\nSpace Complexity: O(n)\n\nWhere m is the average length of the strings in strs, and n is the length of strs\n\nfrom typing import List\nfrom collections import defaultdict\n\ndef groupAnagrams(strs: List[str]) -&gt; List[List[str]]:\n    grouped_anagrams = defaultdict(list) \n\n    for s in strs:\n        # key[0] represents a, key[1] represents b, etc.\n        # key is an array of character counts\n        key = [0]*26 \n        for c in s:\n            # use unicode to calculate index location in key that corresponds to c and increment\n            key[ord(c) - ord('a')] += 1\n\n        # list can't be key, so convert key to tuple for usage with dict\n        grouped_anagrams[tuple(key)].append(s)\n\n    return grouped_anagrams.values()\n\ntest(groupAnagrams)"
   },
   {
-    "objectID": "posts/Encode and Decode Strings.html",
-    "href": "posts/Encode and Decode Strings.html",
-    "title": "Encode and Decode Strings",
+    "objectID": "posts/Longest Consecutive Sequence.html",
+    "href": "posts/Longest Consecutive Sequence.html",
+    "title": "Longest Consecutive Sequence",
     "section": "",
     "text": "Problem Source: Leetcode"
   },
   {
-    "objectID": "posts/Encode and Decode Strings.html#problem-description",
-    "href": "posts/Encode and Decode Strings.html#problem-description",
-    "title": "Encode and Decode Strings",
+    "objectID": "posts/Longest Consecutive Sequence.html#problem-description",
+    "href": "posts/Longest Consecutive Sequence.html#problem-description",
+    "title": "Longest Consecutive Sequence",
     "section": "Problem Description",
-    "text": "Problem Description\nDesign an algorithm to encode a list of strings to a string. The encoded string is then sent over the network and is decoded back to the original list of strings.\nMachine 1 (sender) has the function:\nstring encode(vector&lt;string&gt; strs) {\n  // ... your code\n  return encoded_string;\n}\nMachine 2 (receiver) has the function:\nvector&lt;string&gt; decode(string s) {\n  //... your code\n  return strs;\n}\nSo Machine 1 does:\nstring encoded_string = encode(strs);\nand Machine 2 does:\nvector&lt;string&gt; strs2 = decode(encoded_string);\nstrs2 in Machine 2 should be the same as strs in Machine 1.\nImplement encode and decode methods.\nYou are not allowed to solve the problem using any serialize methods (such as eval).\nConstraints:\n\n1 &lt;= strs.length &lt;= 200\n0 &lt;= strs[i].length &lt;= 200\nstrs[i] contains any possible characters out of 256 valid ASCII characters.\n\nFollow up: Could you write a generalized algorithm to work on any possible set of characters?\n\ntests\n\ndef test(fn):\n    codec = fn()\n    \n    expected = [\"Hello\",\"World\"]\n    expected_str = '5#Hello5#World'\n    actual_str = codec.encode(expected)\n    assert actual_str == expected_str\n    actual = codec.decode(actual_str)\n    assert actual == expected\n\n    expected = [\"\"]\n    expected_str = '0#'\n    actual_str = codec.encode(expected)\n    assert actual_str == expected_str\n    actual = codec.decode(actual_str)\n    assert actual == expected"
+    "text": "Problem Description\nGiven an unsorted array of integers nums, return the length of the longest consecutive elements sequence.\nYou must write an algorithm that runs in O(n) time.\n\ntests\n\ndef test(fn):\n    val1, val2 = 1,100\n    expected =  9\n\n    actual = fn(low,high)\n    assert actual == expected"
   },
   {
-    "objectID": "posts/Encode and Decode Strings.html#solution",
-    "href": "posts/Encode and Decode Strings.html#solution",
-    "title": "Encode and Decode Strings",
+    "objectID": "posts/Longest Consecutive Sequence.html#solution",
+    "href": "posts/Longest Consecutive Sequence.html#solution",
+    "title": "Longest Consecutive Sequence",
     "section": "Solution",
-    "text": "Solution\n\nTime Complexity: O(n)\nSpace Complexity: O(1)\n\n\nfrom typing import List\nclass Codec:\n    def encode(self, strs: List[str]) -&gt; str:\n        \"\"\"Encodes a list of strings to a single string.\n        \"\"\"\n        encoded_str = ''\n        for s in strs:\n            encoded_str += str(len(s)) + '#' + s\n        return encoded_str\n\n    def decode(self, s: str) -&gt; List[str]:\n        \"\"\"Decodes a single string to a list of strings.\n        \"\"\"\n        i,l = 0,0\n\n        out = []\n        while i &lt; len(s):\n            if s[i] != '#':\n                l = l * 10 + int(s[i])\n                i += 1\n            else:\n                out.append(s[i+1:i+1+l])\n                i = i + 1 + l\n                l = 0\n        return out\ntest(Codec)"
+    "text": "Solution\n\nTime Complexity: O(n)\nSpace Complexity: O(n)\n\n\nfrom typing import List\n\ndef longestConsecutive(nums: List[int]) -&gt; int:\n    numset = set(nums)\n    max_seq_len = 0\n\n    for num in nums:\n\n        # if beginning of a sequence\n        if num-1 not in numset:\n            seq_start = num\n            seq_length = 1\n            \n            # Keep incrementing values until you're at end of sequence\n            while seq_start + 1 in numset:\n                seq_length += 1\n                seq_start += 1\n            \n            # Keep sequence length if it's the longest so far\n            max_seq_len = max(max_seq_len, seq_length)\n    return max_seq_len"
   },
   {
     "objectID": "posts/Two Sum.html",
@@ -131,6 +131,27 @@
     "title": "Two Sum",
     "section": "Solutions",
     "text": "Solutions\n\nBrute Force\nThe way to brute force this problem would be to try every possible combination of 2 indices until one solves the problem. This would mean a loop in a loop, or complexity.\n\nTime Complexity: O(n^2)\nSpace Complexity: O(1)\n\n\nfrom typing import List\ndef twoSum(nums: List[int], target: int) -&gt; List[int]:\n    for index1, num1 in enumerate(nums):\n        desired_num = target - num1\n        for index2, num2 in enumerate(nums):\n            if (num2 == desired_num) and (index1 != index2):\n                return [index1, index2]\n\ntest(twoSum)\n\n\n\nHash Map\nInstead of trying every possible combination we can calculate the other number we need, and do a lookup to see if we have seen that number we need. By doing this we only need 1 loop.\n\nTime Complexity: O(n)\nSpace Complexity: O(n)\n\n\nfrom typing import List\ndef solution(nums: List[int], target: int) -&gt; List[int]:\n    hashmap = {}\n    for i,num in enumerate(nums):\n        need = target - num\n        if need in hashmap:\n            return [i,hashmap[need]]\n        hashmap[num] = i\n\ntest(twoSum)"
+  },
+  {
+    "objectID": "posts/Encode and Decode Strings.html",
+    "href": "posts/Encode and Decode Strings.html",
+    "title": "Encode and Decode Strings",
+    "section": "",
+    "text": "Problem Source: Leetcode"
+  },
+  {
+    "objectID": "posts/Encode and Decode Strings.html#problem-description",
+    "href": "posts/Encode and Decode Strings.html#problem-description",
+    "title": "Encode and Decode Strings",
+    "section": "Problem Description",
+    "text": "Problem Description\nDesign an algorithm to encode a list of strings to a string. The encoded string is then sent over the network and is decoded back to the original list of strings.\nMachine 1 (sender) has the function:\nstring encode(vector&lt;string&gt; strs) {\n  // ... your code\n  return encoded_string;\n}\nMachine 2 (receiver) has the function:\nvector&lt;string&gt; decode(string s) {\n  //... your code\n  return strs;\n}\nSo Machine 1 does:\nstring encoded_string = encode(strs);\nand Machine 2 does:\nvector&lt;string&gt; strs2 = decode(encoded_string);\nstrs2 in Machine 2 should be the same as strs in Machine 1.\nImplement encode and decode methods.\nYou are not allowed to solve the problem using any serialize methods (such as eval).\nConstraints:\n\n1 &lt;= strs.length &lt;= 200\n0 &lt;= strs[i].length &lt;= 200\nstrs[i] contains any possible characters out of 256 valid ASCII characters.\n\nFollow up: Could you write a generalized algorithm to work on any possible set of characters?\n\ntests\n\ndef test(fn):\n    codec = fn()\n    \n    expected = [\"Hello\",\"World\"]\n    expected_str = '5#Hello5#World'\n    actual_str = codec.encode(expected)\n    assert actual_str == expected_str\n    actual = codec.decode(actual_str)\n    assert actual == expected\n\n    expected = [\"\"]\n    expected_str = '0#'\n    actual_str = codec.encode(expected)\n    assert actual_str == expected_str\n    actual = codec.decode(actual_str)\n    assert actual == expected"
+  },
+  {
+    "objectID": "posts/Encode and Decode Strings.html#solution",
+    "href": "posts/Encode and Decode Strings.html#solution",
+    "title": "Encode and Decode Strings",
+    "section": "Solution",
+    "text": "Solution\n\nTime Complexity: O(n)\nSpace Complexity: O(1)\n\n\nfrom typing import List\nclass Codec:\n    def encode(self, strs: List[str]) -&gt; str:\n        \"\"\"Encodes a list of strings to a single string.\n        \"\"\"\n        encoded_str = ''\n        for s in strs:\n            encoded_str += str(len(s)) + '#' + s\n        return encoded_str\n\n    def decode(self, s: str) -&gt; List[str]:\n        \"\"\"Decodes a single string to a list of strings.\n        \"\"\"\n        i,l = 0,0\n\n        out = []\n        while i &lt; len(s):\n            if s[i] != '#':\n                l = l * 10 + int(s[i])\n                i += 1\n            else:\n                out.append(s[i+1:i+1+l])\n                i = i + 1 + l\n                l = 0\n        return out\ntest(Codec)"
   },
   {
     "objectID": "posts/Pancake Sorting.html",
