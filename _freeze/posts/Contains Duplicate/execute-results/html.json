@@ -1,0 +1,12 @@
+{
+  "hash": "85ebb013bd2e3d3c9b15ef86c451e170",
+  "result": {
+    "engine": "jupyter",
+    "markdown": "---\ntitle: \"Contains Duplicate\"\nauthor: \"Isaac Flath\"\ndate: \"2024-02-01\"\ncategories: [hash table, array, sorting]\ndescription: \"Check if an array contains duplicated values\"\n---\n\n>Problem Source:  Leetcode\n\n## Problem Description\n\nGiven an integer array `nums`, return `true` if any value appears at least twice in the array, and return `false` if every element is distinct.\n\n### tests\n\n::: {#fec719bd .cell execution_count=1}\n``` {.python .cell-code}\ndef test(fn):\n    nums = [1,2,3,1]\n    expected = True\n    actual = fn(nums)\n    assert actual == expected \n\n    nums = [1,2,3,4]\n    expected = False\n    actual = fn(nums)\n    assert actual == expected \n\n    nums = [1,1,1,3,3,4,3,2,4,2]\n    expected = True\n    actual = fn(nums)\n    assert actual == expected \n```\n:::\n\n\n## Solution\n\n### Hashmap\n\n+ Time Complexity: `O(n)`\n+ Space Complexity: `O(n)`\n\n::: {#446e598a .cell execution_count=2}\n``` {.python .cell-code}\nfrom typing import List\ndef containsDuplicate(nums: List[int]) -> bool:\n    seen = set()\n    for num in nums:\n        if num in seen:\n            return True\n        else:\n            seen.add(num)\n    return False\n\ntest(containsDuplicate)    \n```\n:::\n\n\n### Sorting\n\n+ Time Complexity: `O(nlogn)`\n+ Space Complexity: `O(1)`\n\n::: {#26e40462 .cell execution_count=3}\n``` {.python .cell-code}\nfrom typing import List\ndef containsDuplicate(nums: List[int]) -> bool:\n    nums.sort() \n    for i in range(len(nums)-1):\n        if nums[i] == nums[i+1]: \n            return True\n    else: \n        return False\n\ntest(containsDuplicate)    \n```\n:::\n\n\n",
+    "supporting": [
+      "Contains Duplicate_files"
+    ],
+    "filters": [],
+    "includes": {}
+  }
+}

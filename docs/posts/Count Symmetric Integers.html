@@ -6,8 +6,11 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="author" content="Isaac Flath">
+<meta name="dcterms.date" content="2024-01-31">
+<meta name="description" content="Determine if an integer is a Symmetric">
 
-<title>Data Structures &amp; Algorithms</title>
+<title>Data Structures &amp; Algorithms - Count Symmetric Integers</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,27 +23,59 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
-<script src="site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="site_libs/quarto-nav/headroom.min.js"></script>
-<script src="site_libs/clipboard/clipboard.min.js"></script>
-<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="site_libs/quarto-search/fuse.min.js"></script>
-<script src="site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="./">
-<script src="site_libs/quarto-listing/list.min.js"></script>
-<script src="site_libs/quarto-listing/quarto-listing.js"></script>
-<script src="site_libs/quarto-html/quarto.js"></script>
-<script src="site_libs/quarto-html/popper.min.js"></script>
-<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="site_libs/quarto-html/anchor.min.js"></script>
-<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -68,77 +103,19 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Search"
   }
 }</script>
-<script>
 
-  window.document.addEventListener("DOMContentLoaded", function (_event) {
-    const listingTargetEl = window.document.querySelector('#listing-listing .list');
-    if (!listingTargetEl) {
-      // No listing discovered, do not attach.
-      return; 
-    }
 
-    const options = {
-      valueNames: ['listing-title','listing-description','listing-categories',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-title-sort'] }],
-      
-      searchColumns: ["listing-date","listing-title","listing-author"],
-    };
-
-    window['quarto-listings'] = window['quarto-listings'] || {};
-    window['quarto-listings']['listing-listing'] = new List('listing-listing', options);
-
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  });
-
-  window.addEventListener('hashchange',() => {
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  })
-  </script>
-
-  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
-
-<script type="text/javascript">
-const typesetMath = (el) => {
-  if (window.MathJax) {
-    // MathJax Typeset
-    window.MathJax.typeset([el]);
-  } else if (window.katex) {
-    // KaTeX Render
-    var mathElements = el.getElementsByClassName("math");
-    var macros = [];
-    for (var i = 0; i < mathElements.length; i++) {
-      var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN") {
-        window.katex.render(texText.data, mathElements[i], {
-          displayMode: mathElements[i].classList.contains('display'),
-          throwOnError: false,
-          macros: macros,
-          fleqn: false
-        });
-      }
-    }
-  }
-}
-window.Quarto = {
-  typesetMath
-};
-</script>
-
-<link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="../styles.css">
 </head>
 
-<body class="nav-fixed">
+<body class="nav-fixed fullcontent">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top quarto-banner">
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
-    <a class="navbar-brand" href="./index.html">
+    <a class="navbar-brand" href="../index.html">
     <span class="navbar-title">Data Structures &amp; Algorithms</span>
     </a>
   </div>
@@ -163,207 +140,125 @@ window.Quarto = {
 <!-- content -->
 <header id="title-block-header" class="quarto-title-block default page-columns page-full">
   <div class="quarto-title-banner page-columns page-full">
-    <div class="quarto-title column-page-left">
-      <h1 class="title">Data Structures &amp; Algorithms</h1>
-                      </div>
+    <div class="quarto-title column-body">
+      <h1 class="title">Count Symmetric Integers</h1>
+                  <div>
+        <div class="description">
+          Determine if an integer is a Symmetric
+        </div>
+      </div>
+                          <div class="quarto-categories">
+                <div class="quarto-category">math</div>
+                <div class="quarto-category">enumeration</div>
+              </div>
+                  </div>
   </div>
     
   
-  <div class="quarto-title-meta column-page-left">
+  <div class="quarto-title-meta">
 
+      <div>
+      <div class="quarto-title-meta-heading">Author</div>
+      <div class="quarto-title-meta-contents">
+               <p>Isaac Flath </p>
+            </div>
+    </div>
       
+      <div>
+      <div class="quarto-title-meta-heading">Published</div>
+      <div class="quarto-title-meta-contents">
+        <p class="date">January 31, 2024</p>
+      </div>
+    </div>
     
       
     </div>
     
   
-  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
+  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        
-    <h5 class="quarto-listing-category-title">Categories</h5><div class="quarto-listing-category category-default"><div class="category" data-category="">All <span class="quarto-category-count">(11)</span></div><div class="category" data-category="array">array <span class="quarto-category-count">(8)</span></div><div class="category" data-category="bucket sort">bucket sort <span class="quarto-category-count">(1)</span></div><div class="category" data-category="counting">counting <span class="quarto-category-count">(1)</span></div><div class="category" data-category="enumeration">enumeration <span class="quarto-category-count">(1)</span></div><div class="category" data-category="greedy">greedy <span class="quarto-category-count">(1)</span></div><div class="category" data-category="hash table">hash table <span class="quarto-category-count">(6)</span></div><div class="category" data-category="math">math <span class="quarto-category-count">(2)</span></div><div class="category" data-category="matrix">matrix <span class="quarto-category-count">(1)</span></div><div class="category" data-category="prefix sum">prefix sum <span class="quarto-category-count">(1)</span></div><div class="category" data-category="sorting">sorting <span class="quarto-category-count">(3)</span></div><div class="category" data-category="string">string <span class="quarto-category-count">(2)</span></div><div class="category" data-category="strings">strings <span class="quarto-category-count">(1)</span></div><div class="category" data-category="two pointers">two pointers <span class="quarto-category-count">(1)</span></div></div></div>
+    
 <!-- main -->
-<main class="content quarto-banner-title-block column-page-left" id="quarto-document-content">
+<main class="content quarto-banner-title-block" id="quarto-document-content">
 
 
 
 
 
-
-
-
-
-<div class="quarto-listing quarto-listing-container-table" id="listing-listing">
-<div class="listing-actions-group">
-   <div class="input-group input-group-sm quarto-listing-sort">
-     <span class="input-group-text"><i class="bi bi-sort-down"></i></span>
-     <select id="listing-listing-sort" class="form-select" aria-label="Order By" onchange="window['quarto-listings']['listing-listing'].sort(this.options[this.selectedIndex].value, { order: this.options[this.selectedIndex].getAttribute('data-direction')})">
-       <option value="" disabled="" selected="" hidden="">Order By</option>
-       <option value="index" data-direction="asc">Default</option>
-         <option value="listing-title-sort" data-direction="asc">
-          Title
-        </option>
-     </select>
-  </div>
-    <div class="input-group input-group-sm quarto-listing-filter">
-      <span class="input-group-text"><i class="bi bi-search"></i></span>
-      <input type="text" class="search form-control" placeholder="Filter">
-    </div>
+<blockquote class="blockquote">
+<p>Problem Source: Leetcode</p>
+</blockquote>
+<section id="problem-description" class="level2">
+<h2 class="anchored" data-anchor-id="problem-description">Problem Description</h2>
+<p>You are given two positive integers <code>low</code> and <code>high</code>.</p>
+<p>An integer <code>x</code> consisting of <code>2 * n</code> digits is symmetric if the sum of the first <code>n</code> digits of <code>x</code> is equal to the sum of the last <code>n</code> digits of <code>x</code>. Numbers with an odd number of digits are never symmetric.</p>
+<p>Return the number of symmetric integers in the range <code>[low, high]</code>.</p>
+<section id="tests" class="level3">
+<h3 class="anchored" data-anchor-id="tests">tests</h3>
+<div id="fb7f3deb" class="cell" data-execution_count="1">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> test(fn):</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>    low,high <span class="op">=</span> <span class="dv">1</span>,<span class="dv">100</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>    expected <span class="op">=</span>  <span class="dv">9</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>    symmetric_count <span class="op">=</span> fn(low,high) <span class="co"># 11, 22, 33, 44, 55, 66, 77, 88, and 99.</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">assert</span> symmetric_count <span class="op">==</span> expected </span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>    low, high <span class="op">=</span> <span class="dv">1200</span>, <span class="dv">1230</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>    expected <span class="op">=</span> <span class="dv">4</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>    symmetric_count <span class="op">=</span> fn(low,high) <span class="co"># 1203, 1212, 1221, and 1230</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>    <span class="cf">assert</span> symmetric_count <span class="op">==</span> expected </span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>    low, high <span class="op">=</span> <span class="dv">0</span>, <span class="dv">10000</span></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>    expected <span class="op">=</span> <span class="dv">624</span></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>    symmetric_count <span class="op">=</span> fn(low,high) </span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>    <span class="cf">assert</span> symmetric_count <span class="op">==</span> expected </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<table class="quarto-listing-table table table-hover">
-<thead>
-<tr>
-<th>
-<a class="sort" data-sort="listing-title-sort" onclick="if (this.classList.contains('sort-asc')) { this.classList.add('sort-desc'); this.classList.remove('sort-asc') } else { this.classList.add('sort-asc'); this.classList.remove('sort-desc')} return false;">Title</a>
-</th>
-<th>
-Description
-</th>
-<th>
-Categories
-</th>
-</tr>
-</thead>
-<tbody class="list">
-<tr data-index="0" data-categories="array,string" data-listing-date-sort="1707714000000" data-listing-file-modified-sort="1707739681385" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="3" data-listing-word-count-sort="520" data-listing-title-sort="Encode and Decode Strings" data-listing-filename-sort="Encode and Decode Strings.qmd" onclick="href = this.querySelector('a').getAttribute('href');
- if (href) { window.location=href ; return false; }">
-<td>
-<a href="./posts/Encode and Decode Strings.html" class="title listing-title">Encode and Decode Strings</a>
-</td>
-<td>
-<span class="listing-description">Create a reversable encoding of a list of strings to a string</span>
-</td>
-<td>
-<span class="listing-categories">array, string</span>
-</td>
-</tr>
-<tr data-index="1" data-categories="array,hash table,matrix" data-listing-date-sort="1707195600000" data-listing-file-modified-sort="1707756666712" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="4" data-listing-word-count-sort="699" data-listing-title-sort="Valid Sudoku" data-listing-filename-sort="Valid Sudoku.qmd" onclick="href = this.querySelector('a').getAttribute('href');
- if (href) { window.location=href ; return false; }">
-<td>
-<a href="./posts/Valid Sudoku/Valid Sudoku.html" class="title listing-title">Valid Sudoku</a>
-</td>
-<td>
-<span class="listing-description">Determine if a 9 x 9 sudoku board is valid </span>
-</td>
-<td>
-<span class="listing-categories">array, hash table, matrix</span>
-</td>
-</tr>
-<tr data-index="2" data-categories="array,prefix sum" data-listing-date-sort="1707109200000" data-listing-file-modified-sort="1707008104486" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="231" data-listing-title-sort="Product of Array Except Self" data-listing-filename-sort="Product of Array Except Self.qmd" onclick="href = this.querySelector('a').getAttribute('href');
- if (href) { window.location=href ; return false; }">
-<td>
-<a href="./posts/Product of Array Except Self.html" class="title listing-title">Product of Array Except Self</a>
-</td>
-<td>
-<span class="listing-description">Given an array, return an array where answer[i] is the product of all the elements except input[i]</span>
-</td>
-<td>
-<span class="listing-categories">array, prefix sum</span>
-</td>
-</tr>
-<tr data-index="3" data-categories="array,hash table,bucket sort,counting" data-listing-date-sort="1707022800000" data-listing-file-modified-sort="1706996724318" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="317" data-listing-title-sort="Top K Frequent Elements" data-listing-filename-sort="Top K Frequent Elements.qmd" onclick="href = this.querySelector('a').getAttribute('href');
- if (href) { window.location=href ; return false; }">
-<td>
-<a href="./posts/Top K Frequent Elements.html" class="title listing-title">Top K Frequent Elements</a>
-</td>
-<td>
-<span class="listing-description">Given an array get the top k most frequent elements</span>
-</td>
-<td>
-<span class="listing-categories">array, hash table, bucket sort, counting</span>
-</td>
-</tr>
-<tr data-index="4" data-categories="array,hash table,string" data-listing-date-sort="1706936400000" data-listing-file-modified-sort="1706993440751" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="257" data-listing-title-sort="Grouped Anagrams" data-listing-filename-sort="Grouped Anagrams.qmd" onclick="href = this.querySelector('a').getAttribute('href');
- if (href) { window.location=href ; return false; }">
-<td>
-<a href="./posts/Grouped Anagrams.html" class="title listing-title">Grouped Anagrams</a>
-</td>
-<td>
-<span class="listing-description">Group a list of strings by anagrams</span>
-</td>
-<td>
-<span class="listing-categories">array, hash table, string</span>
-</td>
-</tr>
-<tr data-index="5" data-categories="hash table,strings,sorting" data-listing-date-sort="1706763600000" data-listing-file-modified-sort="1706837932881" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="226" data-listing-title-sort="Valid Anagram" data-listing-filename-sort="Valid Anagram.qmd" onclick="href = this.querySelector('a').getAttribute('href');
- if (href) { window.location=href ; return false; }">
-<td>
-<a href="./posts/Valid Anagram.html" class="title listing-title">Valid Anagram</a>
-</td>
-<td>
-<span class="listing-description">Determine if 2 strings are anagrams of each other</span>
-</td>
-<td>
-<span class="listing-categories">hash table, strings, sorting</span>
-</td>
-</tr>
-<tr data-index="6" data-categories="hash table,array,sorting" data-listing-date-sort="1706763600000" data-listing-file-modified-sort="1706836678260" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="258" data-listing-title-sort="Contains Duplicate" data-listing-filename-sort="Contains Duplicate.qmd" onclick="href = this.querySelector('a').getAttribute('href');
- if (href) { window.location=href ; return false; }">
-<td>
-<a href="./posts/Contains Duplicate.html" class="title listing-title">Contains Duplicate</a>
-</td>
-<td>
-<span class="listing-description">Check if an array contains duplicated values</span>
-</td>
-<td>
-<span class="listing-categories">hash table, array, sorting</span>
-</td>
-</tr>
-<tr data-index="7" data-categories="math,enumeration" data-listing-date-sort="1706677200000" data-listing-file-modified-sort="1706712410141" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="295" data-listing-title-sort="Count Symmetric Integers" data-listing-filename-sort="Count Symmetric Integers.qmd" onclick="href = this.querySelector('a').getAttribute('href');
- if (href) { window.location=href ; return false; }">
-<td>
-<a href="./posts/Count Symmetric Integers.html" class="title listing-title">Count Symmetric Integers</a>
-</td>
-<td>
-<span class="listing-description">Determine if an integer is a Symmetric</span>
-</td>
-<td>
-<span class="listing-categories">math, enumeration</span>
-</td>
-</tr>
-<tr data-index="8" data-categories="array,two pointers,greedy,sorting" data-listing-date-sort="1706590800000" data-listing-file-modified-sort="1706839214006" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="3" data-listing-word-count-sort="440" data-listing-title-sort="Pancake Sorting" data-listing-filename-sort="Pancake Sorting.qmd" onclick="href = this.querySelector('a').getAttribute('href');
- if (href) { window.location=href ; return false; }">
-<td>
-<a href="./posts/Pancake Sorting.html" class="title listing-title">Pancake Sorting</a>
-</td>
-<td>
-<span class="listing-description">Sort a list using pancake flips</span>
-</td>
-<td>
-<span class="listing-categories">array, two pointers, greedy, sorting</span>
-</td>
-</tr>
-<tr data-index="9" data-categories="math" data-listing-date-sort="1706504400000" data-listing-file-modified-sort="1706669176884" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="3" data-listing-word-count-sort="424" data-listing-title-sort="Palindrome Number" data-listing-filename-sort="Palindrome Number.qmd" onclick="href = this.querySelector('a').getAttribute('href');
- if (href) { window.location=href ; return false; }">
-<td>
-<a href="./posts/Palindrome Number.html" class="title listing-title">Palindrome Number</a>
-</td>
-<td>
-<span class="listing-description">Determine if an integer is a palindrome</span>
-</td>
-<td>
-<span class="listing-categories">math</span>
-</td>
-</tr>
-<tr data-index="10" data-categories="array,hash table" data-listing-date-sort="1706418000000" data-listing-file-modified-sort="1706715664159" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="386" data-listing-title-sort="Two Sum" data-listing-filename-sort="Two Sum.qmd" onclick="href = this.querySelector('a').getAttribute('href');
- if (href) { window.location=href ; return false; }">
-<td>
-<a href="./posts/Two Sum.html" class="title listing-title">Two Sum</a>
-</td>
-<td>
-<span class="listing-description">Find indices of two numbers that add up to target</span>
-</td>
-<td>
-<span class="listing-categories">array, hash table</span>
-</td>
-</tr>
-</tbody>
-</table>
-<div class="listing-no-matching d-none">
-No matching items
+</section>
+</section>
+<section id="solution" class="level2">
+<h2 class="anchored" data-anchor-id="solution">Solution</h2>
+<ul>
+<li>Time Complexity: <code>O(n^2)</code></li>
+<li>Space Complexity: <code>O(1)</code></li>
+</ul>
+<div id="ea922f6f" class="cell" data-execution_count="2">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> <span class="bu">sum</span>(arr):</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>    ttl <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> a <span class="kw">in</span> arr:</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>        ttl <span class="op">+=</span> <span class="bu">int</span>(a)</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> ttl</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> split_int(x):</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>    half <span class="op">=</span> <span class="bu">len</span>(x)<span class="op">//</span><span class="dv">2</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>    left, right <span class="op">=</span> x[:half], x[<span class="op">-</span>half:]</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> left, right</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> isSymmetric(x, ):</span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>    x <span class="op">=</span> <span class="bu">str</span>(x)</span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="bu">len</span>(x)<span class="op">%</span><span class="dv">2</span> <span class="op">==</span> <span class="dv">1</span>: <span class="cf">return</span> <span class="va">False</span></span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>    half <span class="op">=</span> <span class="bu">len</span>(x)<span class="op">//</span><span class="dv">2</span></span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="bu">sum</span>(x[:half]) <span class="op">==</span> <span class="bu">sum</span>(x[<span class="op">-</span>half:])</span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> countSymmetricIntegers(low: <span class="bu">int</span>, high: <span class="bu">int</span>) <span class="op">-&gt;</span> <span class="bu">int</span>:</span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>    symmetric_count <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> num <span class="kw">in</span> <span class="bu">range</span>(low, high<span class="op">+</span><span class="dv">1</span>):</span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a>        symmetric_count <span class="op">+=</span> isSymmetric(num)</span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> symmetric_count</span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a>test(countSymmetricIntegers)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</div></main> <!-- /main -->
+<div id="6ba3bd21" class="cell" data-execution_count="3">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> timeit</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>timeit.timeit(<span class="kw">lambda</span>: countSymmetricIntegers(<span class="dv">0</span>,<span class="dv">10000</span>),number<span class="op">=</span><span class="dv">1000</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="3">
+<pre><code>4.902573416009545</code></pre>
+</div>
+</div>
+
+
+</section>
+
+</main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
