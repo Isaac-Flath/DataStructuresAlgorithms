@@ -2,50 +2,54 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://Isaac-Flath.github.io/DataStructuresAlgorithms/posts/Valid Anagram.html</loc>
-    <lastmod>2024-02-12T16:54:05.351Z</lastmod>
-  </url>
-  <url>
-    <loc>https://Isaac-Flath.github.io/DataStructuresAlgorithms/posts/Count Symmetric Integers.html</loc>
-    <lastmod>2024-02-12T16:54:05.351Z</lastmod>
-  </url>
-  <url>
-    <loc>https://Isaac-Flath.github.io/DataStructuresAlgorithms/posts/Encode and Decode Strings.html</loc>
-    <lastmod>2024-02-12T16:54:05.351Z</lastmod>
-  </url>
-  <url>
-    <loc>https://Isaac-Flath.github.io/DataStructuresAlgorithms/posts/Palindrome Number.html</loc>
-    <lastmod>2024-02-12T16:54:05.351Z</lastmod>
-  </url>
-  <url>
-    <loc>https://Isaac-Flath.github.io/DataStructuresAlgorithms/posts/Contains Duplicate.html</loc>
-    <lastmod>2024-02-12T16:54:05.347Z</lastmod>
-  </url>
-  <url>
-    <loc>https://Isaac-Flath.github.io/DataStructuresAlgorithms/posts/Valid Sudoku/Valid Sudoku.html</loc>
-    <lastmod>2024-02-12T16:54:05.351Z</lastmod>
-  </url>
-  <url>
-    <loc>https://Isaac-Flath.github.io/DataStructuresAlgorithms/index.html</loc>
-    <lastmod>2024-02-12T16:54:05.347Z</lastmod>
-  </url>
-  <url>
-    <loc>https://Isaac-Flath.github.io/DataStructuresAlgorithms/posts/Product of Array Except Self.html</loc>
-    <lastmod>2024-02-12T16:54:05.351Z</lastmod>
-  </url>
-  <url>
-    <loc>https://Isaac-Flath.github.io/DataStructuresAlgorithms/posts/Pancake Sorting.html</loc>
-    <lastmod>2024-02-12T16:54:05.351Z</lastmod>
-  </url>
-  <url>
-    <loc>https://Isaac-Flath.github.io/DataStructuresAlgorithms/posts/Top K Frequent Elements.html</loc>
-    <lastmod>2024-02-12T16:54:05.351Z</lastmod>
-  </url>
-  <url>
-    <loc>https://Isaac-Flath.github.io/DataStructuresAlgorithms/posts/Grouped Anagrams.html</loc>
-    <lastmod>2024-02-12T16:54:05.351Z</lastmod>
+    <lastmod>2024-02-12T18:47:48.196Z</lastmod>
   </url>
   <url>
     <loc>https://Isaac-Flath.github.io/DataStructuresAlgorithms/posts/Two Sum.html</loc>
-    <lastmod>2024-02-12T16:54:05.351Z</lastmod>
+    <lastmod>2024-02-12T18:47:48.196Z</lastmod>
+  </url>
+  <url>
+    <loc>https://Isaac-Flath.github.io/DataStructuresAlgorithms/posts/Grouped Anagrams.html</loc>
+    <lastmod>2024-02-12T18:47:48.196Z</lastmod>
+  </url>
+  <url>
+    <loc>https://Isaac-Flath.github.io/DataStructuresAlgorithms/posts/Top K Frequent Elements.html</loc>
+    <lastmod>2024-02-12T18:47:48.196Z</lastmod>
+  </url>
+  <url>
+    <loc>https://Isaac-Flath.github.io/DataStructuresAlgorithms/posts/Pancake Sorting.html</loc>
+    <lastmod>2024-02-12T18:47:48.196Z</lastmod>
+  </url>
+  <url>
+    <loc>https://Isaac-Flath.github.io/DataStructuresAlgorithms/posts/Product of Array Except Self.html</loc>
+    <lastmod>2024-02-12T18:47:48.196Z</lastmod>
+  </url>
+  <url>
+    <loc>https://Isaac-Flath.github.io/DataStructuresAlgorithms/index.html</loc>
+    <lastmod>2024-02-12T18:47:48.196Z</lastmod>
+  </url>
+  <url>
+    <loc>https://Isaac-Flath.github.io/DataStructuresAlgorithms/posts/Valid Sudoku/Valid Sudoku.html</loc>
+    <lastmod>2024-02-12T18:47:48.196Z</lastmod>
+  </url>
+  <url>
+    <loc>https://Isaac-Flath.github.io/DataStructuresAlgorithms/posts/Contains Duplicate.html</loc>
+    <lastmod>2024-02-12T18:47:48.196Z</lastmod>
+  </url>
+  <url>
+    <loc>https://Isaac-Flath.github.io/DataStructuresAlgorithms/posts/Palindrome Number.html</loc>
+    <lastmod>2024-02-12T18:47:48.196Z</lastmod>
+  </url>
+  <url>
+    <loc>https://Isaac-Flath.github.io/DataStructuresAlgorithms/posts/Encode and Decode Strings.html</loc>
+    <lastmod>2024-02-12T18:47:48.196Z</lastmod>
+  </url>
+  <url>
+    <loc>https://Isaac-Flath.github.io/DataStructuresAlgorithms/posts/Count Symmetric Integers.html</loc>
+    <lastmod>2024-02-12T18:47:48.196Z</lastmod>
+  </url>
+  <url>
+    <loc>https://Isaac-Flath.github.io/DataStructuresAlgorithms/posts/Longest Consecutive Sequence.html</loc>
+    <lastmod>2024-02-12T18:47:48.196Z</lastmod>
   </url>
 </urlset>
