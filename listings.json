@@ -2,12 +2,13 @@
   {
     "listing": "/index.html",
     "items": [
+      "/posts/Encode and Decode Strings/index.html",
       "/posts/Valid Sudoku/index.html",
       "/posts/Product of Array Except Self/index.html",
       "/posts/Top K Frequent Elements/index.html",
       "/posts/Grouped Anagrams/index.html",
-      "/posts/Contains Duplicate/index.html",
       "/posts/Valid Anagram/index.html",
+      "/posts/Contains Duplicate/index.html",
       "/posts/Count Symmetric Integers/index.html",
       "/posts/Pancake Sorting/index.html",
       "/posts/Palindrome Number/index.html",
