@@ -4,7 +4,7 @@
     "href": "index.html",
     "title": "Data Structures & Algorithms",
     "section": "",
-    "text": "Order By\n       Default\n         \n          Title\n        \n     \n  \n    \n      \n      \n    \n\n\n\n\n\nTitle\n\n\nDescription\n\n\nCategories\n\n\n\n\n\n\nValid Sudoku\n\n\nDetermine if a 9 x 9 sudoku board is valid \n\n\narray, hash table, matrix\n\n\n\n\nProduct of Array Except Self\n\n\nGiven an array, return an array where answer[i] is the product of all the elements except input[i]\n\n\narray, prefix sum\n\n\n\n\nTop K Frequent Elements\n\n\nGiven an array get the top k most frequent elements\n\n\narray, hash table, bucket sort, counting\n\n\n\n\nGrouped Anagrams\n\n\nGroup a list of strings by anagrams\n\n\narray, hash table, string\n\n\n\n\nValid Anagram\n\n\nDetermine if 2 strings are anagrams of each other\n\n\nhash table, strings, sorting\n\n\n\n\nContains Duplicate\n\n\nCheck if an array contains duplicated values\n\n\nhash table, array, sorting\n\n\n\n\nCount Symmetric Integers\n\n\nDetermine if an integer is a Symmetric\n\n\nmath, enumeration\n\n\n\n\nPancake Sorting\n\n\nSort a list using pancake flips\n\n\narray, two pointers, greedy, sorting\n\n\n\n\nPalindrome Number\n\n\nDetermine if an integer is a palindrome\n\n\nmath\n\n\n\n\nTwo Sum\n\n\nFind indices of two numbers that add up to target\n\n\narray, hash table\n\n\n\n\n\nNo matching items"
+    "text": "Order By\n       Default\n         \n          Title\n        \n     \n  \n    \n      \n      \n    \n\n\n\n\n\nTitle\n\n\nDescription\n\n\nCategories\n\n\n\n\n\n\nEncode and Decode Strings\n\n\nCreate a reversable encoding of a list of strings to a string\n\n\narray, string\n\n\n\n\nValid Sudoku\n\n\nDetermine if a 9 x 9 sudoku board is valid \n\n\narray, hash table, matrix\n\n\n\n\nProduct of Array Except Self\n\n\nGiven an array, return an array where answer[i] is the product of all the elements except input[i]\n\n\narray, prefix sum\n\n\n\n\nTop K Frequent Elements\n\n\nGiven an array get the top k most frequent elements\n\n\narray, hash table, bucket sort, counting\n\n\n\n\nGrouped Anagrams\n\n\nGroup a list of strings by anagrams\n\n\narray, hash table, string\n\n\n\n\nValid Anagram\n\n\nDetermine if 2 strings are anagrams of each other\n\n\nhash table, strings, sorting\n\n\n\n\nContains Duplicate\n\n\nCheck if an array contains duplicated values\n\n\nhash table, array, sorting\n\n\n\n\nCount Symmetric Integers\n\n\nDetermine if an integer is a Symmetric\n\n\nmath, enumeration\n\n\n\n\nPancake Sorting\n\n\nSort a list using pancake flips\n\n\narray, two pointers, greedy, sorting\n\n\n\n\nPalindrome Number\n\n\nDetermine if an integer is a palindrome\n\n\nmath\n\n\n\n\nTwo Sum\n\n\nFind indices of two numbers that add up to target\n\n\narray, hash table\n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "posts/Contains Duplicate/index.html",
@@ -110,6 +110,27 @@
     "title": "Top K Frequent Elements",
     "section": "Solution",
     "text": "Solution\n\nTime Complexity: O(n)\nSpace Complexity: O(n)\n\n\nfrom typing import List\ndef topKFrequent(nums: List[int], k: int) -&gt; List[int]: \n    hashmap = {}\n    for num in nums:\n        # Get a hashmap of counts for each item in num\n        hashmap[num] = 1 + hashmap.get(num,0)\n\n    buckets = [[] for _ in range(len(nums)+1)]\n    for key,val in hashmap.items():\n        # Put nums in a list where index location == occurances\n        buckets[val].append(key)\n\n    output = []\n    for i in range(len(buckets) - 1, 0, -1):\n        # Loop through buckets backward and append to output\n        for num in buckets[i]:\n            output.append(num)\n            if len(output) == k:\n                # When you have k nums you are done\n                return output\n\ntest(topKFrequent)"
+  },
+  {
+    "objectID": "posts/Encode and Decode Strings/index.html",
+    "href": "posts/Encode and Decode Strings/index.html",
+    "title": "Encode and Decode Strings",
+    "section": "",
+    "text": "Problem Source: Leetcode"
+  },
+  {
+    "objectID": "posts/Encode and Decode Strings/index.html#problem-description",
+    "href": "posts/Encode and Decode Strings/index.html#problem-description",
+    "title": "Encode and Decode Strings",
+    "section": "Problem Description",
+    "text": "Problem Description\nDesign an algorithm to encode a list of strings to a string. The encoded string is then sent over the network and is decoded back to the original list of strings.\nMachine 1 (sender) has the function:\nstring encode(vector&lt;string&gt; strs) {\n  // ... your code\n  return encoded_string;\n}\nMachine 2 (receiver) has the function:\nvector&lt;string&gt; decode(string s) {\n  //... your code\n  return strs;\n}\nSo Machine 1 does:\nstring encoded_string = encode(strs);\nand Machine 2 does:\nvector&lt;string&gt; strs2 = decode(encoded_string);\nstrs2 in Machine 2 should be the same as strs in Machine 1.\nImplement encode and decode methods.\nYou are not allowed to solve the problem using any serialize methods (such as eval).\nConstraints:\n\n1 &lt;= strs.length &lt;= 200\n0 &lt;= strs[i].length &lt;= 200\nstrs[i] contains any possible characters out of 256 valid ASCII characters.\n\nFollow up: Could you write a generalized algorithm to work on any possible set of characters?\n\ntests\n\ndef test(fn):\n    codec = fn()\n    \n    expected = [\"Hello\",\"World\"]\n    expected_str = '5#Hello5#World'\n    actual_str = codec.encode(expected)\n    assert actual_str == expected_str\n    actual = codec.decode(actual_str)\n    assert actual == expected\n\n    expected = [\"\"]\n    expected_str = '0#'\n    actual_str = codec.encode(expected)\n    assert actual_str == expected_str\n    actual = codec.decode(actual_str)\n    assert actual == expected"
+  },
+  {
+    "objectID": "posts/Encode and Decode Strings/index.html#solution",
+    "href": "posts/Encode and Decode Strings/index.html#solution",
+    "title": "Encode and Decode Strings",
+    "section": "Solution",
+    "text": "Solution\n\nTime Complexity: O(n)\nSpace Complexity: O(1)\n\n\nfrom typing import List\nclass Codec:\n    def encode(self, strs: List[str]) -&gt; str:\n        \"\"\"Encodes a list of strings to a single string.\n        \"\"\"\n        encoded_str = ''\n        for s in strs:\n            encoded_str += str(len(s)) + '#' + s\n        return encoded_str\n\n    def decode(self, s: str) -&gt; List[str]:\n        \"\"\"Decodes a single string to a list of strings.\n        \"\"\"\n        i,l = 0,0\n\n        out = []\n        while i &lt; len(s):\n            if s[i] != '#':\n                l = l * 10 + int(s[i])\n                i += 1\n            else:\n                out.append(s[i+1:i+1+l])\n                i = i + 1 + l\n                l = 0\n        return out\ntest(Codec)"
   },
   {
     "objectID": "posts/Valid Sudoku/index.html",
