@@ -2,17 +2,17 @@
   {
     "listing": "/index.html",
     "items": [
-      "/posts/Encode and Decode Strings/index.html",
-      "/posts/Valid Sudoku/index.html",
-      "/posts/Product of Array Except Self/index.html",
-      "/posts/Top K Frequent Elements/index.html",
-      "/posts/Grouped Anagrams/index.html",
-      "/posts/Valid Anagram/index.html",
-      "/posts/Contains Duplicate/index.html",
-      "/posts/Count Symmetric Integers/index.html",
-      "/posts/Pancake Sorting/index.html",
-      "/posts/Palindrome Number/index.html",
-      "/posts/Two Sum/index.html"
+      "/posts/Encode and Decode Strings.html",
+      "/posts/Valid Sudoku/Valid Sudoku.html",
+      "/posts/Product of Array Except Self.html",
+      "/posts/Top K Frequent Elements.html",
+      "/posts/Grouped Anagrams.html",
+      "/posts/Contains Duplicate.html",
+      "/posts/Valid Anagram.html",
+      "/posts/Count Symmetric Integers.html",
+      "/posts/Pancake Sorting.html",
+      "/posts/Palindrome Number.html",
+      "/posts/Two Sum.html"
     ]
   }
 ]
