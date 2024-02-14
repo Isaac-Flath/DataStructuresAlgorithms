@@ -88,7 +88,7 @@
     "href": "posts/Valid Palindrome.html#solution",
     "title": "Valid Palindrome",
     "section": "Solution",
-    "text": "Solution\n\nTime Complexity: O(n)\nSpace Complexity: O(1)\n\n\ndef isPalindrome(s: str) -&gt; bool:\n    lp, rp = 0, len(s)-1\n\n    while lp &lt; rp:        \n        # Ignore non-alphanumeric characters by moving pointer\n        # Alternative to if statements is filter(lambda x: x.isalnum(), s) prior to loop\n        if not s[lp].isalnum():\n            lp += 1\n            continue\n        if not s[rp].isalnum():\n            rp -= 1\n            continue        \n\n        # Return and exit at first failure\n        if s[lp].lower() != s[rp].lower():\n            return False\n\n        # Move to next characters\n        lp += 1\n        rp -= 1\n\n    # If no failures, then it's a palindrome\n    return True"
+    "text": "Solution\n\nTime Complexity: O(n)\nSpace Complexity: O(1)\n\n\ndef isPalindrome(s: str) -&gt; bool:\n    lp, rp = 0, len(s)-1\n\n    while lp &lt; rp:        \n        # Ignore non-alphanumeric characters by moving pointer\n        # Alternative to if statements is filter(lambda x: x.isalnum(), s) prior to loop\n        if not s[lp].isalnum():\n            lp += 1\n            continue\n        if not s[rp].isalnum():\n            rp -= 1\n            continue        \n\n        # Return and exit at first failure\n        if s[lp].lower() != s[rp].lower():\n            return False\n\n        # Move to next characters\n        lp += 1\n        rp -= 1\n\n    # If no failures, then it's a palindrome\n    return True\n\ntest(isPalindrome)"
   },
   {
     "objectID": "posts/Pancake Sorting.html",
