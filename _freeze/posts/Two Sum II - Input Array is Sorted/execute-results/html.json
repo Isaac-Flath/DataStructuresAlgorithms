@@ -1,0 +1,12 @@
+{
+  "hash": "391628c6960185967a5abb6a61499d1c",
+  "result": {
+    "engine": "jupyter",
+    "markdown": "---\ntitle: \"Two Sum II - Input Array is Sorted\"\nauthor: \"Isaac Flath\"\ndate: \"2024-02-19\"\ncategories: [array, two pointers]\ndescription: \"Find indices of two numbers that add up to target in a sorted input\"\n---\n\n>Problem Source:  Leetcode\n\n## Problem Description\n\nGiven a 1-indexed array of integers `numbers` that is already sorted in non-decreasing order, find two numbers such that they add up to a specific `target` number. Let these two numbers be `numbers[index1]` and `numbers[index2]` where `1 <= index1 < index2 <= numbers.length`.\n\nReturn the indices of the two numbers, `index1` and `index2`, added by one as an integer array `[index1, index2]` of length 2.\n\nThe tests are generated such that there is exactly one solution. You may not use the same element twice.\n\nYour solution must use only constant extra space.\n\n### tests\n\n::: {#4c041c7e .cell execution_count=1}\n``` {.python .cell-code}\ndef test(fn):\n    numbers = [2,7,11,15]\n    target = 9\n    expected = (1,2)\n    assert fn(numbers,target) == expected \n\n    numbers = [2,3,4]\n    target = 6\n    expected = (1,3)\n    assert fn(numbers,target) == expected \n\n    numbers = [-1,0]\n    target = -1\n    expected = (1,2)\n    assert fn(numbers,target) == expected \n```\n:::\n\n\n## Solution\n\n+ Time Complexity: `O(1)`\n+ Space Complexity: `O(n)`\n\n::: {#b3766cfc .cell execution_count=2}\n``` {.python .cell-code}\nfrom typing import List\ndef twoSum(numbers: List[int], target: int) -> List[int]:\n    # start at each end of the list\n    i1, i2 = 0, len(numbers) - 1\n\n    while i1 < i2:\n        curr_sum = numbers[i1] + numbers[i2]\n\n        if curr_sum < target: # If too small\n            i1 += 1 # make it bigger\n        elif curr_sum > target: # If too big\n            i2 -= 1 # make it smaller\n        else:\n            return i1+1, i2+1 # if juuussstt right\n\ntest(twoSum)\n```\n:::\n\n\n",
+    "supporting": [
+      "Two Sum II - Input Array is Sorted_files"
+    ],
+    "filters": [],
+    "includes": {}
+  }
+}
