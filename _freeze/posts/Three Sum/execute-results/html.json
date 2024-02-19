@@ -1,0 +1,12 @@
+{
+  "hash": "7dc1c5b5edde015c3897d3ea48e02bd8",
+  "result": {
+    "engine": "jupyter",
+    "markdown": "---\ntitle: \"Three Sum\"\nauthor: \"Isaac Flath\"\ndate: \"2024-02-20\"\ncategories: [array, two pointers, sorting]\ndescription: \"Return all unique triplets in array that sum to 0\"\n---\n\n>Problem Source:  Leetcode\n\n## Problem Description\n\nGiven an integer array nums, return all the triplets `[nums[i], nums[j], nums[k]]` such that `i != j`, `i != k`, and `j != k`, and `nums[i] + nums[j] + nums[k] == 0`.\n\nNotice that the solution set must not contain duplicate triplets.\n\n### tests\n\n::: {#e96c7edb .cell execution_count=1}\n``` {.python .cell-code}\ndef test(fn):\n    nums = [-1,0,1,2,-1,-4]\n    expected =  [[-1,-1,2],[-1,0,1]]\n    assert fn(nums) == expected \n\n    nums = [0,1,1]\n    expected = []\n    assert fn(nums) == expected \n\n    nums = [0,0,0]\n    expected = [[0,0,0]]\n    assert fn(nums) == expected \n```\n:::\n\n\n## Solution\n\nThis solution builds on [Two Sum II - Input Array is Sorted\n](https://isaac-flath.github.io/DataStructuresAlgorithms/posts/Two%20Sum%20II%20-%20Input%20Array%20is%20Sorted.html).  If this solution is confusing, revisit it after understanding that proble,\n\n+ Time Complexity: `O(1)`\n+ Space Complexity: `O(nlogn)`\n\n::: {#bac7b93b .cell execution_count=2}\n``` {.python .cell-code}\nfrom typing import List\ndef threeSum(nums: List[int]) -> List[List[int]]:\n    nums.sort()\n    res = []\n\n    for i in range(len(nums)):\n        if i>0 and nums[i] == nums[i-1]: continue\n\n        l,r = i+1, len(nums)-1\n        while l < r:\n            curr_sum = nums[i] + nums[l] + nums[r]\n\n            #Two Sum on sorted list\n            if curr_sum < 0: # If too small\n                l += 1 # make it bigger\n            elif curr_sum > 0: # If too big\n                r -= 1 # make it smaller\n            else:\n                res.append([nums[i],nums[l],nums[r]])\n                l += 1 # move to next\n                while nums[l] == nums[l - 1] and l < r:\n                    l += 1 # keep incrementing if dupes\n    return res\n\ntest(threeSum)\n```\n:::\n\n\n",
+    "supporting": [
+      "Three Sum_files"
+    ],
+    "filters": [],
+    "includes": {}
+  }
+}
