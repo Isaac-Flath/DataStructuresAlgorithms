@@ -1,0 +1,11 @@
+{
+  "hash": "e4a2cbadb073e3d89f1c80228cb0ccc1",
+  "result": {
+    "markdown": "---\ntitle: \"Trapping Rain Water\"\nauthor: \"Isaac Flath\"\ndate: \"2024-02-22\"\ncategories: [array, two pointers]\ndescription: \"Given n non-negative integers representing an elevation map where the width of each bar is 1, compute how much water it can trap after raining.\"\n---\n\n> Problem Source: Leetcode\n\n## Problem Description\n\nGiven `n` non-negative integers representing an elevation map where the width of each bar is `1`, compute how much water it can trap after raining.\n\n![](paste-1.png)\n\n### tests\n\n::: {.cell execution_count=1}\n``` {.python .cell-code}\ndef test(fn):\n    height = [0,1,0,2,1,0,1,3,2,1,2,1]\n    actual = 6\n    assert actual == fn(height) \n\n    height = [4,2,0,3,2,5]\n    actual = 9\n    assert actual == fn(height) \n```\n:::\n\n\n## Solution\n\n-   Time Complexity: `O(n)`\n-   Space Complexity: `O(1)`\n\n::: {.cell execution_count=2}\n``` {.python .cell-code}\nfrom typing import List\ndef trap(height: List[int]) -> int:\n    l,r = 0, len(height)-1 # start on both ends\n    vol = 0\n    lm, rm = height[l], height[r]\n    \n    while l < r: # stop when pointers meet\n\n        # The side with largest max determines the bin depth\n        if lm < rm: \n            l += 1\n            lm = max(height[l], lm)\n            vol += lm - height[l] \n        else:\n            r -= 1 \n            rm = max(height[r], rm) \n            vol += rm - height[r]\n    return vol\n\ntest(trap)\n```\n:::\n\n\n",
+    "supporting": [
+      "Trapping Rain Water_files"
+    ],
+    "filters": [],
+    "includes": {}
+  }
+}
