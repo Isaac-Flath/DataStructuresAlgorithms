@@ -1,0 +1,11 @@
+{
+  "hash": "ff278f1d6d5466570b20499d15806f64",
+  "result": {
+    "markdown": "---\ntitle: \"Container With Most Water\"\nauthor: \"Isaac Flath\"\ndate: \"2024-02-21\"\ncategories: [array, two pointers, greedy]\ndescription: \"Find two lines that together with the x-axis form a container, such that the container contains the most water.\"\n---\n\n> Problem Source: Leetcode\n\n## Problem Description\n\nYou are given an integer array `height` of length `n`. There are n vertical lines drawn such that the two endpoints of the `ith` line are `(i, 0)` and `(i, height[i])`.\n\nFind two lines that together with the x-axis form a container, such that the container contains the most water.\n\nReturn the maximum amount of water a container can store.\n\n![](paste-1.png)\n\nNotice that you may not slant the container.\n\n### tests\n\n::: {.cell execution_count=1}\n``` {.python .cell-code}\ndef test(fn):\n    height = [1,8,6,2,5,4,8,3,7]\n    expected =  49\n    actual = fn(height)\n    assert actual == expected \n\n    height = [1,1]\n    expected = 1\n    actual = fn(height)\n    assert actual == expected \n```\n:::\n\n\n## Solution\n\n-   Time Complexity: `O(n)`\n-   Space Complexity: `O(1)`\n\n::: {.cell execution_count=2}\n``` {.python .cell-code}\nfrom typing import List\ndef maxArea(height: List[int]) -> int:\n    l,r = 0, len(height)-1 # start at each end\n    maxV = 0\n\n    # Iterate through half, so you stop when pointers meet somewhere in middle\n    while l < r:\n        lh, rh = height[l],height[r]\n\n        # calculate current area and keep if bigger\n        maxV = max(maxV, (r-l) * min(lh,rh))\n\n        # move pointer on smallest side\n        if lh < rh:\n            l+=1\n        else:\n            r-=1\n    return maxV\ntest(maxArea)\n```\n:::\n\n\n",
+    "supporting": [
+      "Container With Most Water_files"
+    ],
+    "filters": [],
+    "includes": {}
+  }
+}
