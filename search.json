@@ -105,74 +105,46 @@
     "text": "Solution\n\nHashmap\n\nTime Complexity: O(n)\nSpace Complexity: O(n)\n\n\ndef isAnagram(s: str, t: str) -&gt; bool:\n    if len(s) != len(t): return False\n\n    countS,countT = {}, {}\n    for i in range(len(s)):\n        countS[s[i]] = 1 + countS.get(s[i],0)\n        countT[t[i]] = 1 + countT.get(t[i],0)\n    \n    for c in countS:\n        if countS[c] != countT.get(c,0): return False\n\n    return True\n\ntest(isAnagram)\n\n\nfrom collections import Counter\ndef isAnagram(s: str, t: str) -&gt; bool:\n    return Counter(s) == Counter(t)\n\ntest(isAnagram)\n\n\n\nSorting\n\nTime Complexity: O(nlogn)\nSpace Complexity: O(1)\n\n\ndef isAnagram(s: str, t: str) -&gt; bool:\n    return sorted(list(s)) == sorted(list(t))\n\ntest(isAnagram)"
   },
   {
-    "objectID": "posts/Count Symmetric Integers.html",
-    "href": "posts/Count Symmetric Integers.html",
-    "title": "Count Symmetric Integers",
+    "objectID": "posts/Container With Most Water/Container With Most Water.html",
+    "href": "posts/Container With Most Water/Container With Most Water.html",
+    "title": "Container With Most Water",
     "section": "",
     "text": "Problem Source: Leetcode"
   },
   {
-    "objectID": "posts/Count Symmetric Integers.html#problem-description",
-    "href": "posts/Count Symmetric Integers.html#problem-description",
-    "title": "Count Symmetric Integers",
+    "objectID": "posts/Container With Most Water/Container With Most Water.html#problem-description",
+    "href": "posts/Container With Most Water/Container With Most Water.html#problem-description",
+    "title": "Container With Most Water",
     "section": "Problem Description",
-    "text": "Problem Description\nYou are given two positive integers low and high.\nAn integer x consisting of 2 * n digits is symmetric if the sum of the first n digits of x is equal to the sum of the last n digits of x. Numbers with an odd number of digits are never symmetric.\nReturn the number of symmetric integers in the range [low, high].\n\ntests\n\ndef test(fn):\n    low,high = 1,100\n    expected =  9\n    symmetric_count = fn(low,high) # 11, 22, 33, 44, 55, 66, 77, 88, and 99.\n    assert symmetric_count == expected \n\n    low, high = 1200, 1230\n    expected = 4\n    symmetric_count = fn(low,high) # 1203, 1212, 1221, and 1230\n    assert symmetric_count == expected \n\n    low, high = 0, 10000\n    expected = 624\n    symmetric_count = fn(low,high) \n    assert symmetric_count == expected"
+    "text": "Problem Description\nYou are given an integer array height of length n. There are n vertical lines drawn such that the two endpoints of the ith line are (i, 0) and (i, height[i]).\nFind two lines that together with the x-axis form a container, such that the container contains the most water.\nReturn the maximum amount of water a container can store.\n\nNotice that you may not slant the container.\n\ntests\n\ndef test(fn):\n    height = [1,8,6,2,5,4,8,3,7]\n    expected =  49\n    actual = fn(height)\n    assert actual == expected \n\n    height = [1,1]\n    expected = 1\n    actual = fn(height)\n    assert actual == expected"
   },
   {
-    "objectID": "posts/Count Symmetric Integers.html#solution",
-    "href": "posts/Count Symmetric Integers.html#solution",
-    "title": "Count Symmetric Integers",
+    "objectID": "posts/Container With Most Water/Container With Most Water.html#solution",
+    "href": "posts/Container With Most Water/Container With Most Water.html#solution",
+    "title": "Container With Most Water",
     "section": "Solution",
-    "text": "Solution\n\nTime Complexity: O(n^2)\nSpace Complexity: O(1)\n\n\ndef sum(arr):\n    ttl = 0\n    for a in arr:\n        ttl += int(a)\n    return ttl\n\ndef split_int(x):\n    half = len(x)//2\n    left, right = x[:half], x[-half:]\n    return left, right\n\ndef isSymmetric(x, ):\n    x = str(x)\n    if len(x)%2 == 1: return False\n    half = len(x)//2\n    return sum(x[:half]) == sum(x[-half:])\n\ndef countSymmetricIntegers(low: int, high: int) -&gt; int:\n    symmetric_count = 0\n    for num in range(low, high+1):\n        symmetric_count += isSymmetric(num)\n    return symmetric_count\n    \ntest(countSymmetricIntegers)\n\n\nimport timeit\ntimeit.timeit(lambda: countSymmetricIntegers(0,10000),number=1000)\n\n4.902573416009545"
+    "text": "Solution\n\nTime Complexity: O(n)\nSpace Complexity: O(1)\n\n\nfrom typing import List\ndef maxArea(height: List[int]) -&gt; int:\n    l,r = 0, len(height)-1 # start at each end\n    maxV = 0\n\n    # Iterate through half, so you stop when pointers meet somewhere in middle\n    while l &lt; r:\n        lh, rh = height[l],height[r]\n\n        # calculate current area and keep if bigger\n        maxV = max(maxV, (r-l) * min(lh,rh))\n\n        # move pointer on smallest side\n        if lh &lt; rh:\n            l+=1\n        else:\n            r-=1\n    return maxV\ntest(maxArea)"
   },
   {
-    "objectID": "posts/Valid Palindrome.html",
-    "href": "posts/Valid Palindrome.html",
-    "title": "Valid Palindrome",
+    "objectID": "posts/Valid Sudoku/Valid Sudoku.html",
+    "href": "posts/Valid Sudoku/Valid Sudoku.html",
+    "title": "Valid Sudoku",
     "section": "",
     "text": "Problem Source: Leetcode"
   },
   {
-    "objectID": "posts/Valid Palindrome.html#problem-description",
-    "href": "posts/Valid Palindrome.html#problem-description",
-    "title": "Valid Palindrome",
+    "objectID": "posts/Valid Sudoku/Valid Sudoku.html#problem-description",
+    "href": "posts/Valid Sudoku/Valid Sudoku.html#problem-description",
+    "title": "Valid Sudoku",
     "section": "Problem Description",
-    "text": "Problem Description\nA phrase is a palindrome if, after converting all uppercase letters into lowercase letters and removing all non-alphanumeric characters, it reads the same forward and backward. Alphanumeric characters include letters and numbers.\nGiven a string s, return true if it is a palindrome, or false otherwise.\n\ntests\n\ndef test(fn):\n    s = \"A man, a plan, a canal: Panama\"\n    assert fn(s)\n    s = \"race a car\"\n    assert not fn(s)\n    s = \" \"\n    assert fn(s)"
+    "text": "Problem Description\nDetermine if a 9 x 9 Sudoku board is valid. Only the filled cells need to be validated according to the following rules:\n\nEach row must contain the digits 1-9 without repetition.\nEach column must contain the digits 1-9 without repetition.\nEach of the nine 3 x 3 sub-boxes of the grid must contain the digits 1-9 without repetition.\n\nNote:\n\nA Sudoku board (partially filled) could be valid but is not necessarily solvable.\nOnly the filled cells need to be validated according to the mentioned rules.\n\n\nboard = \n[[\"5\",\"3\",\".\",\".\",\"7\",\".\",\".\",\".\",\".\"]\n,[\"6\",\".\",\".\",\"1\",\"9\",\"5\",\".\",\".\",\".\"]\n,[\".\",\"9\",\"8\",\".\",\".\",\".\",\".\",\"6\",\".\"]\n,[\"8\",\".\",\".\",\".\",\"6\",\".\",\".\",\".\",\"3\"]\n,[\"4\",\".\",\".\",\"8\",\".\",\"3\",\".\",\".\",\"1\"]\n,[\"7\",\".\",\".\",\".\",\"2\",\".\",\".\",\".\",\"6\"]\n,[\".\",\"6\",\".\",\".\",\".\",\".\",\"2\",\"8\",\".\"]\n,[\".\",\".\",\".\",\"4\",\"1\",\"9\",\".\",\".\",\"5\"]\n,[\".\",\".\",\".\",\".\",\"8\",\".\",\".\",\"7\",\"9\"]]\n\ntests\n\ndef test(fn):\n    board = [[\"5\",\"3\",\".\",\".\",\"7\",\".\",\".\",\".\",\".\"]\n            ,[\"6\",\".\",\".\",\"1\",\"9\",\"5\",\".\",\".\",\".\"]\n            ,[\".\",\"9\",\"8\",\".\",\".\",\".\",\".\",\"6\",\".\"]\n            ,[\"8\",\".\",\".\",\".\",\"6\",\".\",\".\",\".\",\"3\"]\n            ,[\"4\",\".\",\".\",\"8\",\".\",\"3\",\".\",\".\",\"1\"]\n            ,[\"7\",\".\",\".\",\".\",\"2\",\".\",\".\",\".\",\"6\"]\n            ,[\".\",\"6\",\".\",\".\",\".\",\".\",\"2\",\"8\",\".\"]\n            ,[\".\",\".\",\".\",\"4\",\"1\",\"9\",\".\",\".\",\"5\"]\n            ,[\".\",\".\",\".\",\".\",\"8\",\".\",\".\",\"7\",\"9\"]]\n    expected = True\n    actual = fn(board)\n    assert actual == expected \n\n    board = [[\"8\",\"3\",\".\",\".\",\"7\",\".\",\".\",\".\",\".\"]\n            ,[\"6\",\".\",\".\",\"1\",\"9\",\"5\",\".\",\".\",\".\"]\n            ,[\".\",\"9\",\"8\",\".\",\".\",\".\",\".\",\"6\",\".\"]\n            ,[\"8\",\".\",\".\",\".\",\"6\",\".\",\".\",\".\",\"3\"]\n            ,[\"4\",\".\",\".\",\"8\",\".\",\"3\",\".\",\".\",\"1\"]\n            ,[\"7\",\".\",\".\",\".\",\"2\",\".\",\".\",\".\",\"6\"]\n            ,[\".\",\"6\",\".\",\".\",\".\",\".\",\"2\",\"8\",\".\"]\n            ,[\".\",\".\",\".\",\"4\",\"1\",\"9\",\".\",\".\",\"5\"]\n            ,[\".\",\".\",\".\",\".\",\"8\",\".\",\".\",\"7\",\"9\"]]\n    expected = False\n    actual = fn(board)\n    assert actual == expected"
   },
   {
-    "objectID": "posts/Valid Palindrome.html#solution",
-    "href": "posts/Valid Palindrome.html#solution",
-    "title": "Valid Palindrome",
+    "objectID": "posts/Valid Sudoku/Valid Sudoku.html#solution",
+    "href": "posts/Valid Sudoku/Valid Sudoku.html#solution",
+    "title": "Valid Sudoku",
     "section": "Solution",
-    "text": "Solution\n\nTime Complexity: O(n)\nSpace Complexity: O(1)\n\n\ndef isPalindrome(s: str) -&gt; bool:\n    lp, rp = 0, len(s)-1\n\n    while lp &lt; rp:        \n        # Ignore non-alphanumeric characters by moving pointer\n        # Alternative to if statements is filter(lambda x: x.isalnum(), s) prior to loop\n        if not s[lp].isalnum():\n            lp += 1\n            continue\n        if not s[rp].isalnum():\n            rp -= 1\n            continue        \n\n        # Return and exit at first failure\n        if s[lp].lower() != s[rp].lower():\n            return False\n\n        # Move to next characters\n        lp += 1\n        rp -= 1\n\n    # If no failures, then it's a palindrome\n    return True\n\ntest(isPalindrome)"
-  },
-  {
-    "objectID": "posts/Grouped Anagrams.html",
-    "href": "posts/Grouped Anagrams.html",
-    "title": "Grouped Anagrams",
-    "section": "",
-    "text": "Problem Source: Leetcode"
-  },
-  {
-    "objectID": "posts/Grouped Anagrams.html#problem-description",
-    "href": "posts/Grouped Anagrams.html#problem-description",
-    "title": "Grouped Anagrams",
-    "section": "Problem Description",
-    "text": "Problem Description\nGiven an array of strings strs, group the anagrams together. You can return the answer in any order.\nAn Anagram is a word or phrase formed by rearranging the letters of a different word or phrase, typically using all the original letters exactly once.\n\ntests\n\ndef test(fn):\n    strs = [\"eat\",\"tea\",\"tan\",\"ate\",\"nat\",\"bat\"]\n    expected =  [['eat', 'tea', 'ate'], ['tan', 'nat'], ['bat']]\n\n    actual = fn(strs)\n    assert sorted(actual) == sorted(expected)"
-  },
-  {
-    "objectID": "posts/Grouped Anagrams.html#solution",
-    "href": "posts/Grouped Anagrams.html#solution",
-    "title": "Grouped Anagrams",
-    "section": "Solution",
-    "text": "Solution\n\nTime Complexity: O(m * n)\nSpace Complexity: O(n)\n\nWhere m is the average length of the strings in strs, and n is the length of strs\n\nfrom typing import List\nfrom collections import defaultdict\n\ndef groupAnagrams(strs: List[str]) -&gt; List[List[str]]:\n    grouped_anagrams = defaultdict(list) \n\n    for s in strs:\n        # key[0] represents a, key[1] represents b, etc.\n        # key is an array of character counts\n        key = [0]*26 \n        for c in s:\n            # use unicode to calculate index location in key that corresponds to c and increment\n            key[ord(c) - ord('a')] += 1\n\n        # list can't be key, so convert key to tuple for usage with dict\n        grouped_anagrams[tuple(key)].append(s)\n\n    return grouped_anagrams.values()\n\ntest(groupAnagrams)"
-  },
-  {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "Data Structures & Algorithms",
-    "section": "",
-    "text": "Order By\n       Default\n         \n          Title\n        \n     \n  \n    \n      \n      \n    \n\n\n\n\n\nTitle\n\n\nDescription\n\n\nCategories\n\n\n\n\n\n\nThree Sum\n\n\nReturn all unique triplets in array that sum to 0\n\n\narray, two pointers, sorting\n\n\n\n\nTwo Sum II - Input Array is Sorted\n\n\nFind indices of two numbers that add up to target in a sorted input\n\n\narray, two pointers\n\n\n\n\nValid Palindrome\n\n\nCheck if cleaned phrase is a palindrome\n\n\ntwo pointers, string\n\n\n\n\nLongest Consecutive Sequence\n\n\nFind longest consecutive elements sequence\n\n\narray, hash table\n\n\n\n\nEncode and Decode Strings\n\n\nCreate a reversable encoding of a list of strings to a string\n\n\narray, string\n\n\n\n\nValid Sudoku\n\n\nDetermine if a 9 x 9 sudoku board is valid \n\n\narray, hash table, matrix\n\n\n\n\nProduct of Array Except Self\n\n\nGiven an array, return an array where answer[i] is the product of all the elements except input[i]\n\n\narray, prefix sum\n\n\n\n\nTop K Frequent Elements\n\n\nGiven an array get the top k most frequent elements\n\n\narray, hash table, bucket sort, counting\n\n\n\n\nGrouped Anagrams\n\n\nGroup a list of strings by anagrams\n\n\narray, hash table, string\n\n\n\n\nContains Duplicate\n\n\nCheck if an array contains duplicated values\n\n\nhash table, array, sorting\n\n\n\n\nValid Anagram\n\n\nDetermine if 2 strings are anagrams of each other\n\n\nhash table, string, sorting\n\n\n\n\nCount Symmetric Integers\n\n\nDetermine if an integer is a Symmetric\n\n\nmath, enumeration\n\n\n\n\nPancake Sorting\n\n\nSort a list using pancake flips\n\n\narray, two pointers, greedy, sorting\n\n\n\n\nPalindrome Number\n\n\nDetermine if an integer is a palindrome\n\n\nmath\n\n\n\n\nTwo Sum\n\n\nFind indices of two numbers that add up to target\n\n\narray, hash table\n\n\n\n\n\nNo matching items"
+    "text": "Solution\n\nTime Complexity: O(n)\nSpace Complexity: O(n)\n\nWhere n in the number of cells on the sudoku board.\n\nfrom typing import List\ndef isValidSudoku(board: List[List[str]]) -&gt; bool:\n    # Initialize sets to track if there's duplicate values\n    rowSet = [set() for _ in range(9)]\n    colSet = [set() for _ in range(9)]\n    gridSet = [set() for _ in range(9)]\n\n    # for each cell in matrix\n    for rowIndex in range(0,9):\n        for colIndex in range(0,9):\n            cellValue = board[rowIndex][colIndex]\n            if cellValue == \".\": continue\n\n            # Calculate the grid index number\n            gridIndex = rowIndex//3*3 + colIndex //3\n\n            # if cell value is already in set for row/col/grid\n            if (cellValue in rowSet[rowIndex] or\n                cellValue in colSet[colIndex] or \n                cellValue in gridSet[gridIndex]): \n                # Then there's a duplicate and it's not valid\n                return False\n\n            # Otherwise add to the set and go to the next cell\n            rowSet[rowIndex].add(cellValue)\n            colSet[colIndex].add(cellValue)\n            gridSet[gridIndex].add(cellValue)\n    # If you make it through all cells with no dupes, then it's valid\n    return True\n\ntest(isValidSudoku)"
   },
   {
     "objectID": "posts/Contains Duplicate.html",
@@ -196,25 +168,74 @@
     "text": "Solution\n\nHashmap\n\nTime Complexity: O(n)\nSpace Complexity: O(n)\n\n\nfrom typing import List\ndef containsDuplicate(nums: List[int]) -&gt; bool:\n    seen = set()\n    for num in nums:\n        if num in seen:\n            return True\n        else:\n            seen.add(num)\n    return False\n\ntest(containsDuplicate)    \n\n\n\nSorting\n\nTime Complexity: O(nlogn)\nSpace Complexity: O(1)\n\n\nfrom typing import List\ndef containsDuplicate(nums: List[int]) -&gt; bool:\n    nums.sort() \n    for i in range(len(nums)-1):\n        if nums[i] == nums[i+1]: \n            return True\n    else: \n        return False\n\ntest(containsDuplicate)"
   },
   {
-    "objectID": "posts/Valid Sudoku/Valid Sudoku.html",
-    "href": "posts/Valid Sudoku/Valid Sudoku.html",
-    "title": "Valid Sudoku",
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Data Structures & Algorithms",
+    "section": "",
+    "text": "Order By\n       Default\n         \n          Title\n        \n     \n  \n    \n      \n      \n    \n\n\n\n\n\nTitle\n\n\nDescription\n\n\nCategories\n\n\n\n\n\n\nContainer With Most Water\n\n\nFind two lines that together with the x-axis form a container, such that the container contains the most water.\n\n\narray, two pointers, greedy\n\n\n\n\nThree Sum\n\n\nReturn all unique triplets in array that sum to 0\n\n\narray, two pointers, sorting\n\n\n\n\nTwo Sum II - Input Array is Sorted\n\n\nFind indices of two numbers that add up to target in a sorted input\n\n\narray, two pointers\n\n\n\n\nValid Palindrome\n\n\nCheck if cleaned phrase is a palindrome\n\n\ntwo pointers, string\n\n\n\n\nLongest Consecutive Sequence\n\n\nFind longest consecutive elements sequence\n\n\narray, hash table\n\n\n\n\nEncode and Decode Strings\n\n\nCreate a reversable encoding of a list of strings to a string\n\n\narray, string\n\n\n\n\nValid Sudoku\n\n\nDetermine if a 9 x 9 sudoku board is valid \n\n\narray, hash table, matrix\n\n\n\n\nProduct of Array Except Self\n\n\nGiven an array, return an array where answer[i] is the product of all the elements except input[i]\n\n\narray, prefix sum\n\n\n\n\nTop K Frequent Elements\n\n\nGiven an array get the top k most frequent elements\n\n\narray, hash table, bucket sort, counting\n\n\n\n\nGrouped Anagrams\n\n\nGroup a list of strings by anagrams\n\n\narray, hash table, string\n\n\n\n\nContains Duplicate\n\n\nCheck if an array contains duplicated values\n\n\nhash table, array, sorting\n\n\n\n\nValid Anagram\n\n\nDetermine if 2 strings are anagrams of each other\n\n\nhash table, string, sorting\n\n\n\n\nCount Symmetric Integers\n\n\nDetermine if an integer is a Symmetric\n\n\nmath, enumeration\n\n\n\n\nPancake Sorting\n\n\nSort a list using pancake flips\n\n\narray, two pointers, greedy, sorting\n\n\n\n\nPalindrome Number\n\n\nDetermine if an integer is a palindrome\n\n\nmath\n\n\n\n\nTwo Sum\n\n\nFind indices of two numbers that add up to target\n\n\narray, hash table\n\n\n\n\n\nNo matching items"
+  },
+  {
+    "objectID": "posts/Grouped Anagrams.html",
+    "href": "posts/Grouped Anagrams.html",
+    "title": "Grouped Anagrams",
     "section": "",
     "text": "Problem Source: Leetcode"
   },
   {
-    "objectID": "posts/Valid Sudoku/Valid Sudoku.html#problem-description",
-    "href": "posts/Valid Sudoku/Valid Sudoku.html#problem-description",
-    "title": "Valid Sudoku",
+    "objectID": "posts/Grouped Anagrams.html#problem-description",
+    "href": "posts/Grouped Anagrams.html#problem-description",
+    "title": "Grouped Anagrams",
     "section": "Problem Description",
-    "text": "Problem Description\nDetermine if a 9 x 9 Sudoku board is valid. Only the filled cells need to be validated according to the following rules:\n\nEach row must contain the digits 1-9 without repetition.\nEach column must contain the digits 1-9 without repetition.\nEach of the nine 3 x 3 sub-boxes of the grid must contain the digits 1-9 without repetition.\n\nNote:\n\nA Sudoku board (partially filled) could be valid but is not necessarily solvable.\nOnly the filled cells need to be validated according to the mentioned rules.\n\n\nboard = \n[[\"5\",\"3\",\".\",\".\",\"7\",\".\",\".\",\".\",\".\"]\n,[\"6\",\".\",\".\",\"1\",\"9\",\"5\",\".\",\".\",\".\"]\n,[\".\",\"9\",\"8\",\".\",\".\",\".\",\".\",\"6\",\".\"]\n,[\"8\",\".\",\".\",\".\",\"6\",\".\",\".\",\".\",\"3\"]\n,[\"4\",\".\",\".\",\"8\",\".\",\"3\",\".\",\".\",\"1\"]\n,[\"7\",\".\",\".\",\".\",\"2\",\".\",\".\",\".\",\"6\"]\n,[\".\",\"6\",\".\",\".\",\".\",\".\",\"2\",\"8\",\".\"]\n,[\".\",\".\",\".\",\"4\",\"1\",\"9\",\".\",\".\",\"5\"]\n,[\".\",\".\",\".\",\".\",\"8\",\".\",\".\",\"7\",\"9\"]]\n\ntests\n\ndef test(fn):\n    board = [[\"5\",\"3\",\".\",\".\",\"7\",\".\",\".\",\".\",\".\"]\n            ,[\"6\",\".\",\".\",\"1\",\"9\",\"5\",\".\",\".\",\".\"]\n            ,[\".\",\"9\",\"8\",\".\",\".\",\".\",\".\",\"6\",\".\"]\n            ,[\"8\",\".\",\".\",\".\",\"6\",\".\",\".\",\".\",\"3\"]\n            ,[\"4\",\".\",\".\",\"8\",\".\",\"3\",\".\",\".\",\"1\"]\n            ,[\"7\",\".\",\".\",\".\",\"2\",\".\",\".\",\".\",\"6\"]\n            ,[\".\",\"6\",\".\",\".\",\".\",\".\",\"2\",\"8\",\".\"]\n            ,[\".\",\".\",\".\",\"4\",\"1\",\"9\",\".\",\".\",\"5\"]\n            ,[\".\",\".\",\".\",\".\",\"8\",\".\",\".\",\"7\",\"9\"]]\n    expected = True\n    actual = fn(board)\n    assert actual == expected \n\n    board = [[\"8\",\"3\",\".\",\".\",\"7\",\".\",\".\",\".\",\".\"]\n            ,[\"6\",\".\",\".\",\"1\",\"9\",\"5\",\".\",\".\",\".\"]\n            ,[\".\",\"9\",\"8\",\".\",\".\",\".\",\".\",\"6\",\".\"]\n            ,[\"8\",\".\",\".\",\".\",\"6\",\".\",\".\",\".\",\"3\"]\n            ,[\"4\",\".\",\".\",\"8\",\".\",\"3\",\".\",\".\",\"1\"]\n            ,[\"7\",\".\",\".\",\".\",\"2\",\".\",\".\",\".\",\"6\"]\n            ,[\".\",\"6\",\".\",\".\",\".\",\".\",\"2\",\"8\",\".\"]\n            ,[\".\",\".\",\".\",\"4\",\"1\",\"9\",\".\",\".\",\"5\"]\n            ,[\".\",\".\",\".\",\".\",\"8\",\".\",\".\",\"7\",\"9\"]]\n    expected = False\n    actual = fn(board)\n    assert actual == expected"
+    "text": "Problem Description\nGiven an array of strings strs, group the anagrams together. You can return the answer in any order.\nAn Anagram is a word or phrase formed by rearranging the letters of a different word or phrase, typically using all the original letters exactly once.\n\ntests\n\ndef test(fn):\n    strs = [\"eat\",\"tea\",\"tan\",\"ate\",\"nat\",\"bat\"]\n    expected =  [['eat', 'tea', 'ate'], ['tan', 'nat'], ['bat']]\n\n    actual = fn(strs)\n    assert sorted(actual) == sorted(expected)"
   },
   {
-    "objectID": "posts/Valid Sudoku/Valid Sudoku.html#solution",
-    "href": "posts/Valid Sudoku/Valid Sudoku.html#solution",
-    "title": "Valid Sudoku",
+    "objectID": "posts/Grouped Anagrams.html#solution",
+    "href": "posts/Grouped Anagrams.html#solution",
+    "title": "Grouped Anagrams",
     "section": "Solution",
-    "text": "Solution\n\nTime Complexity: O(n)\nSpace Complexity: O(n)\n\nWhere n in the number of cells on the sudoku board.\n\nfrom typing import List\ndef isValidSudoku(board: List[List[str]]) -&gt; bool:\n    # Initialize sets to track if there's duplicate values\n    rowSet = [set() for _ in range(9)]\n    colSet = [set() for _ in range(9)]\n    gridSet = [set() for _ in range(9)]\n\n    # for each cell in matrix\n    for rowIndex in range(0,9):\n        for colIndex in range(0,9):\n            cellValue = board[rowIndex][colIndex]\n            if cellValue == \".\": continue\n\n            # Calculate the grid index number\n            gridIndex = rowIndex//3*3 + colIndex //3\n\n            # if cell value is already in set for row/col/grid\n            if (cellValue in rowSet[rowIndex] or\n                cellValue in colSet[colIndex] or \n                cellValue in gridSet[gridIndex]): \n                # Then there's a duplicate and it's not valid\n                return False\n\n            # Otherwise add to the set and go to the next cell\n            rowSet[rowIndex].add(cellValue)\n            colSet[colIndex].add(cellValue)\n            gridSet[gridIndex].add(cellValue)\n    # If you make it through all cells with no dupes, then it's valid\n    return True\n\ntest(isValidSudoku)"
+    "text": "Solution\n\nTime Complexity: O(m * n)\nSpace Complexity: O(n)\n\nWhere m is the average length of the strings in strs, and n is the length of strs\n\nfrom typing import List\nfrom collections import defaultdict\n\ndef groupAnagrams(strs: List[str]) -&gt; List[List[str]]:\n    grouped_anagrams = defaultdict(list) \n\n    for s in strs:\n        # key[0] represents a, key[1] represents b, etc.\n        # key is an array of character counts\n        key = [0]*26 \n        for c in s:\n            # use unicode to calculate index location in key that corresponds to c and increment\n            key[ord(c) - ord('a')] += 1\n\n        # list can't be key, so convert key to tuple for usage with dict\n        grouped_anagrams[tuple(key)].append(s)\n\n    return grouped_anagrams.values()\n\ntest(groupAnagrams)"
+  },
+  {
+    "objectID": "posts/Valid Palindrome.html",
+    "href": "posts/Valid Palindrome.html",
+    "title": "Valid Palindrome",
+    "section": "",
+    "text": "Problem Source: Leetcode"
+  },
+  {
+    "objectID": "posts/Valid Palindrome.html#problem-description",
+    "href": "posts/Valid Palindrome.html#problem-description",
+    "title": "Valid Palindrome",
+    "section": "Problem Description",
+    "text": "Problem Description\nA phrase is a palindrome if, after converting all uppercase letters into lowercase letters and removing all non-alphanumeric characters, it reads the same forward and backward. Alphanumeric characters include letters and numbers.\nGiven a string s, return true if it is a palindrome, or false otherwise.\n\ntests\n\ndef test(fn):\n    s = \"A man, a plan, a canal: Panama\"\n    assert fn(s)\n    s = \"race a car\"\n    assert not fn(s)\n    s = \" \"\n    assert fn(s)"
+  },
+  {
+    "objectID": "posts/Valid Palindrome.html#solution",
+    "href": "posts/Valid Palindrome.html#solution",
+    "title": "Valid Palindrome",
+    "section": "Solution",
+    "text": "Solution\n\nTime Complexity: O(n)\nSpace Complexity: O(1)\n\n\ndef isPalindrome(s: str) -&gt; bool:\n    lp, rp = 0, len(s)-1\n\n    while lp &lt; rp:        \n        # Ignore non-alphanumeric characters by moving pointer\n        # Alternative to if statements is filter(lambda x: x.isalnum(), s) prior to loop\n        if not s[lp].isalnum():\n            lp += 1\n            continue\n        if not s[rp].isalnum():\n            rp -= 1\n            continue        \n\n        # Return and exit at first failure\n        if s[lp].lower() != s[rp].lower():\n            return False\n\n        # Move to next characters\n        lp += 1\n        rp -= 1\n\n    # If no failures, then it's a palindrome\n    return True\n\ntest(isPalindrome)"
+  },
+  {
+    "objectID": "posts/Count Symmetric Integers.html",
+    "href": "posts/Count Symmetric Integers.html",
+    "title": "Count Symmetric Integers",
+    "section": "",
+    "text": "Problem Source: Leetcode"
+  },
+  {
+    "objectID": "posts/Count Symmetric Integers.html#problem-description",
+    "href": "posts/Count Symmetric Integers.html#problem-description",
+    "title": "Count Symmetric Integers",
+    "section": "Problem Description",
+    "text": "Problem Description\nYou are given two positive integers low and high.\nAn integer x consisting of 2 * n digits is symmetric if the sum of the first n digits of x is equal to the sum of the last n digits of x. Numbers with an odd number of digits are never symmetric.\nReturn the number of symmetric integers in the range [low, high].\n\ntests\n\ndef test(fn):\n    low,high = 1,100\n    expected =  9\n    symmetric_count = fn(low,high) # 11, 22, 33, 44, 55, 66, 77, 88, and 99.\n    assert symmetric_count == expected \n\n    low, high = 1200, 1230\n    expected = 4\n    symmetric_count = fn(low,high) # 1203, 1212, 1221, and 1230\n    assert symmetric_count == expected \n\n    low, high = 0, 10000\n    expected = 624\n    symmetric_count = fn(low,high) \n    assert symmetric_count == expected"
+  },
+  {
+    "objectID": "posts/Count Symmetric Integers.html#solution",
+    "href": "posts/Count Symmetric Integers.html#solution",
+    "title": "Count Symmetric Integers",
+    "section": "Solution",
+    "text": "Solution\n\nTime Complexity: O(n^2)\nSpace Complexity: O(1)\n\n\ndef sum(arr):\n    ttl = 0\n    for a in arr:\n        ttl += int(a)\n    return ttl\n\ndef split_int(x):\n    half = len(x)//2\n    left, right = x[:half], x[-half:]\n    return left, right\n\ndef isSymmetric(x, ):\n    x = str(x)\n    if len(x)%2 == 1: return False\n    half = len(x)//2\n    return sum(x[:half]) == sum(x[-half:])\n\ndef countSymmetricIntegers(low: int, high: int) -&gt; int:\n    symmetric_count = 0\n    for num in range(low, high+1):\n        symmetric_count += isSymmetric(num)\n    return symmetric_count\n    \ntest(countSymmetricIntegers)\n\n\nimport timeit\ntimeit.timeit(lambda: countSymmetricIntegers(0,10000),number=1000)\n\n4.902573416009545"
   },
   {
     "objectID": "posts/Encode and Decode Strings.html",
