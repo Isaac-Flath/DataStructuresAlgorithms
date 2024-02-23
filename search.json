@@ -1,325 +1,45 @@
 [
   {
-    "objectID": "posts/Pancake Sorting.html",
-    "href": "posts/Pancake Sorting.html",
-    "title": "Pancake Sorting",
+    "objectID": "posts/Valid Parentheses.html",
+    "href": "posts/Valid Parentheses.html",
+    "title": "Valid Parentheses",
     "section": "",
     "text": "Problem Source: Leetcode"
   },
   {
-    "objectID": "posts/Pancake Sorting.html#problem-description",
-    "href": "posts/Pancake Sorting.html#problem-description",
-    "title": "Pancake Sorting",
+    "objectID": "posts/Valid Parentheses.html#problem-description",
+    "href": "posts/Valid Parentheses.html#problem-description",
+    "title": "Valid Parentheses",
     "section": "Problem Description",
-    "text": "Problem Description\nGiven an array of integers arr, sort the array by performing a series of pancake flips.\nIn one pancake flip we do the following steps:\n\nChoose an integer k where 1 &lt;= k &lt;= arr.length.\nReverse the sub-array arr[0…k-1] (0-indexed).\n\nFor example, if arr = [3,2,1,4] and we performed a pancake flip choosing k = 3, we reverse the sub-array [3,2,1], so arr = [1,2,3,4] after the pancake flip at k = 3.\nReturn an array of the k-values corresponding to a sequence of pancake flips that sort arr. Any valid answer that sorts the array within 10 * arr.length flips will be judged as correct.\nConstraints:\n\n1 &lt;= arr.length &lt;= 100\n1 &lt;= arr[i] &lt;= arr.length\nAll integers in arr are unique (i.e. arr is a permutation of the integers from 1 to arr.length)\n\n\ntests\n\ndef test(fn):\n    value = [3,2,4,1]\n    expected = [1,2,3,4]\n    ans, actual = fn(value)\n    assert actual == expected \n\n    value = [1,2,3]\n    expected = [1,2,3]\n    ans, actual = fn(value)\n    assert actual == expected"
+    "text": "Problem Description\nGiven a string s containing just the characters (, ), {, }, [ and ], determine if the input string is valid.\nAn input string is valid if:\n\nOpen brackets must be closed by the same type of brackets.\nOpen brackets must be closed in the correct order.\nEvery close bracket has a corresponding open bracket of the same type.\n\nConstraints:\n\n1 &lt;= s.length &lt;= 104\ns consists of parentheses only ()[]{}.\n\n\ntests\n\ndef test(fn):\n    s = \"()\"\n    expected = True\n    assert fn(s) == expected \n\n    s = \"()[]{}\"\n    expected = True\n    assert fn(s) == expected \n\n    s= \"(]\"\n    expected = False\n    assert fn(s) == expected"
   },
   {
-    "objectID": "posts/Pancake Sorting.html#solution",
-    "href": "posts/Pancake Sorting.html#solution",
-    "title": "Pancake Sorting",
+    "objectID": "posts/Valid Parentheses.html#solution",
+    "href": "posts/Valid Parentheses.html#solution",
+    "title": "Valid Parentheses",
     "section": "Solution",
-    "text": "Solution\n\nTime Complexity: O(n^2)\nSpace Complexity: O(n)\n\n\nfrom typing import List\n\ndef reverse(l, n):\n    for i in range(n//2): \n        # inplace swaps means go through 1/2 the list portion we want to swap\n        l[i], l[n-i-1] = l[n-i-1], l[i]\n\n    \ndef pancakeSort(arr: List[int]) -&gt; List[int]:\n    swap_points = []\n    for value_to_sort in range(len(arr),1,-1): # if n-1 elements are correct, then n elements are correct, so don't check the smallest value (1)\n        current_location = arr.index(value_to_sort)+1\n        if value_to_sort == current_location: \n            # If value already in correct position continue\n            continue\n        if current_location != 1: # If value is in front, this step isn't needed\n            # If not, flip to get desired value in front\n            reverse(arr, current_location)\n            swap_points.append(current_location)\n        # flip to get value in final position\n        reverse(arr,value_to_sort)\n        swap_points.append(value_to_sort)\n    return swap_points, arr\n\ntest(pancakeSort)"
+    "text": "Solution\n\nTime Complexity: ``\nSpace Complexity: ``\n\n\ndef isValid(s: str) -&gt; bool:\n    enclosures = {')':'(','}':'{',']':'['}\n    stack = []\n\n    for c in s:\n\n        # If it's an closing bracket\n        if c in enclosures:\n\n            # Validate stack exists and bracket order is correct\n            if stack and stack[-1] == enclosures[c]:\n                stack.pop()\n            else:\n                return False\n        else:\n            # If it's an opening bracket\n            stack.append(c)\n\n    # If stack isn't empty then an enclosure isn't closed\n    return not stack \n\ntest(isValid)"
   },
   {
-    "objectID": "posts/Top K Frequent Elements.html",
-    "href": "posts/Top K Frequent Elements.html",
-    "title": "Top K Frequent Elements",
+    "objectID": "posts/Product of Array Except Self.html",
+    "href": "posts/Product of Array Except Self.html",
+    "title": "Product of Array Except Self",
     "section": "",
     "text": "Problem Source: Leetcode"
   },
   {
-    "objectID": "posts/Top K Frequent Elements.html#problem-description",
-    "href": "posts/Top K Frequent Elements.html#problem-description",
-    "title": "Top K Frequent Elements",
+    "objectID": "posts/Product of Array Except Self.html#problem-description",
+    "href": "posts/Product of Array Except Self.html#problem-description",
+    "title": "Product of Array Except Self",
     "section": "Problem Description",
-    "text": "Problem Description\nGiven an integer array nums and an integer k, return the k most frequent elements. You may return the answer in any order.\n\ntests\n\ndef test(fn):\n    nums = [1,1,1,2,2,3] \n    k = 2    \n    expected =  [1,2]\n    actual = fn(nums,k)\n    assert actual == expected \n\n    nums = [1]\n    k = 1   \n    expected =  [1]\n    actual = fn(nums,k)\n    assert actual == expected"
+    "text": "Problem Description\nGiven an integer array nums, return an array answer such that answer[i] is equal to the product of all the elements of nums except nums[i].\nThe product of any prefix or suffix of nums is guaranteed to fit in a 32-bit integer.\nYou must write an algorithm that runs in O(n) time and without using the division operation.\nCan you solve the problem in O(1) extra space complexity? (The output array does not count as extra space for space complexity analysis.)\n\ntests\n\ndef test(fn):\n    nums = [1,2,3,4]\n    expected =  [24,12,8,6]\n    actual = fn(nums)\n    assert actual == expected\n\n    nums = [-1,1,0,-3,3] \n    expected = [0,0,9,0,0]\n    actual = fn(nums)\n    assert actual == expected"
   },
   {
-    "objectID": "posts/Top K Frequent Elements.html#solution",
-    "href": "posts/Top K Frequent Elements.html#solution",
-    "title": "Top K Frequent Elements",
+    "objectID": "posts/Product of Array Except Self.html#solution",
+    "href": "posts/Product of Array Except Self.html#solution",
+    "title": "Product of Array Except Self",
     "section": "Solution",
-    "text": "Solution\n\nTime Complexity: O(n)\nSpace Complexity: O(n)\n\n\nfrom typing import List\ndef topKFrequent(nums: List[int], k: int) -&gt; List[int]: \n    hashmap = {}\n    for num in nums:\n        # Get a hashmap of counts for each item in num\n        hashmap[num] = 1 + hashmap.get(num,0)\n\n    buckets = [[] for _ in range(len(nums)+1)]\n    for key,val in hashmap.items():\n        # Put nums in a list where index location == occurances\n        buckets[val].append(key)\n\n    output = []\n    for i in range(len(buckets) - 1, 0, -1):\n        # Loop through buckets backward and append to output\n        for num in buckets[i]:\n            output.append(num)\n            if len(output) == k:\n                # When you have k nums you are done\n                return output\n\ntest(topKFrequent)"
-  },
-  {
-    "objectID": "posts/Two Sum.html",
-    "href": "posts/Two Sum.html",
-    "title": "Two Sum",
-    "section": "",
-    "text": "Problem Source: Leetcode"
-  },
-  {
-    "objectID": "posts/Two Sum.html#problem-description",
-    "href": "posts/Two Sum.html#problem-description",
-    "title": "Two Sum",
-    "section": "Problem Description",
-    "text": "Problem Description\nGiven an array of integers nums and an integer target, return indices of the two numbers such that they add up to target.\nYou may assume that each input would have exactly one solution, and you may not use the same element twice.\nYou can return the answer in any order.\n\ntests\n\ndef test(fn):\n    target = 9\n    nums = [2,7,11,15]\n    expected = [0,1]\n    actual = fn(nums, target)\n    assert sorted(actual) == expected \n\n    target = 6\n    nums = [3,2,4]\n    expected = [1,2]\n    actual = fn(nums, target)\n    assert sorted(actual) == expected \n\n    target = 6\n    nums = [3,3]\n    expected = [0,1]\n    actual = fn(nums, target)\n    assert sorted(actual) == expected"
-  },
-  {
-    "objectID": "posts/Two Sum.html#solutions",
-    "href": "posts/Two Sum.html#solutions",
-    "title": "Two Sum",
-    "section": "Solutions",
-    "text": "Solutions\n\nBrute Force\nThe way to brute force this problem would be to try every possible combination of 2 indices until one solves the problem. This would mean a loop in a loop, or complexity.\n\nTime Complexity: O(n^2)\nSpace Complexity: O(1)\n\n\nfrom typing import List\ndef twoSum(nums: List[int], target: int) -&gt; List[int]:\n    for index1, num1 in enumerate(nums):\n        desired_num = target - num1\n        for index2, num2 in enumerate(nums):\n            if (num2 == desired_num) and (index1 != index2):\n                return [index1, index2]\n\ntest(twoSum)\n\n\n\nHash Map\nInstead of trying every possible combination we can calculate the other number we need, and do a lookup to see if we have seen that number we need. By doing this we only need 1 loop.\n\nTime Complexity: O(n)\nSpace Complexity: O(n)\n\n\nfrom typing import List\ndef solution(nums: List[int], target: int) -&gt; List[int]:\n    hashmap = {}\n    for i,num in enumerate(nums):\n        need = target - num\n        if need in hashmap:\n            return [i,hashmap[need]]\n        hashmap[num] = i\n\ntest(twoSum)"
-  },
-  {
-    "objectID": "posts/Two Sum II - Input Array is Sorted.html",
-    "href": "posts/Two Sum II - Input Array is Sorted.html",
-    "title": "Two Sum II - Input Array is Sorted",
-    "section": "",
-    "text": "Problem Source: Leetcode"
-  },
-  {
-    "objectID": "posts/Two Sum II - Input Array is Sorted.html#problem-description",
-    "href": "posts/Two Sum II - Input Array is Sorted.html#problem-description",
-    "title": "Two Sum II - Input Array is Sorted",
-    "section": "Problem Description",
-    "text": "Problem Description\nGiven a 1-indexed array of integers numbers that is already sorted in non-decreasing order, find two numbers such that they add up to a specific target number. Let these two numbers be numbers[index1] and numbers[index2] where 1 &lt;= index1 &lt; index2 &lt;= numbers.length.\nReturn the indices of the two numbers, index1 and index2, added by one as an integer array [index1, index2] of length 2.\nThe tests are generated such that there is exactly one solution. You may not use the same element twice.\nYour solution must use only constant extra space.\n\ntests\n\ndef test(fn):\n    numbers = [2,7,11,15]\n    target = 9\n    expected = (1,2)\n    assert fn(numbers,target) == expected \n\n    numbers = [2,3,4]\n    target = 6\n    expected = (1,3)\n    assert fn(numbers,target) == expected \n\n    numbers = [-1,0]\n    target = -1\n    expected = (1,2)\n    assert fn(numbers,target) == expected"
-  },
-  {
-    "objectID": "posts/Two Sum II - Input Array is Sorted.html#solution",
-    "href": "posts/Two Sum II - Input Array is Sorted.html#solution",
-    "title": "Two Sum II - Input Array is Sorted",
-    "section": "Solution",
-    "text": "Solution\n\nTime Complexity: O(1)\nSpace Complexity: O(n)\n\n\nfrom typing import List\ndef twoSum(numbers: List[int], target: int) -&gt; List[int]:\n    # start at each end of the list\n    i1, i2 = 0, len(numbers) - 1\n\n    while i1 &lt; i2:\n        curr_sum = numbers[i1] + numbers[i2]\n\n        if curr_sum &lt; target: # If too small\n            i1 += 1 # make it bigger\n        elif curr_sum &gt; target: # If too big\n            i2 -= 1 # make it smaller\n        else:\n            return i1+1, i2+1 # if juuussstt right\n\ntest(twoSum)"
-  },
-  {
-    "objectID": "posts/Valid Anagram.html",
-    "href": "posts/Valid Anagram.html",
-    "title": "Valid Anagram",
-    "section": "",
-    "text": "Problem Source: Leetcode"
-  },
-  {
-    "objectID": "posts/Valid Anagram.html#problem-description",
-    "href": "posts/Valid Anagram.html#problem-description",
-    "title": "Valid Anagram",
-    "section": "Problem Description",
-    "text": "Problem Description\nGiven two strings s and t, return true if t is an anagram of s, and false otherwise.\nAn Anagram is a word or phrase formed by rearranging the letters of a different word or phrase, typically using all the original letters exactly once.\n\ntests\n\ndef test(fn):\n    s,t = \"anagram\",\"nagaram\"\n    expected = True\n    actual = fn(s,t)\n    assert actual == expected \n\n    s,t = \"rat\",\"car\"\n    expected = False\n    actual = fn(s,t)\n    assert actual == expected"
-  },
-  {
-    "objectID": "posts/Valid Anagram.html#solution",
-    "href": "posts/Valid Anagram.html#solution",
-    "title": "Valid Anagram",
-    "section": "Solution",
-    "text": "Solution\n\nHashmap\n\nTime Complexity: O(n)\nSpace Complexity: O(n)\n\n\ndef isAnagram(s: str, t: str) -&gt; bool:\n    if len(s) != len(t): return False\n\n    countS,countT = {}, {}\n    for i in range(len(s)):\n        countS[s[i]] = 1 + countS.get(s[i],0)\n        countT[t[i]] = 1 + countT.get(t[i],0)\n    \n    for c in countS:\n        if countS[c] != countT.get(c,0): return False\n\n    return True\n\ntest(isAnagram)\n\n\nfrom collections import Counter\ndef isAnagram(s: str, t: str) -&gt; bool:\n    return Counter(s) == Counter(t)\n\ntest(isAnagram)\n\n\n\nSorting\n\nTime Complexity: O(nlogn)\nSpace Complexity: O(1)\n\n\ndef isAnagram(s: str, t: str) -&gt; bool:\n    return sorted(list(s)) == sorted(list(t))\n\ntest(isAnagram)"
-  },
-  {
-    "objectID": "posts/Container With Most Water/Container With Most Water.html",
-    "href": "posts/Container With Most Water/Container With Most Water.html",
-    "title": "Container With Most Water",
-    "section": "",
-    "text": "Problem Source: Leetcode"
-  },
-  {
-    "objectID": "posts/Container With Most Water/Container With Most Water.html#problem-description",
-    "href": "posts/Container With Most Water/Container With Most Water.html#problem-description",
-    "title": "Container With Most Water",
-    "section": "Problem Description",
-    "text": "Problem Description\nYou are given an integer array height of length n. There are n vertical lines drawn such that the two endpoints of the ith line are (i, 0) and (i, height[i]).\nFind two lines that together with the x-axis form a container, such that the container contains the most water.\nReturn the maximum amount of water a container can store.\n\nNotice that you may not slant the container.\n\ntests\n\ndef test(fn):\n    height = [1,8,6,2,5,4,8,3,7]\n    expected =  49\n    actual = fn(height)\n    assert actual == expected \n\n    height = [1,1]\n    expected = 1\n    actual = fn(height)\n    assert actual == expected"
-  },
-  {
-    "objectID": "posts/Container With Most Water/Container With Most Water.html#solution",
-    "href": "posts/Container With Most Water/Container With Most Water.html#solution",
-    "title": "Container With Most Water",
-    "section": "Solution",
-    "text": "Solution\n\nTime Complexity: O(n)\nSpace Complexity: O(1)\n\n\nfrom typing import List\ndef maxArea(height: List[int]) -&gt; int:\n    l,r = 0, len(height)-1 # start at each end\n    maxV = 0\n\n    # Iterate through half, so you stop when pointers meet somewhere in middle\n    while l &lt; r:\n        lh, rh = height[l],height[r]\n\n        # calculate current area and keep if bigger\n        maxV = max(maxV, (r-l) * min(lh,rh))\n\n        # move pointer on smallest side\n        if lh &lt; rh:\n            l+=1\n        else:\n            r-=1\n    return maxV\ntest(maxArea)"
-  },
-  {
-    "objectID": "posts/Valid Sudoku/Valid Sudoku.html",
-    "href": "posts/Valid Sudoku/Valid Sudoku.html",
-    "title": "Valid Sudoku",
-    "section": "",
-    "text": "Problem Source: Leetcode"
-  },
-  {
-    "objectID": "posts/Valid Sudoku/Valid Sudoku.html#problem-description",
-    "href": "posts/Valid Sudoku/Valid Sudoku.html#problem-description",
-    "title": "Valid Sudoku",
-    "section": "Problem Description",
-    "text": "Problem Description\nDetermine if a 9 x 9 Sudoku board is valid. Only the filled cells need to be validated according to the following rules:\n\nEach row must contain the digits 1-9 without repetition.\nEach column must contain the digits 1-9 without repetition.\nEach of the nine 3 x 3 sub-boxes of the grid must contain the digits 1-9 without repetition.\n\nNote:\n\nA Sudoku board (partially filled) could be valid but is not necessarily solvable.\nOnly the filled cells need to be validated according to the mentioned rules.\n\n\nboard = \n[[\"5\",\"3\",\".\",\".\",\"7\",\".\",\".\",\".\",\".\"]\n,[\"6\",\".\",\".\",\"1\",\"9\",\"5\",\".\",\".\",\".\"]\n,[\".\",\"9\",\"8\",\".\",\".\",\".\",\".\",\"6\",\".\"]\n,[\"8\",\".\",\".\",\".\",\"6\",\".\",\".\",\".\",\"3\"]\n,[\"4\",\".\",\".\",\"8\",\".\",\"3\",\".\",\".\",\"1\"]\n,[\"7\",\".\",\".\",\".\",\"2\",\".\",\".\",\".\",\"6\"]\n,[\".\",\"6\",\".\",\".\",\".\",\".\",\"2\",\"8\",\".\"]\n,[\".\",\".\",\".\",\"4\",\"1\",\"9\",\".\",\".\",\"5\"]\n,[\".\",\".\",\".\",\".\",\"8\",\".\",\".\",\"7\",\"9\"]]\n\ntests\n\ndef test(fn):\n    board = [[\"5\",\"3\",\".\",\".\",\"7\",\".\",\".\",\".\",\".\"]\n            ,[\"6\",\".\",\".\",\"1\",\"9\",\"5\",\".\",\".\",\".\"]\n            ,[\".\",\"9\",\"8\",\".\",\".\",\".\",\".\",\"6\",\".\"]\n            ,[\"8\",\".\",\".\",\".\",\"6\",\".\",\".\",\".\",\"3\"]\n            ,[\"4\",\".\",\".\",\"8\",\".\",\"3\",\".\",\".\",\"1\"]\n            ,[\"7\",\".\",\".\",\".\",\"2\",\".\",\".\",\".\",\"6\"]\n            ,[\".\",\"6\",\".\",\".\",\".\",\".\",\"2\",\"8\",\".\"]\n            ,[\".\",\".\",\".\",\"4\",\"1\",\"9\",\".\",\".\",\"5\"]\n            ,[\".\",\".\",\".\",\".\",\"8\",\".\",\".\",\"7\",\"9\"]]\n    expected = True\n    actual = fn(board)\n    assert actual == expected \n\n    board = [[\"8\",\"3\",\".\",\".\",\"7\",\".\",\".\",\".\",\".\"]\n            ,[\"6\",\".\",\".\",\"1\",\"9\",\"5\",\".\",\".\",\".\"]\n            ,[\".\",\"9\",\"8\",\".\",\".\",\".\",\".\",\"6\",\".\"]\n            ,[\"8\",\".\",\".\",\".\",\"6\",\".\",\".\",\".\",\"3\"]\n            ,[\"4\",\".\",\".\",\"8\",\".\",\"3\",\".\",\".\",\"1\"]\n            ,[\"7\",\".\",\".\",\".\",\"2\",\".\",\".\",\".\",\"6\"]\n            ,[\".\",\"6\",\".\",\".\",\".\",\".\",\"2\",\"8\",\".\"]\n            ,[\".\",\".\",\".\",\"4\",\"1\",\"9\",\".\",\".\",\"5\"]\n            ,[\".\",\".\",\".\",\".\",\"8\",\".\",\".\",\"7\",\"9\"]]\n    expected = False\n    actual = fn(board)\n    assert actual == expected"
-  },
-  {
-    "objectID": "posts/Valid Sudoku/Valid Sudoku.html#solution",
-    "href": "posts/Valid Sudoku/Valid Sudoku.html#solution",
-    "title": "Valid Sudoku",
-    "section": "Solution",
-    "text": "Solution\n\nTime Complexity: O(n)\nSpace Complexity: O(n)\n\nWhere n in the number of cells on the sudoku board.\n\nfrom typing import List\ndef isValidSudoku(board: List[List[str]]) -&gt; bool:\n    # Initialize sets to track if there's duplicate values\n    rowSet = [set() for _ in range(9)]\n    colSet = [set() for _ in range(9)]\n    gridSet = [set() for _ in range(9)]\n\n    # for each cell in matrix\n    for rowIndex in range(0,9):\n        for colIndex in range(0,9):\n            cellValue = board[rowIndex][colIndex]\n            if cellValue == \".\": continue\n\n            # Calculate the grid index number\n            gridIndex = rowIndex//3*3 + colIndex //3\n\n            # if cell value is already in set for row/col/grid\n            if (cellValue in rowSet[rowIndex] or\n                cellValue in colSet[colIndex] or \n                cellValue in gridSet[gridIndex]): \n                # Then there's a duplicate and it's not valid\n                return False\n\n            # Otherwise add to the set and go to the next cell\n            rowSet[rowIndex].add(cellValue)\n            colSet[colIndex].add(cellValue)\n            gridSet[gridIndex].add(cellValue)\n    # If you make it through all cells with no dupes, then it's valid\n    return True\n\ntest(isValidSudoku)"
-  },
-  {
-    "objectID": "posts/Contains Duplicate.html",
-    "href": "posts/Contains Duplicate.html",
-    "title": "Contains Duplicate",
-    "section": "",
-    "text": "Problem Source: Leetcode"
-  },
-  {
-    "objectID": "posts/Contains Duplicate.html#problem-description",
-    "href": "posts/Contains Duplicate.html#problem-description",
-    "title": "Contains Duplicate",
-    "section": "Problem Description",
-    "text": "Problem Description\nGiven an integer array nums, return true if any value appears at least twice in the array, and return false if every element is distinct.\n\ntests\n\ndef test(fn):\n    nums = [1,2,3,1]\n    expected = True\n    actual = fn(nums)\n    assert actual == expected \n\n    nums = [1,2,3,4]\n    expected = False\n    actual = fn(nums)\n    assert actual == expected \n\n    nums = [1,1,1,3,3,4,3,2,4,2]\n    expected = True\n    actual = fn(nums)\n    assert actual == expected"
-  },
-  {
-    "objectID": "posts/Contains Duplicate.html#solution",
-    "href": "posts/Contains Duplicate.html#solution",
-    "title": "Contains Duplicate",
-    "section": "Solution",
-    "text": "Solution\n\nHashmap\n\nTime Complexity: O(n)\nSpace Complexity: O(n)\n\n\nfrom typing import List\ndef containsDuplicate(nums: List[int]) -&gt; bool:\n    seen = set()\n    for num in nums:\n        if num in seen:\n            return True\n        else:\n            seen.add(num)\n    return False\n\ntest(containsDuplicate)    \n\n\n\nSorting\n\nTime Complexity: O(nlogn)\nSpace Complexity: O(1)\n\n\nfrom typing import List\ndef containsDuplicate(nums: List[int]) -&gt; bool:\n    nums.sort() \n    for i in range(len(nums)-1):\n        if nums[i] == nums[i+1]: \n            return True\n    else: \n        return False\n\ntest(containsDuplicate)"
-  },
-  {
-    "objectID": "posts/Trapping Rain Water/Trapping Rain Water.html",
-    "href": "posts/Trapping Rain Water/Trapping Rain Water.html",
-    "title": "Trapping Rain Water",
-    "section": "",
-    "text": "Problem Source: Leetcode"
-  },
-  {
-    "objectID": "posts/Trapping Rain Water/Trapping Rain Water.html#problem-description",
-    "href": "posts/Trapping Rain Water/Trapping Rain Water.html#problem-description",
-    "title": "Trapping Rain Water",
-    "section": "Problem Description",
-    "text": "Problem Description\nGiven n non-negative integers representing an elevation map where the width of each bar is 1, compute how much water it can trap after raining.\n\n\ntests\n\ndef test(fn):\n    height = [0,1,0,2,1,0,1,3,2,1,2,1]\n    actual = 6\n    assert actual == fn(height) \n\n    height = [4,2,0,3,2,5]\n    actual = 9\n    assert actual == fn(height)"
-  },
-  {
-    "objectID": "posts/Trapping Rain Water/Trapping Rain Water.html#solution",
-    "href": "posts/Trapping Rain Water/Trapping Rain Water.html#solution",
-    "title": "Trapping Rain Water",
-    "section": "Solution",
-    "text": "Solution\n\nTime Complexity: O(n)\nSpace Complexity: O(1)\n\n\nfrom typing import List\ndef trap(height: List[int]) -&gt; int:\n    l,r = 0, len(height)-1 # start on both ends\n    vol = 0\n    lm, rm = height[l], height[r]\n    \n    while l &lt; r: # stop when pointers meet\n\n        # The side with largest max determines the bin depth\n        if lm &lt; rm: \n            l += 1\n            lm = max(height[l], lm)\n            vol += lm - height[l] \n        else:\n            r -= 1 \n            rm = max(height[r], rm) \n            vol += rm - height[r]\n    return vol\n\ntest(trap)"
-  },
-  {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "Data Structures & Algorithms",
-    "section": "",
-    "text": "Order By\n       Default\n         \n          Title\n        \n     \n  \n    \n      \n      \n    \n\n\n\n\n\nTitle\n\n\nDescription\n\n\nCategories\n\n\n\n\n\n\nTrapping Rain Water\n\n\nGiven n non-negative integers representing an elevation map where the width of each bar is 1, compute how much water it can trap after raining.\n\n\narray, two pointers\n\n\n\n\nContainer With Most Water\n\n\nFind two lines that together with the x-axis form a container, such that the container contains the most water.\n\n\narray, two pointers, greedy\n\n\n\n\nThree Sum\n\n\nReturn all unique triplets in array that sum to 0\n\n\narray, two pointers, sorting\n\n\n\n\nTwo Sum II - Input Array is Sorted\n\n\nFind indices of two numbers that add up to target in a sorted input\n\n\narray, two pointers\n\n\n\n\nValid Palindrome\n\n\nCheck if cleaned phrase is a palindrome\n\n\ntwo pointers, string\n\n\n\n\nLongest Consecutive Sequence\n\n\nFind longest consecutive elements sequence\n\n\narray, hash table\n\n\n\n\nEncode and Decode Strings\n\n\nCreate a reversable encoding of a list of strings to a string\n\n\narray, string\n\n\n\n\nValid Sudoku\n\n\nDetermine if a 9 x 9 sudoku board is valid \n\n\narray, hash table, matrix\n\n\n\n\nProduct of Array Except Self\n\n\nGiven an array, return an array where answer[i] is the product of all the elements except input[i]\n\n\narray, prefix sum\n\n\n\n\nTop K Frequent Elements\n\n\nGiven an array get the top k most frequent elements\n\n\narray, hash table, bucket sort, counting\n\n\n\n\nGrouped Anagrams\n\n\nGroup a list of strings by anagrams\n\n\narray, hash table, string\n\n\n\n\nContains Duplicate\n\n\nCheck if an array contains duplicated values\n\n\nhash table, array, sorting\n\n\n\n\nValid Anagram\n\n\nDetermine if 2 strings are anagrams of each other\n\n\nhash table, string, sorting\n\n\n\n\nCount Symmetric Integers\n\n\nDetermine if an integer is a Symmetric\n\n\nmath, enumeration\n\n\n\n\nPancake Sorting\n\n\nSort a list using pancake flips\n\n\narray, two pointers, greedy, sorting\n\n\n\n\nPalindrome Number\n\n\nDetermine if an integer is a palindrome\n\n\nmath\n\n\n\n\nTwo Sum\n\n\nFind indices of two numbers that add up to target\n\n\narray, hash table\n\n\n\n\n\nNo matching items"
-  },
-  {
-    "objectID": "posts/Grouped Anagrams.html",
-    "href": "posts/Grouped Anagrams.html",
-    "title": "Grouped Anagrams",
-    "section": "",
-    "text": "Problem Source: Leetcode"
-  },
-  {
-    "objectID": "posts/Grouped Anagrams.html#problem-description",
-    "href": "posts/Grouped Anagrams.html#problem-description",
-    "title": "Grouped Anagrams",
-    "section": "Problem Description",
-    "text": "Problem Description\nGiven an array of strings strs, group the anagrams together. You can return the answer in any order.\nAn Anagram is a word or phrase formed by rearranging the letters of a different word or phrase, typically using all the original letters exactly once.\n\ntests\n\ndef test(fn):\n    strs = [\"eat\",\"tea\",\"tan\",\"ate\",\"nat\",\"bat\"]\n    expected =  [['eat', 'tea', 'ate'], ['tan', 'nat'], ['bat']]\n\n    actual = fn(strs)\n    assert sorted(actual) == sorted(expected)"
-  },
-  {
-    "objectID": "posts/Grouped Anagrams.html#solution",
-    "href": "posts/Grouped Anagrams.html#solution",
-    "title": "Grouped Anagrams",
-    "section": "Solution",
-    "text": "Solution\n\nTime Complexity: O(m * n)\nSpace Complexity: O(n)\n\nWhere m is the average length of the strings in strs, and n is the length of strs\n\nfrom typing import List\nfrom collections import defaultdict\n\ndef groupAnagrams(strs: List[str]) -&gt; List[List[str]]:\n    grouped_anagrams = defaultdict(list) \n\n    for s in strs:\n        # key[0] represents a, key[1] represents b, etc.\n        # key is an array of character counts\n        key = [0]*26 \n        for c in s:\n            # use unicode to calculate index location in key that corresponds to c and increment\n            key[ord(c) - ord('a')] += 1\n\n        # list can't be key, so convert key to tuple for usage with dict\n        grouped_anagrams[tuple(key)].append(s)\n\n    return grouped_anagrams.values()\n\ntest(groupAnagrams)"
-  },
-  {
-    "objectID": "posts/Valid Palindrome.html",
-    "href": "posts/Valid Palindrome.html",
-    "title": "Valid Palindrome",
-    "section": "",
-    "text": "Problem Source: Leetcode"
-  },
-  {
-    "objectID": "posts/Valid Palindrome.html#problem-description",
-    "href": "posts/Valid Palindrome.html#problem-description",
-    "title": "Valid Palindrome",
-    "section": "Problem Description",
-    "text": "Problem Description\nA phrase is a palindrome if, after converting all uppercase letters into lowercase letters and removing all non-alphanumeric characters, it reads the same forward and backward. Alphanumeric characters include letters and numbers.\nGiven a string s, return true if it is a palindrome, or false otherwise.\n\ntests\n\ndef test(fn):\n    s = \"A man, a plan, a canal: Panama\"\n    assert fn(s)\n    s = \"race a car\"\n    assert not fn(s)\n    s = \" \"\n    assert fn(s)"
-  },
-  {
-    "objectID": "posts/Valid Palindrome.html#solution",
-    "href": "posts/Valid Palindrome.html#solution",
-    "title": "Valid Palindrome",
-    "section": "Solution",
-    "text": "Solution\n\nTime Complexity: O(n)\nSpace Complexity: O(1)\n\n\ndef isPalindrome(s: str) -&gt; bool:\n    lp, rp = 0, len(s)-1\n\n    while lp &lt; rp:        \n        # Ignore non-alphanumeric characters by moving pointer\n        # Alternative to if statements is filter(lambda x: x.isalnum(), s) prior to loop\n        if not s[lp].isalnum():\n            lp += 1\n            continue\n        if not s[rp].isalnum():\n            rp -= 1\n            continue        \n\n        # Return and exit at first failure\n        if s[lp].lower() != s[rp].lower():\n            return False\n\n        # Move to next characters\n        lp += 1\n        rp -= 1\n\n    # If no failures, then it's a palindrome\n    return True\n\ntest(isPalindrome)"
-  },
-  {
-    "objectID": "posts/Count Symmetric Integers.html",
-    "href": "posts/Count Symmetric Integers.html",
-    "title": "Count Symmetric Integers",
-    "section": "",
-    "text": "Problem Source: Leetcode"
-  },
-  {
-    "objectID": "posts/Count Symmetric Integers.html#problem-description",
-    "href": "posts/Count Symmetric Integers.html#problem-description",
-    "title": "Count Symmetric Integers",
-    "section": "Problem Description",
-    "text": "Problem Description\nYou are given two positive integers low and high.\nAn integer x consisting of 2 * n digits is symmetric if the sum of the first n digits of x is equal to the sum of the last n digits of x. Numbers with an odd number of digits are never symmetric.\nReturn the number of symmetric integers in the range [low, high].\n\ntests\n\ndef test(fn):\n    low,high = 1,100\n    expected =  9\n    symmetric_count = fn(low,high) # 11, 22, 33, 44, 55, 66, 77, 88, and 99.\n    assert symmetric_count == expected \n\n    low, high = 1200, 1230\n    expected = 4\n    symmetric_count = fn(low,high) # 1203, 1212, 1221, and 1230\n    assert symmetric_count == expected \n\n    low, high = 0, 10000\n    expected = 624\n    symmetric_count = fn(low,high) \n    assert symmetric_count == expected"
-  },
-  {
-    "objectID": "posts/Count Symmetric Integers.html#solution",
-    "href": "posts/Count Symmetric Integers.html#solution",
-    "title": "Count Symmetric Integers",
-    "section": "Solution",
-    "text": "Solution\n\nTime Complexity: O(n^2)\nSpace Complexity: O(1)\n\n\ndef sum(arr):\n    ttl = 0\n    for a in arr:\n        ttl += int(a)\n    return ttl\n\ndef split_int(x):\n    half = len(x)//2\n    left, right = x[:half], x[-half:]\n    return left, right\n\ndef isSymmetric(x, ):\n    x = str(x)\n    if len(x)%2 == 1: return False\n    half = len(x)//2\n    return sum(x[:half]) == sum(x[-half:])\n\ndef countSymmetricIntegers(low: int, high: int) -&gt; int:\n    symmetric_count = 0\n    for num in range(low, high+1):\n        symmetric_count += isSymmetric(num)\n    return symmetric_count\n    \ntest(countSymmetricIntegers)\n\n\nimport timeit\ntimeit.timeit(lambda: countSymmetricIntegers(0,10000),number=1000)\n\n4.902573416009545"
-  },
-  {
-    "objectID": "posts/Encode and Decode Strings.html",
-    "href": "posts/Encode and Decode Strings.html",
-    "title": "Encode and Decode Strings",
-    "section": "",
-    "text": "Problem Source: Leetcode"
-  },
-  {
-    "objectID": "posts/Encode and Decode Strings.html#problem-description",
-    "href": "posts/Encode and Decode Strings.html#problem-description",
-    "title": "Encode and Decode Strings",
-    "section": "Problem Description",
-    "text": "Problem Description\nDesign an algorithm to encode a list of strings to a string. The encoded string is then sent over the network and is decoded back to the original list of strings.\nMachine 1 (sender) has the function:\nstring encode(vector&lt;string&gt; strs) {\n  // ... your code\n  return encoded_string;\n}\nMachine 2 (receiver) has the function:\nvector&lt;string&gt; decode(string s) {\n  //... your code\n  return strs;\n}\nSo Machine 1 does:\nstring encoded_string = encode(strs);\nand Machine 2 does:\nvector&lt;string&gt; strs2 = decode(encoded_string);\nstrs2 in Machine 2 should be the same as strs in Machine 1.\nImplement encode and decode methods.\nYou are not allowed to solve the problem using any serialize methods (such as eval).\nConstraints:\n\n1 &lt;= strs.length &lt;= 200\n0 &lt;= strs[i].length &lt;= 200\nstrs[i] contains any possible characters out of 256 valid ASCII characters.\n\nFollow up: Could you write a generalized algorithm to work on any possible set of characters?\n\ntests\n\ndef test(fn):\n    codec = fn()\n    \n    expected = [\"Hello\",\"World\"]\n    expected_str = '5#Hello5#World'\n    actual_str = codec.encode(expected)\n    assert actual_str == expected_str\n    actual = codec.decode(actual_str)\n    assert actual == expected\n\n    expected = [\"\"]\n    expected_str = '0#'\n    actual_str = codec.encode(expected)\n    assert actual_str == expected_str\n    actual = codec.decode(actual_str)\n    assert actual == expected"
-  },
-  {
-    "objectID": "posts/Encode and Decode Strings.html#solution",
-    "href": "posts/Encode and Decode Strings.html#solution",
-    "title": "Encode and Decode Strings",
-    "section": "Solution",
-    "text": "Solution\n\nTime Complexity: O(n)\nSpace Complexity: O(1)\n\n\nfrom typing import List\nclass Codec:\n    def encode(self, strs: List[str]) -&gt; str:\n        \"\"\"Encodes a list of strings to a single string.\n        \"\"\"\n        encoded_str = ''\n        for s in strs:\n            encoded_str += str(len(s)) + '#' + s\n        return encoded_str\n\n    def decode(self, s: str) -&gt; List[str]:\n        \"\"\"Decodes a single string to a list of strings.\n        \"\"\"\n        i,l = 0,0\n\n        out = []\n        while i &lt; len(s):\n            if s[i] != '#':\n                l = l * 10 + int(s[i])\n                i += 1\n            else:\n                out.append(s[i+1:i+1+l])\n                i = i + 1 + l\n                l = 0\n        return out\ntest(Codec)"
-  },
-  {
-    "objectID": "posts/Palindrome Number.html",
-    "href": "posts/Palindrome Number.html",
-    "title": "Palindrome Number",
-    "section": "",
-    "text": "Problem Source: Leetcode"
-  },
-  {
-    "objectID": "posts/Palindrome Number.html#problem-description",
-    "href": "posts/Palindrome Number.html#problem-description",
-    "title": "Palindrome Number",
-    "section": "Problem Description",
-    "text": "Problem Description\nGiven an integer x, return true if x is a palindrome, and false otherwise. You cannot convert to string.\n\ntests\n\ndef test(fn):\n    value = 121\n    expected = True\n    actual = fn(value)\n    assert actual == expected \n\n    value = -121\n    expected = False\n    actual = fn(value)\n    assert actual == expected \n\n    value = 10\n    expected = False\n    actual = fn(value)\n    assert actual == expected \n\n    value = 12321\n    expected = True\n    actual = fn(value)\n    assert actual == expected \n\n    value = 123214231\n    expected = False\n    actual = fn(value)\n    assert actual == expected"
-  },
-  {
-    "objectID": "posts/Palindrome Number.html#solutions",
-    "href": "posts/Palindrome Number.html#solutions",
-    "title": "Palindrome Number",
-    "section": "Solutions",
-    "text": "Solutions\n\nString Index\nThe first thought is that we could cast to a string then loop halfway through the string to verify the first and laft halves are the same.\nTime complexity: O(n) Space Complexity: O(1)\n\ndef isPalindrome(x: int) -&gt; bool:\n    x = str(x)\n    for i in range(len(x)//2):\n        first, last = x[i], x[-(i+1)]\n        if first != last: return False\n    return True\n\ntest(isPalindrome)\n\n\n\nMath\nCould you solve it without converting the integer to a string?\n\nTime Complexity: O(log10(n))\nSpace Complexity: O(1)\n\n\ndef isPalindrome(x: int) -&gt; bool:\n    if x &lt; 0: # A negative sign means not a palindrome\n        return False \n    if (x != 0) and (x % 10 == 0): # Int has no leading zeros, so if it ends with 0 it's not a palindrome\n        return False  \n\n    numberHalf = 0\n    while x &gt; numberHalf: # Stop once halfway\n        # Add the rightmost number from x to number half\n        numberHalf = int(numberHalf * 10 + x % 10)\n        # Drop the rightmost number on X\n        x//= 10\n\n    # If odd length drop the right most as that is the center number\n    return x == numberHalf or x == numberHalf//10 \n\ntest(isPalindrome)"
-  },
-  {
-    "objectID": "posts/Longest Consecutive Sequence.html",
-    "href": "posts/Longest Consecutive Sequence.html",
-    "title": "Longest Consecutive Sequence",
-    "section": "",
-    "text": "Problem Source: Leetcode"
-  },
-  {
-    "objectID": "posts/Longest Consecutive Sequence.html#problem-description",
-    "href": "posts/Longest Consecutive Sequence.html#problem-description",
-    "title": "Longest Consecutive Sequence",
-    "section": "Problem Description",
-    "text": "Problem Description\nGiven an unsorted array of integers nums, return the length of the longest consecutive elements sequence.\nYou must write an algorithm that runs in O(n) time.\n\ntests\n\ndef test(fn):\n    val1, val2 = 1,100\n    expected =  9\n\n    actual = fn(low,high)\n    assert actual == expected"
-  },
-  {
-    "objectID": "posts/Longest Consecutive Sequence.html#solution",
-    "href": "posts/Longest Consecutive Sequence.html#solution",
-    "title": "Longest Consecutive Sequence",
-    "section": "Solution",
-    "text": "Solution\n\nTime Complexity: O(n)\nSpace Complexity: O(n)\n\n\nfrom typing import List\n\ndef longestConsecutive(nums: List[int]) -&gt; int:\n    numset = set(nums)\n    max_seq_len = 0\n\n    for num in nums:\n\n        # if beginning of a sequence\n        if num-1 not in numset:\n            seq_start = num\n            seq_length = 1\n            \n            # Keep incrementing values until you're at end of sequence\n            while seq_start + 1 in numset:\n                seq_length += 1\n                seq_start += 1\n            \n            # Keep sequence length if it's the longest so far\n            max_seq_len = max(max_seq_len, seq_length)\n    return max_seq_len"
+    "text": "Solution\n\nTime Complexity: O(n)\nSpace Complexity: O(1)\n\n\nfrom typing import List\ndef productExceptSelf(nums: List[int]) -&gt; List[int]:\n    prefix, postfix = 1,1\n    out = [1] * len(nums)\n    \n    for i in range(len(nums)):\n        out[i] = prefix\n        prefix *= nums[i]\n\n    for i in range(len(nums)-1,-1,-1):\n        out[i] *= postfix\n        postfix *= nums[i]\n    return out\n\ntest(productExceptSelf)"
   },
   {
     "objectID": "posts/Three Sum.html",
@@ -343,24 +63,325 @@
     "text": "Solution\nThis solution builds on Two Sum II - Input Array is Sorted. If this solution is confusing, revisit it after understanding that proble,\n\nTime Complexity: O(1)\nSpace Complexity: O(nlogn)\n\n\nfrom typing import List\ndef threeSum(nums: List[int]) -&gt; List[List[int]]:\n    nums.sort()\n    res = []\n\n    for i in range(len(nums)):\n        if i&gt;0 and nums[i] == nums[i-1]: continue\n\n        l,r = i+1, len(nums)-1\n        while l &lt; r:\n            curr_sum = nums[i] + nums[l] + nums[r]\n\n            #Two Sum on sorted list\n            if curr_sum &lt; 0: # If too small\n                l += 1 # make it bigger\n            elif curr_sum &gt; 0: # If too big\n                r -= 1 # make it smaller\n            else:\n                res.append([nums[i],nums[l],nums[r]])\n                l += 1 # move to next\n                while nums[l] == nums[l - 1] and l &lt; r:\n                    l += 1 # keep incrementing if dupes\n    return res\n\ntest(threeSum)"
   },
   {
-    "objectID": "posts/Product of Array Except Self.html",
-    "href": "posts/Product of Array Except Self.html",
-    "title": "Product of Array Except Self",
+    "objectID": "posts/Longest Consecutive Sequence.html",
+    "href": "posts/Longest Consecutive Sequence.html",
+    "title": "Longest Consecutive Sequence",
     "section": "",
     "text": "Problem Source: Leetcode"
   },
   {
-    "objectID": "posts/Product of Array Except Self.html#problem-description",
-    "href": "posts/Product of Array Except Self.html#problem-description",
-    "title": "Product of Array Except Self",
+    "objectID": "posts/Longest Consecutive Sequence.html#problem-description",
+    "href": "posts/Longest Consecutive Sequence.html#problem-description",
+    "title": "Longest Consecutive Sequence",
     "section": "Problem Description",
-    "text": "Problem Description\nGiven an integer array nums, return an array answer such that answer[i] is equal to the product of all the elements of nums except nums[i].\nThe product of any prefix or suffix of nums is guaranteed to fit in a 32-bit integer.\nYou must write an algorithm that runs in O(n) time and without using the division operation.\nCan you solve the problem in O(1) extra space complexity? (The output array does not count as extra space for space complexity analysis.)\n\ntests\n\ndef test(fn):\n    nums = [1,2,3,4]\n    expected =  [24,12,8,6]\n    actual = fn(nums)\n    assert actual == expected\n\n    nums = [-1,1,0,-3,3] \n    expected = [0,0,9,0,0]\n    actual = fn(nums)\n    assert actual == expected"
+    "text": "Problem Description\nGiven an unsorted array of integers nums, return the length of the longest consecutive elements sequence.\nYou must write an algorithm that runs in O(n) time.\n\ntests\n\ndef test(fn):\n    val1, val2 = 1,100\n    expected =  9\n\n    actual = fn(low,high)\n    assert actual == expected"
   },
   {
-    "objectID": "posts/Product of Array Except Self.html#solution",
-    "href": "posts/Product of Array Except Self.html#solution",
-    "title": "Product of Array Except Self",
+    "objectID": "posts/Longest Consecutive Sequence.html#solution",
+    "href": "posts/Longest Consecutive Sequence.html#solution",
+    "title": "Longest Consecutive Sequence",
     "section": "Solution",
-    "text": "Solution\n\nTime Complexity: O(n)\nSpace Complexity: O(1)\n\n\nfrom typing import List\ndef productExceptSelf(nums: List[int]) -&gt; List[int]:\n    prefix, postfix = 1,1\n    out = [1] * len(nums)\n    \n    for i in range(len(nums)):\n        out[i] = prefix\n        prefix *= nums[i]\n\n    for i in range(len(nums)-1,-1,-1):\n        out[i] *= postfix\n        postfix *= nums[i]\n    return out\n\ntest(productExceptSelf)"
+    "text": "Solution\n\nTime Complexity: O(n)\nSpace Complexity: O(n)\n\n\nfrom typing import List\n\ndef longestConsecutive(nums: List[int]) -&gt; int:\n    numset = set(nums)\n    max_seq_len = 0\n\n    for num in nums:\n\n        # if beginning of a sequence\n        if num-1 not in numset:\n            seq_start = num\n            seq_length = 1\n            \n            # Keep incrementing values until you're at end of sequence\n            while seq_start + 1 in numset:\n                seq_length += 1\n                seq_start += 1\n            \n            # Keep sequence length if it's the longest so far\n            max_seq_len = max(max_seq_len, seq_length)\n    return max_seq_len"
+  },
+  {
+    "objectID": "posts/Palindrome Number.html",
+    "href": "posts/Palindrome Number.html",
+    "title": "Palindrome Number",
+    "section": "",
+    "text": "Problem Source: Leetcode"
+  },
+  {
+    "objectID": "posts/Palindrome Number.html#problem-description",
+    "href": "posts/Palindrome Number.html#problem-description",
+    "title": "Palindrome Number",
+    "section": "Problem Description",
+    "text": "Problem Description\nGiven an integer x, return true if x is a palindrome, and false otherwise. You cannot convert to string.\n\ntests\n\ndef test(fn):\n    value = 121\n    expected = True\n    actual = fn(value)\n    assert actual == expected \n\n    value = -121\n    expected = False\n    actual = fn(value)\n    assert actual == expected \n\n    value = 10\n    expected = False\n    actual = fn(value)\n    assert actual == expected \n\n    value = 12321\n    expected = True\n    actual = fn(value)\n    assert actual == expected \n\n    value = 123214231\n    expected = False\n    actual = fn(value)\n    assert actual == expected"
+  },
+  {
+    "objectID": "posts/Palindrome Number.html#solutions",
+    "href": "posts/Palindrome Number.html#solutions",
+    "title": "Palindrome Number",
+    "section": "Solutions",
+    "text": "Solutions\n\nString Index\nThe first thought is that we could cast to a string then loop halfway through the string to verify the first and laft halves are the same.\nTime complexity: O(n) Space Complexity: O(1)\n\ndef isPalindrome(x: int) -&gt; bool:\n    x = str(x)\n    for i in range(len(x)//2):\n        first, last = x[i], x[-(i+1)]\n        if first != last: return False\n    return True\n\ntest(isPalindrome)\n\n\n\nMath\nCould you solve it without converting the integer to a string?\n\nTime Complexity: O(log10(n))\nSpace Complexity: O(1)\n\n\ndef isPalindrome(x: int) -&gt; bool:\n    if x &lt; 0: # A negative sign means not a palindrome\n        return False \n    if (x != 0) and (x % 10 == 0): # Int has no leading zeros, so if it ends with 0 it's not a palindrome\n        return False  \n\n    numberHalf = 0\n    while x &gt; numberHalf: # Stop once halfway\n        # Add the rightmost number from x to number half\n        numberHalf = int(numberHalf * 10 + x % 10)\n        # Drop the rightmost number on X\n        x//= 10\n\n    # If odd length drop the right most as that is the center number\n    return x == numberHalf or x == numberHalf//10 \n\ntest(isPalindrome)"
+  },
+  {
+    "objectID": "posts/Encode and Decode Strings.html",
+    "href": "posts/Encode and Decode Strings.html",
+    "title": "Encode and Decode Strings",
+    "section": "",
+    "text": "Problem Source: Leetcode"
+  },
+  {
+    "objectID": "posts/Encode and Decode Strings.html#problem-description",
+    "href": "posts/Encode and Decode Strings.html#problem-description",
+    "title": "Encode and Decode Strings",
+    "section": "Problem Description",
+    "text": "Problem Description\nDesign an algorithm to encode a list of strings to a string. The encoded string is then sent over the network and is decoded back to the original list of strings.\nMachine 1 (sender) has the function:\nstring encode(vector&lt;string&gt; strs) {\n  // ... your code\n  return encoded_string;\n}\nMachine 2 (receiver) has the function:\nvector&lt;string&gt; decode(string s) {\n  //... your code\n  return strs;\n}\nSo Machine 1 does:\nstring encoded_string = encode(strs);\nand Machine 2 does:\nvector&lt;string&gt; strs2 = decode(encoded_string);\nstrs2 in Machine 2 should be the same as strs in Machine 1.\nImplement encode and decode methods.\nYou are not allowed to solve the problem using any serialize methods (such as eval).\nConstraints:\n\n1 &lt;= strs.length &lt;= 200\n0 &lt;= strs[i].length &lt;= 200\nstrs[i] contains any possible characters out of 256 valid ASCII characters.\n\nFollow up: Could you write a generalized algorithm to work on any possible set of characters?\n\ntests\n\ndef test(fn):\n    codec = fn()\n    \n    expected = [\"Hello\",\"World\"]\n    expected_str = '5#Hello5#World'\n    actual_str = codec.encode(expected)\n    assert actual_str == expected_str\n    actual = codec.decode(actual_str)\n    assert actual == expected\n\n    expected = [\"\"]\n    expected_str = '0#'\n    actual_str = codec.encode(expected)\n    assert actual_str == expected_str\n    actual = codec.decode(actual_str)\n    assert actual == expected"
+  },
+  {
+    "objectID": "posts/Encode and Decode Strings.html#solution",
+    "href": "posts/Encode and Decode Strings.html#solution",
+    "title": "Encode and Decode Strings",
+    "section": "Solution",
+    "text": "Solution\n\nTime Complexity: O(n)\nSpace Complexity: O(1)\n\n\nfrom typing import List\nclass Codec:\n    def encode(self, strs: List[str]) -&gt; str:\n        \"\"\"Encodes a list of strings to a single string.\n        \"\"\"\n        encoded_str = ''\n        for s in strs:\n            encoded_str += str(len(s)) + '#' + s\n        return encoded_str\n\n    def decode(self, s: str) -&gt; List[str]:\n        \"\"\"Decodes a single string to a list of strings.\n        \"\"\"\n        i,l = 0,0\n\n        out = []\n        while i &lt; len(s):\n            if s[i] != '#':\n                l = l * 10 + int(s[i])\n                i += 1\n            else:\n                out.append(s[i+1:i+1+l])\n                i = i + 1 + l\n                l = 0\n        return out\ntest(Codec)"
+  },
+  {
+    "objectID": "posts/Count Symmetric Integers.html",
+    "href": "posts/Count Symmetric Integers.html",
+    "title": "Count Symmetric Integers",
+    "section": "",
+    "text": "Problem Source: Leetcode"
+  },
+  {
+    "objectID": "posts/Count Symmetric Integers.html#problem-description",
+    "href": "posts/Count Symmetric Integers.html#problem-description",
+    "title": "Count Symmetric Integers",
+    "section": "Problem Description",
+    "text": "Problem Description\nYou are given two positive integers low and high.\nAn integer x consisting of 2 * n digits is symmetric if the sum of the first n digits of x is equal to the sum of the last n digits of x. Numbers with an odd number of digits are never symmetric.\nReturn the number of symmetric integers in the range [low, high].\n\ntests\n\ndef test(fn):\n    low,high = 1,100\n    expected =  9\n    symmetric_count = fn(low,high) # 11, 22, 33, 44, 55, 66, 77, 88, and 99.\n    assert symmetric_count == expected \n\n    low, high = 1200, 1230\n    expected = 4\n    symmetric_count = fn(low,high) # 1203, 1212, 1221, and 1230\n    assert symmetric_count == expected \n\n    low, high = 0, 10000\n    expected = 624\n    symmetric_count = fn(low,high) \n    assert symmetric_count == expected"
+  },
+  {
+    "objectID": "posts/Count Symmetric Integers.html#solution",
+    "href": "posts/Count Symmetric Integers.html#solution",
+    "title": "Count Symmetric Integers",
+    "section": "Solution",
+    "text": "Solution\n\nTime Complexity: O(n^2)\nSpace Complexity: O(1)\n\n\ndef sum(arr):\n    ttl = 0\n    for a in arr:\n        ttl += int(a)\n    return ttl\n\ndef split_int(x):\n    half = len(x)//2\n    left, right = x[:half], x[-half:]\n    return left, right\n\ndef isSymmetric(x, ):\n    x = str(x)\n    if len(x)%2 == 1: return False\n    half = len(x)//2\n    return sum(x[:half]) == sum(x[-half:])\n\ndef countSymmetricIntegers(low: int, high: int) -&gt; int:\n    symmetric_count = 0\n    for num in range(low, high+1):\n        symmetric_count += isSymmetric(num)\n    return symmetric_count\n    \ntest(countSymmetricIntegers)\n\n\nimport timeit\ntimeit.timeit(lambda: countSymmetricIntegers(0,10000),number=1000)\n\n4.902573416009545"
+  },
+  {
+    "objectID": "posts/Valid Palindrome.html",
+    "href": "posts/Valid Palindrome.html",
+    "title": "Valid Palindrome",
+    "section": "",
+    "text": "Problem Source: Leetcode"
+  },
+  {
+    "objectID": "posts/Valid Palindrome.html#problem-description",
+    "href": "posts/Valid Palindrome.html#problem-description",
+    "title": "Valid Palindrome",
+    "section": "Problem Description",
+    "text": "Problem Description\nA phrase is a palindrome if, after converting all uppercase letters into lowercase letters and removing all non-alphanumeric characters, it reads the same forward and backward. Alphanumeric characters include letters and numbers.\nGiven a string s, return true if it is a palindrome, or false otherwise.\n\ntests\n\ndef test(fn):\n    s = \"A man, a plan, a canal: Panama\"\n    assert fn(s)\n    s = \"race a car\"\n    assert not fn(s)\n    s = \" \"\n    assert fn(s)"
+  },
+  {
+    "objectID": "posts/Valid Palindrome.html#solution",
+    "href": "posts/Valid Palindrome.html#solution",
+    "title": "Valid Palindrome",
+    "section": "Solution",
+    "text": "Solution\n\nTime Complexity: O(n)\nSpace Complexity: O(1)\n\n\ndef isPalindrome(s: str) -&gt; bool:\n    lp, rp = 0, len(s)-1\n\n    while lp &lt; rp:        \n        # Ignore non-alphanumeric characters by moving pointer\n        # Alternative to if statements is filter(lambda x: x.isalnum(), s) prior to loop\n        if not s[lp].isalnum():\n            lp += 1\n            continue\n        if not s[rp].isalnum():\n            rp -= 1\n            continue        \n\n        # Return and exit at first failure\n        if s[lp].lower() != s[rp].lower():\n            return False\n\n        # Move to next characters\n        lp += 1\n        rp -= 1\n\n    # If no failures, then it's a palindrome\n    return True\n\ntest(isPalindrome)"
+  },
+  {
+    "objectID": "posts/Grouped Anagrams.html",
+    "href": "posts/Grouped Anagrams.html",
+    "title": "Grouped Anagrams",
+    "section": "",
+    "text": "Problem Source: Leetcode"
+  },
+  {
+    "objectID": "posts/Grouped Anagrams.html#problem-description",
+    "href": "posts/Grouped Anagrams.html#problem-description",
+    "title": "Grouped Anagrams",
+    "section": "Problem Description",
+    "text": "Problem Description\nGiven an array of strings strs, group the anagrams together. You can return the answer in any order.\nAn Anagram is a word or phrase formed by rearranging the letters of a different word or phrase, typically using all the original letters exactly once.\n\ntests\n\ndef test(fn):\n    strs = [\"eat\",\"tea\",\"tan\",\"ate\",\"nat\",\"bat\"]\n    expected =  [['eat', 'tea', 'ate'], ['tan', 'nat'], ['bat']]\n\n    actual = fn(strs)\n    assert sorted(actual) == sorted(expected)"
+  },
+  {
+    "objectID": "posts/Grouped Anagrams.html#solution",
+    "href": "posts/Grouped Anagrams.html#solution",
+    "title": "Grouped Anagrams",
+    "section": "Solution",
+    "text": "Solution\n\nTime Complexity: O(m * n)\nSpace Complexity: O(n)\n\nWhere m is the average length of the strings in strs, and n is the length of strs\n\nfrom typing import List\nfrom collections import defaultdict\n\ndef groupAnagrams(strs: List[str]) -&gt; List[List[str]]:\n    grouped_anagrams = defaultdict(list) \n\n    for s in strs:\n        # key[0] represents a, key[1] represents b, etc.\n        # key is an array of character counts\n        key = [0]*26 \n        for c in s:\n            # use unicode to calculate index location in key that corresponds to c and increment\n            key[ord(c) - ord('a')] += 1\n\n        # list can't be key, so convert key to tuple for usage with dict\n        grouped_anagrams[tuple(key)].append(s)\n\n    return grouped_anagrams.values()\n\ntest(groupAnagrams)"
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Data Structures & Algorithms",
+    "section": "",
+    "text": "Order By\n       Default\n         \n          Title\n        \n     \n  \n    \n      \n      \n    \n\n\n\n\n\nTitle\n\n\nDescription\n\n\nCategories\n\n\n\n\n\n\nTrapping Rain Water\n\n\nGiven n non-negative integers representing an elevation map where the width of each bar is 1, compute how much water it can trap after raining.\n\n\narray, two pointers\n\n\n\n\nContainer With Most Water\n\n\nFind two lines that together with the x-axis form a container, such that the container contains the most water.\n\n\narray, two pointers, greedy\n\n\n\n\nThree Sum\n\n\nReturn all unique triplets in array that sum to 0\n\n\narray, two pointers, sorting\n\n\n\n\nTwo Sum II - Input Array is Sorted\n\n\nFind indices of two numbers that add up to target in a sorted input\n\n\narray, two pointers\n\n\n\n\nValid Palindrome\n\n\nCheck if cleaned phrase is a palindrome\n\n\ntwo pointers, string\n\n\n\n\nLongest Consecutive Sequence\n\n\nFind longest consecutive elements sequence\n\n\narray, hash table\n\n\n\n\nEncode and Decode Strings\n\n\nCreate a reversable encoding of a list of strings to a string\n\n\narray, string\n\n\n\n\nValid Sudoku\n\n\nDetermine if a 9 x 9 sudoku board is valid \n\n\narray, hash table, matrix\n\n\n\n\nProduct of Array Except Self\n\n\nGiven an array, return an array where answer[i] is the product of all the elements except input[i]\n\n\narray, prefix sum\n\n\n\n\nTop K Frequent Elements\n\n\nGiven an array get the top k most frequent elements\n\n\narray, hash table, bucket sort, counting\n\n\n\n\nGrouped Anagrams\n\n\nGroup a list of strings by anagrams\n\n\narray, hash table, string\n\n\n\n\nContains Duplicate\n\n\nCheck if an array contains duplicated values\n\n\nhash table, array, sorting\n\n\n\n\nValid Anagram\n\n\nDetermine if 2 strings are anagrams of each other\n\n\nhash table, string, sorting\n\n\n\n\nCount Symmetric Integers\n\n\nDetermine if an integer is a Symmetric\n\n\nmath, enumeration\n\n\n\n\nPancake Sorting\n\n\nSort a list using pancake flips\n\n\narray, two pointers, greedy, sorting\n\n\n\n\nPalindrome Number\n\n\nDetermine if an integer is a palindrome\n\n\nmath\n\n\n\n\nTwo Sum\n\n\nFind indices of two numbers that add up to target\n\n\narray, hash table\n\n\n\n\nValid Parentheses\n\n\nDetermine a string of enclusures are all open & closed properly and in correct order\n\n\nstring, stack\n\n\n\n\n\nNo matching items"
+  },
+  {
+    "objectID": "posts/Trapping Rain Water/Trapping Rain Water.html",
+    "href": "posts/Trapping Rain Water/Trapping Rain Water.html",
+    "title": "Trapping Rain Water",
+    "section": "",
+    "text": "Problem Source: Leetcode"
+  },
+  {
+    "objectID": "posts/Trapping Rain Water/Trapping Rain Water.html#problem-description",
+    "href": "posts/Trapping Rain Water/Trapping Rain Water.html#problem-description",
+    "title": "Trapping Rain Water",
+    "section": "Problem Description",
+    "text": "Problem Description\nGiven n non-negative integers representing an elevation map where the width of each bar is 1, compute how much water it can trap after raining.\n\n\ntests\n\ndef test(fn):\n    height = [0,1,0,2,1,0,1,3,2,1,2,1]\n    actual = 6\n    assert actual == fn(height) \n\n    height = [4,2,0,3,2,5]\n    actual = 9\n    assert actual == fn(height)"
+  },
+  {
+    "objectID": "posts/Trapping Rain Water/Trapping Rain Water.html#solution",
+    "href": "posts/Trapping Rain Water/Trapping Rain Water.html#solution",
+    "title": "Trapping Rain Water",
+    "section": "Solution",
+    "text": "Solution\n\nTime Complexity: O(n)\nSpace Complexity: O(1)\n\n\nfrom typing import List\ndef trap(height: List[int]) -&gt; int:\n    l,r = 0, len(height)-1 # start on both ends\n    vol = 0\n    lm, rm = height[l], height[r]\n    \n    while l &lt; r: # stop when pointers meet\n\n        # The side with largest max determines the bin depth\n        if lm &lt; rm: \n            l += 1\n            lm = max(height[l], lm)\n            vol += lm - height[l] \n        else:\n            r -= 1 \n            rm = max(height[r], rm) \n            vol += rm - height[r]\n    return vol\n\ntest(trap)"
+  },
+  {
+    "objectID": "posts/Contains Duplicate.html",
+    "href": "posts/Contains Duplicate.html",
+    "title": "Contains Duplicate",
+    "section": "",
+    "text": "Problem Source: Leetcode"
+  },
+  {
+    "objectID": "posts/Contains Duplicate.html#problem-description",
+    "href": "posts/Contains Duplicate.html#problem-description",
+    "title": "Contains Duplicate",
+    "section": "Problem Description",
+    "text": "Problem Description\nGiven an integer array nums, return true if any value appears at least twice in the array, and return false if every element is distinct.\n\ntests\n\ndef test(fn):\n    nums = [1,2,3,1]\n    expected = True\n    actual = fn(nums)\n    assert actual == expected \n\n    nums = [1,2,3,4]\n    expected = False\n    actual = fn(nums)\n    assert actual == expected \n\n    nums = [1,1,1,3,3,4,3,2,4,2]\n    expected = True\n    actual = fn(nums)\n    assert actual == expected"
+  },
+  {
+    "objectID": "posts/Contains Duplicate.html#solution",
+    "href": "posts/Contains Duplicate.html#solution",
+    "title": "Contains Duplicate",
+    "section": "Solution",
+    "text": "Solution\n\nHashmap\n\nTime Complexity: O(n)\nSpace Complexity: O(n)\n\n\nfrom typing import List\ndef containsDuplicate(nums: List[int]) -&gt; bool:\n    seen = set()\n    for num in nums:\n        if num in seen:\n            return True\n        else:\n            seen.add(num)\n    return False\n\ntest(containsDuplicate)    \n\n\n\nSorting\n\nTime Complexity: O(nlogn)\nSpace Complexity: O(1)\n\n\nfrom typing import List\ndef containsDuplicate(nums: List[int]) -&gt; bool:\n    nums.sort() \n    for i in range(len(nums)-1):\n        if nums[i] == nums[i+1]: \n            return True\n    else: \n        return False\n\ntest(containsDuplicate)"
+  },
+  {
+    "objectID": "posts/Valid Sudoku/Valid Sudoku.html",
+    "href": "posts/Valid Sudoku/Valid Sudoku.html",
+    "title": "Valid Sudoku",
+    "section": "",
+    "text": "Problem Source: Leetcode"
+  },
+  {
+    "objectID": "posts/Valid Sudoku/Valid Sudoku.html#problem-description",
+    "href": "posts/Valid Sudoku/Valid Sudoku.html#problem-description",
+    "title": "Valid Sudoku",
+    "section": "Problem Description",
+    "text": "Problem Description\nDetermine if a 9 x 9 Sudoku board is valid. Only the filled cells need to be validated according to the following rules:\n\nEach row must contain the digits 1-9 without repetition.\nEach column must contain the digits 1-9 without repetition.\nEach of the nine 3 x 3 sub-boxes of the grid must contain the digits 1-9 without repetition.\n\nNote:\n\nA Sudoku board (partially filled) could be valid but is not necessarily solvable.\nOnly the filled cells need to be validated according to the mentioned rules.\n\n\nboard = \n[[\"5\",\"3\",\".\",\".\",\"7\",\".\",\".\",\".\",\".\"]\n,[\"6\",\".\",\".\",\"1\",\"9\",\"5\",\".\",\".\",\".\"]\n,[\".\",\"9\",\"8\",\".\",\".\",\".\",\".\",\"6\",\".\"]\n,[\"8\",\".\",\".\",\".\",\"6\",\".\",\".\",\".\",\"3\"]\n,[\"4\",\".\",\".\",\"8\",\".\",\"3\",\".\",\".\",\"1\"]\n,[\"7\",\".\",\".\",\".\",\"2\",\".\",\".\",\".\",\"6\"]\n,[\".\",\"6\",\".\",\".\",\".\",\".\",\"2\",\"8\",\".\"]\n,[\".\",\".\",\".\",\"4\",\"1\",\"9\",\".\",\".\",\"5\"]\n,[\".\",\".\",\".\",\".\",\"8\",\".\",\".\",\"7\",\"9\"]]\n\ntests\n\ndef test(fn):\n    board = [[\"5\",\"3\",\".\",\".\",\"7\",\".\",\".\",\".\",\".\"]\n            ,[\"6\",\".\",\".\",\"1\",\"9\",\"5\",\".\",\".\",\".\"]\n            ,[\".\",\"9\",\"8\",\".\",\".\",\".\",\".\",\"6\",\".\"]\n            ,[\"8\",\".\",\".\",\".\",\"6\",\".\",\".\",\".\",\"3\"]\n            ,[\"4\",\".\",\".\",\"8\",\".\",\"3\",\".\",\".\",\"1\"]\n            ,[\"7\",\".\",\".\",\".\",\"2\",\".\",\".\",\".\",\"6\"]\n            ,[\".\",\"6\",\".\",\".\",\".\",\".\",\"2\",\"8\",\".\"]\n            ,[\".\",\".\",\".\",\"4\",\"1\",\"9\",\".\",\".\",\"5\"]\n            ,[\".\",\".\",\".\",\".\",\"8\",\".\",\".\",\"7\",\"9\"]]\n    expected = True\n    actual = fn(board)\n    assert actual == expected \n\n    board = [[\"8\",\"3\",\".\",\".\",\"7\",\".\",\".\",\".\",\".\"]\n            ,[\"6\",\".\",\".\",\"1\",\"9\",\"5\",\".\",\".\",\".\"]\n            ,[\".\",\"9\",\"8\",\".\",\".\",\".\",\".\",\"6\",\".\"]\n            ,[\"8\",\".\",\".\",\".\",\"6\",\".\",\".\",\".\",\"3\"]\n            ,[\"4\",\".\",\".\",\"8\",\".\",\"3\",\".\",\".\",\"1\"]\n            ,[\"7\",\".\",\".\",\".\",\"2\",\".\",\".\",\".\",\"6\"]\n            ,[\".\",\"6\",\".\",\".\",\".\",\".\",\"2\",\"8\",\".\"]\n            ,[\".\",\".\",\".\",\"4\",\"1\",\"9\",\".\",\".\",\"5\"]\n            ,[\".\",\".\",\".\",\".\",\"8\",\".\",\".\",\"7\",\"9\"]]\n    expected = False\n    actual = fn(board)\n    assert actual == expected"
+  },
+  {
+    "objectID": "posts/Valid Sudoku/Valid Sudoku.html#solution",
+    "href": "posts/Valid Sudoku/Valid Sudoku.html#solution",
+    "title": "Valid Sudoku",
+    "section": "Solution",
+    "text": "Solution\n\nTime Complexity: O(n)\nSpace Complexity: O(n)\n\nWhere n in the number of cells on the sudoku board.\n\nfrom typing import List\ndef isValidSudoku(board: List[List[str]]) -&gt; bool:\n    # Initialize sets to track if there's duplicate values\n    rowSet = [set() for _ in range(9)]\n    colSet = [set() for _ in range(9)]\n    gridSet = [set() for _ in range(9)]\n\n    # for each cell in matrix\n    for rowIndex in range(0,9):\n        for colIndex in range(0,9):\n            cellValue = board[rowIndex][colIndex]\n            if cellValue == \".\": continue\n\n            # Calculate the grid index number\n            gridIndex = rowIndex//3*3 + colIndex //3\n\n            # if cell value is already in set for row/col/grid\n            if (cellValue in rowSet[rowIndex] or\n                cellValue in colSet[colIndex] or \n                cellValue in gridSet[gridIndex]): \n                # Then there's a duplicate and it's not valid\n                return False\n\n            # Otherwise add to the set and go to the next cell\n            rowSet[rowIndex].add(cellValue)\n            colSet[colIndex].add(cellValue)\n            gridSet[gridIndex].add(cellValue)\n    # If you make it through all cells with no dupes, then it's valid\n    return True\n\ntest(isValidSudoku)"
+  },
+  {
+    "objectID": "posts/Container With Most Water/Container With Most Water.html",
+    "href": "posts/Container With Most Water/Container With Most Water.html",
+    "title": "Container With Most Water",
+    "section": "",
+    "text": "Problem Source: Leetcode"
+  },
+  {
+    "objectID": "posts/Container With Most Water/Container With Most Water.html#problem-description",
+    "href": "posts/Container With Most Water/Container With Most Water.html#problem-description",
+    "title": "Container With Most Water",
+    "section": "Problem Description",
+    "text": "Problem Description\nYou are given an integer array height of length n. There are n vertical lines drawn such that the two endpoints of the ith line are (i, 0) and (i, height[i]).\nFind two lines that together with the x-axis form a container, such that the container contains the most water.\nReturn the maximum amount of water a container can store.\n\nNotice that you may not slant the container.\n\ntests\n\ndef test(fn):\n    height = [1,8,6,2,5,4,8,3,7]\n    expected =  49\n    actual = fn(height)\n    assert actual == expected \n\n    height = [1,1]\n    expected = 1\n    actual = fn(height)\n    assert actual == expected"
+  },
+  {
+    "objectID": "posts/Container With Most Water/Container With Most Water.html#solution",
+    "href": "posts/Container With Most Water/Container With Most Water.html#solution",
+    "title": "Container With Most Water",
+    "section": "Solution",
+    "text": "Solution\n\nTime Complexity: O(n)\nSpace Complexity: O(1)\n\n\nfrom typing import List\ndef maxArea(height: List[int]) -&gt; int:\n    l,r = 0, len(height)-1 # start at each end\n    maxV = 0\n\n    # Iterate through half, so you stop when pointers meet somewhere in middle\n    while l &lt; r:\n        lh, rh = height[l],height[r]\n\n        # calculate current area and keep if bigger\n        maxV = max(maxV, (r-l) * min(lh,rh))\n\n        # move pointer on smallest side\n        if lh &lt; rh:\n            l+=1\n        else:\n            r-=1\n    return maxV\ntest(maxArea)"
+  },
+  {
+    "objectID": "posts/Valid Anagram.html",
+    "href": "posts/Valid Anagram.html",
+    "title": "Valid Anagram",
+    "section": "",
+    "text": "Problem Source: Leetcode"
+  },
+  {
+    "objectID": "posts/Valid Anagram.html#problem-description",
+    "href": "posts/Valid Anagram.html#problem-description",
+    "title": "Valid Anagram",
+    "section": "Problem Description",
+    "text": "Problem Description\nGiven two strings s and t, return true if t is an anagram of s, and false otherwise.\nAn Anagram is a word or phrase formed by rearranging the letters of a different word or phrase, typically using all the original letters exactly once.\n\ntests\n\ndef test(fn):\n    s,t = \"anagram\",\"nagaram\"\n    expected = True\n    actual = fn(s,t)\n    assert actual == expected \n\n    s,t = \"rat\",\"car\"\n    expected = False\n    actual = fn(s,t)\n    assert actual == expected"
+  },
+  {
+    "objectID": "posts/Valid Anagram.html#solution",
+    "href": "posts/Valid Anagram.html#solution",
+    "title": "Valid Anagram",
+    "section": "Solution",
+    "text": "Solution\n\nHashmap\n\nTime Complexity: O(n)\nSpace Complexity: O(n)\n\n\ndef isAnagram(s: str, t: str) -&gt; bool:\n    if len(s) != len(t): return False\n\n    countS,countT = {}, {}\n    for i in range(len(s)):\n        countS[s[i]] = 1 + countS.get(s[i],0)\n        countT[t[i]] = 1 + countT.get(t[i],0)\n    \n    for c in countS:\n        if countS[c] != countT.get(c,0): return False\n\n    return True\n\ntest(isAnagram)\n\n\nfrom collections import Counter\ndef isAnagram(s: str, t: str) -&gt; bool:\n    return Counter(s) == Counter(t)\n\ntest(isAnagram)\n\n\n\nSorting\n\nTime Complexity: O(nlogn)\nSpace Complexity: O(1)\n\n\ndef isAnagram(s: str, t: str) -&gt; bool:\n    return sorted(list(s)) == sorted(list(t))\n\ntest(isAnagram)"
+  },
+  {
+    "objectID": "posts/Two Sum II - Input Array is Sorted.html",
+    "href": "posts/Two Sum II - Input Array is Sorted.html",
+    "title": "Two Sum II - Input Array is Sorted",
+    "section": "",
+    "text": "Problem Source: Leetcode"
+  },
+  {
+    "objectID": "posts/Two Sum II - Input Array is Sorted.html#problem-description",
+    "href": "posts/Two Sum II - Input Array is Sorted.html#problem-description",
+    "title": "Two Sum II - Input Array is Sorted",
+    "section": "Problem Description",
+    "text": "Problem Description\nGiven a 1-indexed array of integers numbers that is already sorted in non-decreasing order, find two numbers such that they add up to a specific target number. Let these two numbers be numbers[index1] and numbers[index2] where 1 &lt;= index1 &lt; index2 &lt;= numbers.length.\nReturn the indices of the two numbers, index1 and index2, added by one as an integer array [index1, index2] of length 2.\nThe tests are generated such that there is exactly one solution. You may not use the same element twice.\nYour solution must use only constant extra space.\n\ntests\n\ndef test(fn):\n    numbers = [2,7,11,15]\n    target = 9\n    expected = (1,2)\n    assert fn(numbers,target) == expected \n\n    numbers = [2,3,4]\n    target = 6\n    expected = (1,3)\n    assert fn(numbers,target) == expected \n\n    numbers = [-1,0]\n    target = -1\n    expected = (1,2)\n    assert fn(numbers,target) == expected"
+  },
+  {
+    "objectID": "posts/Two Sum II - Input Array is Sorted.html#solution",
+    "href": "posts/Two Sum II - Input Array is Sorted.html#solution",
+    "title": "Two Sum II - Input Array is Sorted",
+    "section": "Solution",
+    "text": "Solution\n\nTime Complexity: O(1)\nSpace Complexity: O(n)\n\n\nfrom typing import List\ndef twoSum(numbers: List[int], target: int) -&gt; List[int]:\n    # start at each end of the list\n    i1, i2 = 0, len(numbers) - 1\n\n    while i1 &lt; i2:\n        curr_sum = numbers[i1] + numbers[i2]\n\n        if curr_sum &lt; target: # If too small\n            i1 += 1 # make it bigger\n        elif curr_sum &gt; target: # If too big\n            i2 -= 1 # make it smaller\n        else:\n            return i1+1, i2+1 # if juuussstt right\n\ntest(twoSum)"
+  },
+  {
+    "objectID": "posts/Two Sum.html",
+    "href": "posts/Two Sum.html",
+    "title": "Two Sum",
+    "section": "",
+    "text": "Problem Source: Leetcode"
+  },
+  {
+    "objectID": "posts/Two Sum.html#problem-description",
+    "href": "posts/Two Sum.html#problem-description",
+    "title": "Two Sum",
+    "section": "Problem Description",
+    "text": "Problem Description\nGiven an array of integers nums and an integer target, return indices of the two numbers such that they add up to target.\nYou may assume that each input would have exactly one solution, and you may not use the same element twice.\nYou can return the answer in any order.\n\ntests\n\ndef test(fn):\n    target = 9\n    nums = [2,7,11,15]\n    expected = [0,1]\n    actual = fn(nums, target)\n    assert sorted(actual) == expected \n\n    target = 6\n    nums = [3,2,4]\n    expected = [1,2]\n    actual = fn(nums, target)\n    assert sorted(actual) == expected \n\n    target = 6\n    nums = [3,3]\n    expected = [0,1]\n    actual = fn(nums, target)\n    assert sorted(actual) == expected"
+  },
+  {
+    "objectID": "posts/Two Sum.html#solutions",
+    "href": "posts/Two Sum.html#solutions",
+    "title": "Two Sum",
+    "section": "Solutions",
+    "text": "Solutions\n\nBrute Force\nThe way to brute force this problem would be to try every possible combination of 2 indices until one solves the problem. This would mean a loop in a loop, or complexity.\n\nTime Complexity: O(n^2)\nSpace Complexity: O(1)\n\n\nfrom typing import List\ndef twoSum(nums: List[int], target: int) -&gt; List[int]:\n    for index1, num1 in enumerate(nums):\n        desired_num = target - num1\n        for index2, num2 in enumerate(nums):\n            if (num2 == desired_num) and (index1 != index2):\n                return [index1, index2]\n\ntest(twoSum)\n\n\n\nHash Map\nInstead of trying every possible combination we can calculate the other number we need, and do a lookup to see if we have seen that number we need. By doing this we only need 1 loop.\n\nTime Complexity: O(n)\nSpace Complexity: O(n)\n\n\nfrom typing import List\ndef solution(nums: List[int], target: int) -&gt; List[int]:\n    hashmap = {}\n    for i,num in enumerate(nums):\n        need = target - num\n        if need in hashmap:\n            return [i,hashmap[need]]\n        hashmap[num] = i\n\ntest(twoSum)"
+  },
+  {
+    "objectID": "posts/Top K Frequent Elements.html",
+    "href": "posts/Top K Frequent Elements.html",
+    "title": "Top K Frequent Elements",
+    "section": "",
+    "text": "Problem Source: Leetcode"
+  },
+  {
+    "objectID": "posts/Top K Frequent Elements.html#problem-description",
+    "href": "posts/Top K Frequent Elements.html#problem-description",
+    "title": "Top K Frequent Elements",
+    "section": "Problem Description",
+    "text": "Problem Description\nGiven an integer array nums and an integer k, return the k most frequent elements. You may return the answer in any order.\n\ntests\n\ndef test(fn):\n    nums = [1,1,1,2,2,3] \n    k = 2    \n    expected =  [1,2]\n    actual = fn(nums,k)\n    assert actual == expected \n\n    nums = [1]\n    k = 1   \n    expected =  [1]\n    actual = fn(nums,k)\n    assert actual == expected"
+  },
+  {
+    "objectID": "posts/Top K Frequent Elements.html#solution",
+    "href": "posts/Top K Frequent Elements.html#solution",
+    "title": "Top K Frequent Elements",
+    "section": "Solution",
+    "text": "Solution\n\nTime Complexity: O(n)\nSpace Complexity: O(n)\n\n\nfrom typing import List\ndef topKFrequent(nums: List[int], k: int) -&gt; List[int]: \n    hashmap = {}\n    for num in nums:\n        # Get a hashmap of counts for each item in num\n        hashmap[num] = 1 + hashmap.get(num,0)\n\n    buckets = [[] for _ in range(len(nums)+1)]\n    for key,val in hashmap.items():\n        # Put nums in a list where index location == occurances\n        buckets[val].append(key)\n\n    output = []\n    for i in range(len(buckets) - 1, 0, -1):\n        # Loop through buckets backward and append to output\n        for num in buckets[i]:\n            output.append(num)\n            if len(output) == k:\n                # When you have k nums you are done\n                return output\n\ntest(topKFrequent)"
+  },
+  {
+    "objectID": "posts/Pancake Sorting.html",
+    "href": "posts/Pancake Sorting.html",
+    "title": "Pancake Sorting",
+    "section": "",
+    "text": "Problem Source: Leetcode"
+  },
+  {
+    "objectID": "posts/Pancake Sorting.html#problem-description",
+    "href": "posts/Pancake Sorting.html#problem-description",
+    "title": "Pancake Sorting",
+    "section": "Problem Description",
+    "text": "Problem Description\nGiven an array of integers arr, sort the array by performing a series of pancake flips.\nIn one pancake flip we do the following steps:\n\nChoose an integer k where 1 &lt;= k &lt;= arr.length.\nReverse the sub-array arr[0…k-1] (0-indexed).\n\nFor example, if arr = [3,2,1,4] and we performed a pancake flip choosing k = 3, we reverse the sub-array [3,2,1], so arr = [1,2,3,4] after the pancake flip at k = 3.\nReturn an array of the k-values corresponding to a sequence of pancake flips that sort arr. Any valid answer that sorts the array within 10 * arr.length flips will be judged as correct.\nConstraints:\n\n1 &lt;= arr.length &lt;= 100\n1 &lt;= arr[i] &lt;= arr.length\nAll integers in arr are unique (i.e. arr is a permutation of the integers from 1 to arr.length)\n\n\ntests\n\ndef test(fn):\n    value = [3,2,4,1]\n    expected = [1,2,3,4]\n    ans, actual = fn(value)\n    assert actual == expected \n\n    value = [1,2,3]\n    expected = [1,2,3]\n    ans, actual = fn(value)\n    assert actual == expected"
+  },
+  {
+    "objectID": "posts/Pancake Sorting.html#solution",
+    "href": "posts/Pancake Sorting.html#solution",
+    "title": "Pancake Sorting",
+    "section": "Solution",
+    "text": "Solution\n\nTime Complexity: O(n^2)\nSpace Complexity: O(n)\n\n\nfrom typing import List\n\ndef reverse(l, n):\n    for i in range(n//2): \n        # inplace swaps means go through 1/2 the list portion we want to swap\n        l[i], l[n-i-1] = l[n-i-1], l[i]\n\n    \ndef pancakeSort(arr: List[int]) -&gt; List[int]:\n    swap_points = []\n    for value_to_sort in range(len(arr),1,-1): # if n-1 elements are correct, then n elements are correct, so don't check the smallest value (1)\n        current_location = arr.index(value_to_sort)+1\n        if value_to_sort == current_location: \n            # If value already in correct position continue\n            continue\n        if current_location != 1: # If value is in front, this step isn't needed\n            # If not, flip to get desired value in front\n            reverse(arr, current_location)\n            swap_points.append(current_location)\n        # flip to get value in final position\n        reverse(arr,value_to_sort)\n        swap_points.append(value_to_sort)\n    return swap_points, arr\n\ntest(pancakeSort)"
   }
 ]
