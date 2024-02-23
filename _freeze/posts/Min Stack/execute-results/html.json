@@ -1,0 +1,11 @@
+{
+  "hash": "80b233f446edea653b4f2b58e8f5ca12",
+  "result": {
+    "markdown": "---\ntitle: \"Min Stack\"\nauthor: \"Isaac Flath\"\ndate: \"2024-02-24\"\ncategories: [stack, design]\ndescription: \"Design a stack that supports push, pop, top, and retrieving the minimum element in constant time.\"\n---\n\n>Problem Source:  Leetcode\n\n## Problem Description\n\nDesign a stack that supports `push`, `pop`, `top`, and retrieving the minimum element in constant time.\n\nImplement the `MinStack` class:\n\n+ `MinStack()` initializes the stack object.\n+ `void push(int val)` pushes the element `val` onto the stack.\n+ `void pop()` removes the element on the top of the stack.\n+ `int top()` gets the top element of the stack.\n+ `int getMin()` retrieves the minimum element in the stack.\n\nYou must implement a solution with `O(1)` time complexity for each function.\n\n### Examples\n\n```python\nInput\n[\"MinStack\",\"push\",\"push\",\"push\",\"getMin\",\"pop\",\"top\",\"getMin\"]\n[[],[-2],[0],[-3],[],[],[],[]]\n\nOutput\n[null,null,null,null,-3,null,0,-2]\n\nExplanation\nMinStack minStack = new MinStack();\nminStack.push(-2);\nminStack.push(0);\nminStack.push(-3);\nminStack.getMin(); // return -3\nminStack.pop();\nminStack.top();    // return 0\nminStack.getMin(); // return -2\n```\n\nConstraints:\n\n+ `-231 <= val <= 231 - 1`\n+ Methods `pop`, `top` and `getMin` operations will always be called on non-empty stacks.\n+ At most `3 * 104` calls will be made to `push`, `pop`, `top`, and `getMin`.\n\n\n## Solution\n\nEach method is O(1).\n\n+ Time Complexity: `O(1)`\n+ Space Complexity: `O(1)`\n\n::: {.cell execution_count=1}\n``` {.python .cell-code}\nclass MinStack:\n\n    def __init__(self):\n        self.stack = []\n        self.min_stack = []\n\n    def push(self, val: int) -> None:\n        self.stack.append(val)\n        if self.min_stack: \n            self.min_stack.append(min(self.min_stack[-1],val))\n        else:\n            self.min_stack.append(val)\n\n    def pop(self) -> None:\n        self.stack.pop()\n        self.min_stack.pop()\n\n    def top(self) -> int:\n        return self.stack[-1]\n\n    def getMin(self) -> int:\n        return self.min_stack[-1]\n```\n:::\n\n\n",
+    "supporting": [
+      "Min Stack_files"
+    ],
+    "filters": [],
+    "includes": {}
+  }
+}
