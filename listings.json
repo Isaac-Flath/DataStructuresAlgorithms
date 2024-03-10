@@ -2,6 +2,7 @@
   {
     "listing": "/index.html",
     "items": [
+      "/posts/Evaluate Reverse Polish Notation.html",
       "/posts/Min Stack.html",
       "/posts/Trapping Rain Water/Trapping Rain Water.html",
       "/posts/Container With Most Water/Container With Most Water.html",
@@ -14,8 +15,8 @@
       "/posts/Product of Array Except Self.html",
       "/posts/Top K Frequent Elements.html",
       "/posts/Grouped Anagrams.html",
-      "/posts/Contains Duplicate.html",
       "/posts/Valid Anagram.html",
+      "/posts/Contains Duplicate.html",
       "/posts/Count Symmetric Integers.html",
       "/posts/Pancake Sorting.html",
       "/posts/Palindrome Number.html",
