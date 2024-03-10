@@ -1,0 +1,12 @@
+{
+  "hash": "8293527f1f167f99e9dac06154050679",
+  "result": {
+    "engine": "jupyter",
+    "markdown": "---\ntitle: \"Evaluate Reverse Polish Notation\"\nauthor: \"Isaac Flath\"\ndate: \"2024-03-10\"\ncategories: [array, math, stack]\ndescription: \"Description\"\n---\n\n>Problem Source:  Leetcode\n\n## Problem Description\n\nYou are given an array of strings tokens that represents an arithmetic expression in a Reverse Polish Notation.\n\nEvaluate the expression. Return an integer that represents the value of the expression.\n\nNote that:\n\n+ The valid operators are `+`, `-`, `*`, and `/`.\n+ Each operand may be an integer or another expression.\n+ The division between two integers always truncates toward zero.\n+ There will not be any division by zero.\n+ The input represents a valid arithmetic expression in a reverse polish notation.\n+ The answer and all the intermediate calculations can be represented in a 32-bit integer.\n\n### tests\n\n::: {#491b1785 .cell execution_count=1}\n``` {.python .cell-code}\ndef test(fn):\n    tokens = [\"2\",\"1\",\"+\",\"3\",\"*\"]\n    assert 9 == fn(tokens)\n\n    tokens = [\"4\",\"13\",\"5\",\"/\",\"+\"]\n    assert 6 == fn(tokens)\n\n    tokens = [\"10\",\"6\",\"9\",\"3\",\"+\",\"-11\",\"*\",\"/\",\"*\",\"17\",\"+\",\"5\",\"+\"]\n    assert 22 == fn(tokens)\n```\n:::\n\n\n## Solution\n\n+ Time Complexity: `O(n)`\n+ Space Complexity: `O(n)`\n\n::: {#7dac3f6a .cell execution_count=2}\n``` {.python .cell-code}\nfrom typing import List\nfrom operator import add, mul, sub, truediv\ndef evalRPN(tokens: List[str]) -> int:\n    stack = []\n    # Map each valid operator to a callable\n    operators = {'+': add, '*': mul, '-': sub, '/': lambda x,y: int(truediv(x,y))}\n    \n    for t in tokens:\n        # For every operator in tokens calculate res of last 2 with that operator\n        if t in operators:\n            f,s = stack.pop(),stack.pop()\n            stack.append(operators[t](s,f))\n        else:\n            # if it's not an operator add the value to the stack\n            stack.append(int(t))\n    return stack.pop() # Last value remaining is the answer\n\ntest(evalRPN)\n```\n:::\n\n\n",
+    "supporting": [
+      "Evaluate Reverse Polish Notation_files"
+    ],
+    "filters": [],
+    "includes": {}
+  }
+}

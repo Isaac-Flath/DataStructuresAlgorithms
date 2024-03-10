@@ -2,6 +2,7 @@
   {
     "listing": "/index.html",
     "items": [
+      "/posts/Evaluate Reverse Polish Notation.html",
       "/posts/Min Stack.html",
       "/posts/Trapping Rain Water/Trapping Rain Water.html",
       "/posts/Container With Most Water/Container With Most Water.html",

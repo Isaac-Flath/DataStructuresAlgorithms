@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.0.38">
+<meta name="generator" content="quarto-1.4.549">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -11,10 +11,15 @@
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
-span.underline{text-decoration: underline;}
-div.column{display: inline-block; vertical-align: top; width: 50%;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
 div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
 </style>
 
 
@@ -42,7 +47,13 @@ ul.task-list{list-style: none;}
   "collapse-after": 3,
   "panel-placement": "end",
   "type": "overlay",
-  "limit": 20,
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
   "language": {
     "search-no-results-text": "No results",
     "search-matching-documents-text": "matching documents",
@@ -51,8 +62,10 @@ ul.task-list{list-style: none;}
     "search-more-match-text": "more match in this document",
     "search-more-matches-text": "more matches in this document",
     "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
     "search-detached-cancel-button-title": "Cancel",
-    "search-submit-button-title": "Submit"
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
   }
 }</script>
 <script>
@@ -85,7 +98,35 @@ ul.task-list{list-style: none;}
   })
   </script>
 
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
   <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 <link rel="stylesheet" href="styles.css">
 </head>
@@ -93,25 +134,29 @@ ul.task-list{list-style: none;}
 <body class="nav-fixed">
 
 <div id="quarto-search-results"></div>
-  <header id="quarto-header" class="headroom fixed-top">
-    <nav class="navbar navbar-expand-lg navbar-dark ">
+  <header id="quarto-header" class="headroom fixed-top quarto-banner">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
-      <a class="navbar-brand" href="./index.html">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="./index.html">
     <span class="navbar-title">Data Structures &amp; Algorithms</span>
-  </a>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
   <span class="navbar-toggler-icon"></span>
 </button>
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item compact">
-    <a class="nav-link" href="https://github.com/isaac-flath/DataStructuresAlgorithms"><i class="bi bi-github" role="img">
+    <a class="nav-link" href="https://github.com/isaac-flath/DataStructuresAlgorithms"> <i class="bi bi-github" role="img">
 </i> 
- </a>
+<span class="menu-text"></span></a>
   </li>  
 </ul>
-              <div id="quarto-search" class="" title="Search"></div>
           </div> <!-- /navcollapse -->
+          <div class="quarto-navbar-tools">
+</div>
       </div> <!-- /container-fluid -->
     </nav>
 </header>
@@ -124,9 +169,10 @@ ul.task-list{list-style: none;}
   </div>
     
   
-  <div class="quarto-title-meta">
+  <div class="quarto-title-meta column-page-left">
 
       
+    
       
     </div>
     
@@ -136,9 +182,10 @@ ul.task-list{list-style: none;}
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
         
-    <h5 class="quarto-listing-category-title">Categories</h5><div class="quarto-listing-category category-default"><div class="category" data-category="">All <span class="quarto-category-count">(19)</span></div><div class="category" data-category="array">array <span class="quarto-category-count">(13)</span></div><div class="category" data-category="bucket sort">bucket sort <span class="quarto-category-count">(1)</span></div><div class="category" data-category="counting">counting <span class="quarto-category-count">(1)</span></div><div class="category" data-category="design">design <span class="quarto-category-count">(1)</span></div><div class="category" data-category="enumeration">enumeration <span class="quarto-category-count">(1)</span></div><div class="category" data-category="greedy">greedy <span class="quarto-category-count">(2)</span></div><div class="category" data-category="hash table">hash table <span class="quarto-category-count">(7)</span></div><div class="category" data-category="math">math <span class="quarto-category-count">(2)</span></div><div class="category" data-category="matrix">matrix <span class="quarto-category-count">(1)</span></div><div class="category" data-category="prefix sum">prefix sum <span class="quarto-category-count">(1)</span></div><div class="category" data-category="sorting">sorting <span class="quarto-category-count">(4)</span></div><div class="category" data-category="stack">stack <span class="quarto-category-count">(2)</span></div><div class="category" data-category="string">string <span class="quarto-category-count">(5)</span></div><div class="category" data-category="two pointers">two pointers <span class="quarto-category-count">(6)</span></div></div></div>
+    <h5 class="quarto-listing-category-title">Categories</h5><div class="quarto-listing-category category-default"><div class="category" data-category="">All <span class="quarto-category-count">(20)</span></div><div class="category" data-category="array">array <span class="quarto-category-count">(14)</span></div><div class="category" data-category="bucket sort">bucket sort <span class="quarto-category-count">(1)</span></div><div class="category" data-category="counting">counting <span class="quarto-category-count">(1)</span></div><div class="category" data-category="design">design <span class="quarto-category-count">(1)</span></div><div class="category" data-category="enumeration">enumeration <span class="quarto-category-count">(1)</span></div><div class="category" data-category="greedy">greedy <span class="quarto-category-count">(2)</span></div><div class="category" data-category="hash table">hash table <span class="quarto-category-count">(7)</span></div><div class="category" data-category="math">math <span class="quarto-category-count">(3)</span></div><div class="category" data-category="matrix">matrix <span class="quarto-category-count">(1)</span></div><div class="category" data-category="prefix sum">prefix sum <span class="quarto-category-count">(1)</span></div><div class="category" data-category="sorting">sorting <span class="quarto-category-count">(4)</span></div><div class="category" data-category="stack">stack <span class="quarto-category-count">(3)</span></div><div class="category" data-category="string">string <span class="quarto-category-count">(5)</span></div><div class="category" data-category="two pointers">two pointers <span class="quarto-category-count">(6)</span></div></div></div>
 <!-- main -->
 <main class="content quarto-banner-title-block column-page-left" id="quarto-document-content">
+
 
 
 
@@ -164,7 +211,6 @@ ul.task-list{list-style: none;}
       <input type="text" class="search form-control" placeholder="Filter">
     </div>
 </div>
-
 <table class="quarto-listing-table table table-hover">
 <thead>
 <tr>
@@ -180,243 +226,247 @@ Categories
 </tr>
 </thead>
 <tbody class="list">
-<tr data-index="0" data-categories="stack,design" data-listing-date-sort="1708750800000" data-listing-file-modified-sort="1708693078624" data-listing-reading-time-sort="1.395" data-listing-title-sort="Min Stack" data-listing-filename-sort="Min Stack.qmd" onclick="href = this.querySelector('a').getAttribute('href');
+<tr data-index="0" data-categories="array,math,stack" data-listing-date-sort="1710046800000" data-listing-file-modified-sort="1710075396835" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="312" data-listing-title-sort="Evaluate Reverse Polish Notation" data-listing-filename-sort="Evaluate Reverse Polish Notation.qmd" onclick="href = this.querySelector('a').getAttribute('href');
  if (href) { window.location=href ; return false; }">
-<td class="listing-title">
-<a href="./posts/Min Stack.html" class="title">Min Stack</a>
+<td>
+<a href="./posts/Evaluate Reverse Polish Notation.html" class="title listing-title">Evaluate Reverse Polish Notation</a>
 </td>
-<td class="listing-description">
-Design a stack that supports push, pop, top, and retrieving the minimum element in constant time.
+<td>
+<span class="listing-description">Description</span>
 </td>
-<td class="listing-categories">
-stack,design
+<td>
+<span class="listing-categories">array, math, stack</span>
 </td>
 </tr>
-<tr data-index="1" data-categories="array,two pointers" data-listing-date-sort="1708578000000" data-listing-file-modified-sort="1708521553072" data-listing-reading-time-sort="1.325" data-listing-title-sort="Trapping Rain Water" data-listing-filename-sort="Trapping Rain Water.qmd" onclick="href = this.querySelector('a').getAttribute('href');
+<tr data-index="1" data-categories="stack,design" data-listing-date-sort="1708750800000" data-listing-file-modified-sort="1710075431660" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="279" data-listing-title-sort="Min Stack" data-listing-filename-sort="Min Stack.qmd" onclick="href = this.querySelector('a').getAttribute('href');
  if (href) { window.location=href ; return false; }">
-<td class="listing-title">
-<a href="./posts/Trapping Rain Water/Trapping Rain Water.html" class="title">Trapping Rain Water</a>
+<td>
+<a href="./posts/Min Stack.html" class="title listing-title">Min Stack</a>
 </td>
-<td class="listing-description">
-Given n non-negative integers representing an elevation map where the width of each bar is 1, compute how much water it can trap after raining.
+<td>
+<span class="listing-description">Design a stack that supports push, pop, top, and retrieving the minimum element in constant time.</span>
 </td>
-<td class="listing-categories">
-array,two pointers
+<td>
+<span class="listing-categories">stack, design</span>
 </td>
 </tr>
-<tr data-index="2" data-categories="array,two pointers,greedy" data-listing-date-sort="1708491600000" data-listing-file-modified-sort="1708517743036" data-listing-reading-time-sort="1.41" data-listing-title-sort="Container With Most Water" data-listing-filename-sort="Container With Most Water.qmd" onclick="href = this.querySelector('a').getAttribute('href');
+<tr data-index="2" data-categories="array,two pointers" data-listing-date-sort="1708578000000" data-listing-file-modified-sort="1710075431660" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="265" data-listing-title-sort="Trapping Rain Water" data-listing-filename-sort="Trapping Rain Water.qmd" onclick="href = this.querySelector('a').getAttribute('href');
  if (href) { window.location=href ; return false; }">
-<td class="listing-title">
-<a href="./posts/Container With Most Water/Container With Most Water.html" class="title">Container With Most Water</a>
+<td>
+<a href="./posts/Trapping Rain Water/Trapping Rain Water.html" class="title listing-title">Trapping Rain Water</a>
 </td>
-<td class="listing-description">
-Find two lines that together with the x-axis form a container, such that the container contains the most water.
+<td>
+<span class="listing-description">Given n non-negative integers representing an elevation map where the width of each bar is 1, compute how much water it can trap after raining.</span>
 </td>
-<td class="listing-categories">
-array,two pointers,greedy
+<td>
+<span class="listing-categories">array, two pointers</span>
 </td>
 </tr>
-<tr data-index="3" data-categories="array,two pointers,sorting" data-listing-date-sort="1708405200000" data-listing-file-modified-sort="1708515815558" data-listing-reading-time-sort="2.1" data-listing-title-sort="Three Sum" data-listing-filename-sort="Three Sum.qmd" onclick="href = this.querySelector('a').getAttribute('href');
+<tr data-index="3" data-categories="array,two pointers,greedy" data-listing-date-sort="1708491600000" data-listing-file-modified-sort="1710075431660" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="282" data-listing-title-sort="Container With Most Water" data-listing-filename-sort="Container With Most Water.qmd" onclick="href = this.querySelector('a').getAttribute('href');
  if (href) { window.location=href ; return false; }">
-<td class="listing-title">
-<a href="./posts/Three Sum.html" class="title">Three Sum</a>
+<td>
+<a href="./posts/Container With Most Water/Container With Most Water.html" class="title listing-title">Container With Most Water</a>
 </td>
-<td class="listing-description">
-Return all unique triplets in array that sum to 0
+<td>
+<span class="listing-description">Find two lines that together with the x-axis form a container, such that the container contains the most water.</span>
 </td>
-<td class="listing-categories">
-array,two pointers,sorting
+<td>
+<span class="listing-categories">array, two pointers, greedy</span>
 </td>
 </tr>
-<tr data-index="4" data-categories="array,two pointers" data-listing-date-sort="1708318800000" data-listing-file-modified-sort="1708515815558" data-listing-reading-time-sort="1.6" data-listing-title-sort="Two Sum II - Input Array is Sorted" data-listing-filename-sort="Two Sum II - Input Array is Sorted.qmd" onclick="href = this.querySelector('a').getAttribute('href');
+<tr data-index="4" data-categories="array,two pointers,sorting" data-listing-date-sort="1708405200000" data-listing-file-modified-sort="1708349150857" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="3" data-listing-word-count-sort="420" data-listing-title-sort="Three Sum" data-listing-filename-sort="Three Sum.qmd" onclick="href = this.querySelector('a').getAttribute('href');
  if (href) { window.location=href ; return false; }">
-<td class="listing-title">
-<a href="./posts/Two Sum II - Input Array is Sorted.html" class="title">Two Sum II - Input Array is Sorted</a>
+<td>
+<a href="./posts/Three Sum.html" class="title listing-title">Three Sum</a>
 </td>
-<td class="listing-description">
-Find indices of two numbers that add up to target in a sorted input
+<td>
+<span class="listing-description">Return all unique triplets in array that sum to 0</span>
 </td>
-<td class="listing-categories">
-array,two pointers
+<td>
+<span class="listing-categories">array, two pointers, sorting</span>
 </td>
 </tr>
-<tr data-index="5" data-categories="two pointers,string" data-listing-date-sort="1707886800000" data-listing-file-modified-sort="1708515815558" data-listing-reading-time-sort="1.635" data-listing-title-sort="Valid Palindrome" data-listing-filename-sort="Valid Palindrome.qmd" onclick="href = this.querySelector('a').getAttribute('href');
+<tr data-index="5" data-categories="array,two pointers" data-listing-date-sort="1708318800000" data-listing-file-modified-sort="1708346434552" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="320" data-listing-title-sort="Two Sum II - Input Array is Sorted" data-listing-filename-sort="Two Sum II - Input Array is Sorted.qmd" onclick="href = this.querySelector('a').getAttribute('href');
  if (href) { window.location=href ; return false; }">
-<td class="listing-title">
-<a href="./posts/Valid Palindrome.html" class="title">Valid Palindrome</a>
+<td>
+<a href="./posts/Two Sum II - Input Array is Sorted.html" class="title listing-title">Two Sum II - Input Array is Sorted</a>
 </td>
-<td class="listing-description">
-Check if cleaned phrase is a palindrome
+<td>
+<span class="listing-description">Find indices of two numbers that add up to target in a sorted input</span>
 </td>
-<td class="listing-categories">
-two pointers,string
+<td>
+<span class="listing-categories">array, two pointers</span>
 </td>
 </tr>
-
-<tr data-index="6" data-categories="array,hash table" data-listing-date-sort="1707800400000" data-listing-file-modified-sort="1708515815558" data-listing-reading-time-sort="1.415" data-listing-title-sort="Longest Consecutive Sequence" data-listing-filename-sort="Longest Consecutive Sequence.qmd" onclick="href = this.querySelector('a').getAttribute('href');
+<tr data-index="6" data-categories="two pointers,string" data-listing-date-sort="1707886800000" data-listing-file-modified-sort="1707925266926" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="327" data-listing-title-sort="Valid Palindrome" data-listing-filename-sort="Valid Palindrome.qmd" onclick="href = this.querySelector('a').getAttribute('href');
  if (href) { window.location=href ; return false; }">
-<td class="listing-title">
-<a href="./posts/Longest Consecutive Sequence.html" class="title">Longest Consecutive Sequence</a>
+<td>
+<a href="./posts/Valid Palindrome.html" class="title listing-title">Valid Palindrome</a>
 </td>
-<td class="listing-description">
-Find longest consecutive elements sequence
+<td>
+<span class="listing-description">Check if cleaned phrase is a palindrome</span>
 </td>
-<td class="listing-categories">
-array,hash table
+<td>
+<span class="listing-categories">two pointers, string</span>
 </td>
 </tr>
-<tr data-index="7" data-categories="array,string" data-listing-date-sort="1707714000000" data-listing-file-modified-sort="1708515815558" data-listing-reading-time-sort="2.6" data-listing-title-sort="Encode and Decode Strings" data-listing-filename-sort="Encode and Decode Strings.qmd" onclick="href = this.querySelector('a').getAttribute('href');
+<tr data-index="7" data-categories="array,hash table" data-listing-date-sort="1707800400000" data-listing-file-modified-sort="1707763628758" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="283" data-listing-title-sort="Longest Consecutive Sequence" data-listing-filename-sort="Longest Consecutive Sequence.qmd" onclick="href = this.querySelector('a').getAttribute('href');
  if (href) { window.location=href ; return false; }">
-<td class="listing-title">
-<a href="./posts/Encode and Decode Strings.html" class="title">Encode and Decode Strings</a>
+<td>
+<a href="./posts/Longest Consecutive Sequence.html" class="title listing-title">Longest Consecutive Sequence</a>
 </td>
-<td class="listing-description">
-Create a reversable encoding of a list of strings to a string
+<td>
+<span class="listing-description">Find longest consecutive elements sequence</span>
 </td>
-<td class="listing-categories">
-array,string
+<td>
+<span class="listing-categories">array, hash table</span>
 </td>
 </tr>
-
-<tr data-index="8" data-categories="array,hash table,matrix" data-listing-date-sort="1707195600000" data-listing-file-modified-sort="1708515815558" data-listing-reading-time-sort="3.495" data-listing-title-sort="Valid Sudoku" data-listing-filename-sort="Valid Sudoku.qmd" onclick="href = this.querySelector('a').getAttribute('href');
+<tr data-index="8" data-categories="array,string" data-listing-date-sort="1707714000000" data-listing-file-modified-sort="1707763140823" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="3" data-listing-word-count-sort="520" data-listing-title-sort="Encode and Decode Strings" data-listing-filename-sort="Encode and Decode Strings.qmd" onclick="href = this.querySelector('a').getAttribute('href');
  if (href) { window.location=href ; return false; }">
-<td class="listing-title">
-<a href="./posts/Valid Sudoku/Valid Sudoku.html" class="title">Valid Sudoku</a>
+<td>
+<a href="./posts/Encode and Decode Strings.html" class="title listing-title">Encode and Decode Strings</a>
 </td>
-<td class="listing-description">
-Determine if a 9 x 9 sudoku board is valid
+<td>
+<span class="listing-description">Create a reversable encoding of a list of strings to a string</span>
 </td>
-<td class="listing-categories">
-array,hash table,matrix
+<td>
+<span class="listing-categories">array, string</span>
 </td>
 </tr>
-<tr data-index="9" data-categories="array,prefix sum" data-listing-date-sort="1707109200000" data-listing-file-modified-sort="1708515815558" data-listing-reading-time-sort="1.155" data-listing-title-sort="Product of Array Except Self" data-listing-filename-sort="Product of Array Except Self.qmd" onclick="href = this.querySelector('a').getAttribute('href');
+<tr data-index="9" data-categories="array,hash table,matrix" data-listing-date-sort="1707195600000" data-listing-file-modified-sort="1707756666712" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="4" data-listing-word-count-sort="699" data-listing-title-sort="Valid Sudoku" data-listing-filename-sort="Valid Sudoku.qmd" onclick="href = this.querySelector('a').getAttribute('href');
  if (href) { window.location=href ; return false; }">
-<td class="listing-title">
-<a href="./posts/Product of Array Except Self.html" class="title">Product of Array Except Self</a>
+<td>
+<a href="./posts/Valid Sudoku/Valid Sudoku.html" class="title listing-title">Valid Sudoku</a>
 </td>
-<td class="listing-description">
-Given an array, return an array where answer[i] is the product of all the elements except input[i]
+<td>
+<span class="listing-description">Determine if a 9 x 9 sudoku board is valid </span>
 </td>
-<td class="listing-categories">
-array,prefix sum
+<td>
+<span class="listing-categories">array, hash table, matrix</span>
 </td>
 </tr>
-
-<tr data-index="10" data-categories="array,hash table,bucket sort,counting" data-listing-date-sort="1707022800000" data-listing-file-modified-sort="1708515815558" data-listing-reading-time-sort="1.585" data-listing-title-sort="Top K Frequent Elements" data-listing-filename-sort="Top K Frequent Elements.qmd" onclick="href = this.querySelector('a').getAttribute('href');
+<tr data-index="10" data-categories="array,prefix sum" data-listing-date-sort="1707109200000" data-listing-file-modified-sort="1707763139297" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="231" data-listing-title-sort="Product of Array Except Self" data-listing-filename-sort="Product of Array Except Self.qmd" onclick="href = this.querySelector('a').getAttribute('href');
  if (href) { window.location=href ; return false; }">
-<td class="listing-title">
-<a href="./posts/Top K Frequent Elements.html" class="title">Top K Frequent Elements</a>
+<td>
+<a href="./posts/Product of Array Except Self.html" class="title listing-title">Product of Array Except Self</a>
 </td>
-<td class="listing-description">
-Given an array get the top k most frequent elements
+<td>
+<span class="listing-description">Given an array, return an array where answer[i] is the product of all the elements except input[i]</span>
 </td>
-<td class="listing-categories">
-array,hash table,bucket sort,counting
+<td>
+<span class="listing-categories">array, prefix sum</span>
 </td>
 </tr>
-
-<tr data-index="11" data-categories="array,hash table,string" data-listing-date-sort="1706936400000" data-listing-file-modified-sort="1708515815558" data-listing-reading-time-sort="1.285" data-listing-title-sort="Grouped Anagrams" data-listing-filename-sort="Grouped Anagrams.qmd" onclick="href = this.querySelector('a').getAttribute('href');
+<tr data-index="11" data-categories="array,hash table,bucket sort,counting" data-listing-date-sort="1707022800000" data-listing-file-modified-sort="1707763138974" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="317" data-listing-title-sort="Top K Frequent Elements" data-listing-filename-sort="Top K Frequent Elements.qmd" onclick="href = this.querySelector('a').getAttribute('href');
  if (href) { window.location=href ; return false; }">
-<td class="listing-title">
-<a href="./posts/Grouped Anagrams.html" class="title">Grouped Anagrams</a>
+<td>
+<a href="./posts/Top K Frequent Elements.html" class="title listing-title">Top K Frequent Elements</a>
 </td>
-<td class="listing-description">
-Group a list of strings by anagrams
+<td>
+<span class="listing-description">Given an array get the top k most frequent elements</span>
 </td>
-<td class="listing-categories">
-array,hash table,string
+<td>
+<span class="listing-categories">array, hash table, bucket sort, counting</span>
 </td>
 </tr>
-
-<tr data-index="12" data-categories="hash table,string,sorting" data-listing-date-sort="1706763600000" data-listing-file-modified-sort="1708515815558" data-listing-reading-time-sort="1.13" data-listing-title-sort="Valid Anagram" data-listing-filename-sort="Valid Anagram.qmd" onclick="href = this.querySelector('a').getAttribute('href');
+<tr data-index="12" data-categories="array,hash table,string" data-listing-date-sort="1706936400000" data-listing-file-modified-sort="1707763140543" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="257" data-listing-title-sort="Grouped Anagrams" data-listing-filename-sort="Grouped Anagrams.qmd" onclick="href = this.querySelector('a').getAttribute('href');
  if (href) { window.location=href ; return false; }">
-<td class="listing-title">
-<a href="./posts/Valid Anagram.html" class="title">Valid Anagram</a>
+<td>
+<a href="./posts/Grouped Anagrams.html" class="title listing-title">Grouped Anagrams</a>
 </td>
-<td class="listing-description">
-Determine if 2 strings are anagrams of each other
+<td>
+<span class="listing-description">Group a list of strings by anagrams</span>
 </td>
-<td class="listing-categories">
-hash table,string,sorting
+<td>
+<span class="listing-categories">array, hash table, string</span>
 </td>
 </tr>
-
-<tr data-index="13" data-categories="hash table,array,sorting" data-listing-date-sort="1706763600000" data-listing-file-modified-sort="1708515815558" data-listing-reading-time-sort="1.29" data-listing-title-sort="Contains Duplicate" data-listing-filename-sort="Contains Duplicate.qmd" onclick="href = this.querySelector('a').getAttribute('href');
+<tr data-index="13" data-categories="hash table,string,sorting" data-listing-date-sort="1706763600000" data-listing-file-modified-sort="1707763514756" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="226" data-listing-title-sort="Valid Anagram" data-listing-filename-sort="Valid Anagram.qmd" onclick="href = this.querySelector('a').getAttribute('href');
  if (href) { window.location=href ; return false; }">
-<td class="listing-title">
-<a href="./posts/Contains Duplicate.html" class="title">Contains Duplicate</a>
+<td>
+<a href="./posts/Valid Anagram.html" class="title listing-title">Valid Anagram</a>
 </td>
-<td class="listing-description">
-Check if an array contains duplicated values
+<td>
+<span class="listing-description">Determine if 2 strings are anagrams of each other</span>
 </td>
-<td class="listing-categories">
-hash table,array,sorting
+<td>
+<span class="listing-categories">hash table, string, sorting</span>
 </td>
 </tr>
-<tr data-index="14" data-categories="math,enumeration" data-listing-date-sort="1706677200000" data-listing-file-modified-sort="1708515815558" data-listing-reading-time-sort="1.475" data-listing-title-sort="Count Symmetric Integers" data-listing-filename-sort="Count Symmetric Integers.qmd" onclick="href = this.querySelector('a').getAttribute('href');
+<tr data-index="14" data-categories="hash table,array,sorting" data-listing-date-sort="1706763600000" data-listing-file-modified-sort="1707763141544" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="258" data-listing-title-sort="Contains Duplicate" data-listing-filename-sort="Contains Duplicate.qmd" onclick="href = this.querySelector('a').getAttribute('href');
  if (href) { window.location=href ; return false; }">
-<td class="listing-title">
-<a href="./posts/Count Symmetric Integers.html" class="title">Count Symmetric Integers</a>
+<td>
+<a href="./posts/Contains Duplicate.html" class="title listing-title">Contains Duplicate</a>
 </td>
-<td class="listing-description">
-Determine if an integer is a Symmetric
+<td>
+<span class="listing-description">Check if an array contains duplicated values</span>
 </td>
-<td class="listing-categories">
-math,enumeration
+<td>
+<span class="listing-categories">hash table, array, sorting</span>
 </td>
 </tr>
-<tr data-index="15" data-categories="array,two pointers,greedy,sorting" data-listing-date-sort="1706590800000" data-listing-file-modified-sort="1708515815558" data-listing-reading-time-sort="2.2" data-listing-title-sort="Pancake Sorting" data-listing-filename-sort="Pancake Sorting.qmd" onclick="href = this.querySelector('a').getAttribute('href');
+<tr data-index="15" data-categories="math,enumeration" data-listing-date-sort="1706677200000" data-listing-file-modified-sort="1707763133639" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="295" data-listing-title-sort="Count Symmetric Integers" data-listing-filename-sort="Count Symmetric Integers.qmd" onclick="href = this.querySelector('a').getAttribute('href');
  if (href) { window.location=href ; return false; }">
-<td class="listing-title">
-<a href="./posts/Pancake Sorting.html" class="title">Pancake Sorting</a>
+<td>
+<a href="./posts/Count Symmetric Integers.html" class="title listing-title">Count Symmetric Integers</a>
 </td>
-<td class="listing-description">
-Sort a list using pancake flips
+<td>
+<span class="listing-description">Determine if an integer is a Symmetric</span>
 </td>
-<td class="listing-categories">
-array,two pointers,greedy,sorting
+<td>
+<span class="listing-categories">math, enumeration</span>
 </td>
 </tr>
-<tr data-index="16" data-categories="math" data-listing-date-sort="1706504400000" data-listing-file-modified-sort="1708515815558" data-listing-reading-time-sort="2.12" data-listing-title-sort="Palindrome Number" data-listing-filename-sort="Palindrome Number.qmd" onclick="href = this.querySelector('a').getAttribute('href');
+<tr data-index="16" data-categories="array,two pointers,greedy,sorting" data-listing-date-sort="1706590800000" data-listing-file-modified-sort="1707763139580" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="3" data-listing-word-count-sort="440" data-listing-title-sort="Pancake Sorting" data-listing-filename-sort="Pancake Sorting.qmd" onclick="href = this.querySelector('a').getAttribute('href');
  if (href) { window.location=href ; return false; }">
-<td class="listing-title">
-<a href="./posts/Palindrome Number.html" class="title">Palindrome Number</a>
+<td>
+<a href="./posts/Pancake Sorting.html" class="title listing-title">Pancake Sorting</a>
 </td>
-<td class="listing-description">
-Determine if an integer is a palindrome
+<td>
+<span class="listing-description">Sort a list using pancake flips</span>
 </td>
-<td class="listing-categories">
-math
+<td>
+<span class="listing-categories">array, two pointers, greedy, sorting</span>
 </td>
 </tr>
-
-<tr data-index="17" data-categories="array,hash table" data-listing-date-sort="1706418000000" data-listing-file-modified-sort="1708515815558" data-listing-reading-time-sort="1.93" data-listing-title-sort="Two Sum" data-listing-filename-sort="Two Sum.qmd" onclick="href = this.querySelector('a').getAttribute('href');
+<tr data-index="17" data-categories="math" data-listing-date-sort="1706504400000" data-listing-file-modified-sort="1707763139877" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="3" data-listing-word-count-sort="424" data-listing-title-sort="Palindrome Number" data-listing-filename-sort="Palindrome Number.qmd" onclick="href = this.querySelector('a').getAttribute('href');
  if (href) { window.location=href ; return false; }">
-<td class="listing-title">
-<a href="./posts/Two Sum.html" class="title">Two Sum</a>
+<td>
+<a href="./posts/Palindrome Number.html" class="title listing-title">Palindrome Number</a>
 </td>
-<td class="listing-description">
-Find indices of two numbers that add up to target
+<td>
+<span class="listing-description">Determine if an integer is a palindrome</span>
 </td>
-<td class="listing-categories">
-array,hash table
+<td>
+<span class="listing-categories">math</span>
 </td>
 </tr>
-<tr data-index="18" data-categories="string,stack" data-listing-date-sort="1677128400000" data-listing-file-modified-sort="1708692485276" data-listing-reading-time-sort="1.655" data-listing-title-sort="Valid Parentheses" data-listing-filename-sort="Valid Parentheses.qmd" onclick="href = this.querySelector('a').getAttribute('href');
+<tr data-index="18" data-categories="array,hash table" data-listing-date-sort="1706418000000" data-listing-file-modified-sort="1707763138438" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="386" data-listing-title-sort="Two Sum" data-listing-filename-sort="Two Sum.qmd" onclick="href = this.querySelector('a').getAttribute('href');
  if (href) { window.location=href ; return false; }">
-<td class="listing-title">
-<a href="./posts/Valid Parentheses.html" class="title">Valid Parentheses</a>
+<td>
+<a href="./posts/Two Sum.html" class="title listing-title">Two Sum</a>
 </td>
-<td class="listing-description">
-Determine a string of enclusures are all open &amp; closed properly and in correct order
+<td>
+<span class="listing-description">Find indices of two numbers that add up to target</span>
 </td>
-<td class="listing-categories">
-string,stack
+<td>
+<span class="listing-categories">array, hash table</span>
+</td>
+</tr>
+<tr data-index="19" data-categories="string,stack" data-listing-date-sort="1677128400000" data-listing-file-modified-sort="1710075431660" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="331" data-listing-title-sort="Valid Parentheses" data-listing-filename-sort="Valid Parentheses.qmd" onclick="href = this.querySelector('a').getAttribute('href');
+ if (href) { window.location=href ; return false; }">
+<td>
+<a href="./posts/Valid Parentheses.html" class="title listing-title">Valid Parentheses</a>
+</td>
+<td>
+<span class="listing-description">Determine a string of enclusures are all open &amp; closed properly and in correct order</span>
+</td>
+<td>
+<span class="listing-categories">string, stack</span>
 </td>
 </tr>
 </tbody>
-
 </table>
 <div class="listing-no-matching d-none">
 No matching items
@@ -449,9 +499,23 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     icon: icon
   };
   anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
   const clipboard = new window.ClipboardJS('.code-copy-button', {
-    target: function(trigger) {
-      return trigger.previousElementSibling;
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
     }
   });
   clipboard.on('success', function(e) {
@@ -463,17 +527,33 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     button.classList.add('code-copy-button-checked');
     var currentTitle = button.getAttribute("title");
     button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
     setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
       button.setAttribute("title", currentTitle);
       button.classList.remove('code-copy-button-checked');
     }, 1000);
     // clear code selection
     e.clearSelection();
   });
-  function tippyHover(el, contentFn) {
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
     const config = {
       allowHTML: true,
-      content: contentFn,
       maxWidth: 500,
       delay: 100,
       arrow: false,
@@ -483,43 +563,304 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       interactive: true,
       interactiveBorder: 10,
       theme: 'quarto',
-      placement: 'bottom-start'
+      placement: 'bottom-start',
     };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
     window.tippy(el, config); 
   }
   const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
   for (var i=0; i<noterefs.length; i++) {
     const ref = noterefs[i];
     tippyHover(ref, function() {
-      let href = ref.getAttribute('href');
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
       try { href = new URL(href).hash; } catch {}
       const id = href.replace(/^#\/?/, "");
       const note = window.document.getElementById(id);
       return note.innerHTML;
     });
   }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
   var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
   for (var i=0; i<bibliorefs.length; i++) {
     const ref = bibliorefs[i];
-    const cites = ref.parentNode.getAttribute('data-cites').split(' ');
-    tippyHover(ref, function() {
-      var popup = window.document.createElement('div');
-      cites.forEach(function(cite) {
-        var citeDiv = window.document.createElement('div');
-        citeDiv.classList.add('hanging-indent');
-        citeDiv.classList.add('csl-entry');
-        var biblioDiv = window.document.getElementById('ref-' + cite);
-        if (biblioDiv) {
-          citeDiv.innerHTML = biblioDiv.innerHTML;
-        }
-        popup.appendChild(citeDiv);
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
       });
-      return popup.innerHTML;
-    });
+    }
   }
 });
 </script>
 </div> <!-- /content -->
+
 
 
 
